@@ -1,10 +1,28 @@
-// darkmode.js
 function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-  const btn = document.getElementById("modeToggle");
-  if (document.body.classList.contains("dark-mode")) {
-    btn.textContent = "🌙";
+  const body = document.body;
+  const button = document.getElementById("modeToggle");
+
+  body.classList.toggle("dark-mode");
+
+  // Save mode preference
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("mode", "dark");
+    button.textContent = "🌙";
   } else {
-    btn.textContent = "☀️";
+    localStorage.setItem("mode", "light");
+    button.textContent = "☀️";
   }
 }
+
+// Load saved mode on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const savedMode = localStorage.getItem("mode");
+  const button = document.getElementById("modeToggle");
+
+  if (savedMode === "dark") {
+    document.body.classList.add("dark-mode");
+    button.textContent = "🌙";
+  } else {
+    button.textContent = "☀️";
+  }
+});
