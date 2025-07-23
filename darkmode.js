@@ -1,20 +1,10 @@
-// Load saved mode if exists
-if (localStorage.getItem('mode') === 'dark') {
-  document.body.classList.add('dark');
-  document.getElementById('modeToggle').textContent = '🌙';
-}
-
+// darkmode.js
 function toggleDarkMode() {
-  const body = document.body;
-  const btn = document.getElementById('modeToggle');
-
-  body.classList.toggle('dark');
-
-  if (body.classList.contains('dark')) {
-    btn.textContent = '🌙';
-    localStorage.setItem('mode', 'dark');
+  document.body.classList.toggle("dark-mode");
+  const icon = document.getElementById("modeToggle");
+  if (document.body.classList.contains("dark-mode")) {
+    icon.textContent = "🌙";
   } else {
-    btn.textContent = '☀️';
-    localStorage.setItem('mode', 'light');
+    icon.textContent = "☀️";
   }
 }
