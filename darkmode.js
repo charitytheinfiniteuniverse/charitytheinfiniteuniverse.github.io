@@ -1,4 +1,4 @@
-// Check localStorage for saved mode
+// Load saved mode if exists
 if (localStorage.getItem('mode') === 'dark') {
   document.body.classList.add('dark');
   document.getElementById('modeToggle').textContent = '🌙';
@@ -6,15 +6,15 @@ if (localStorage.getItem('mode') === 'dark') {
 
 function toggleDarkMode() {
   const body = document.body;
-  const button = document.getElementById('modeToggle');
+  const btn = document.getElementById('modeToggle');
 
   body.classList.toggle('dark');
 
   if (body.classList.contains('dark')) {
-    button.textContent = '🌙';
+    btn.textContent = '🌙';
     localStorage.setItem('mode', 'dark');
   } else {
-    button.textContent = '☀️';
+    btn.textContent = '☀️';
     localStorage.setItem('mode', 'light');
   }
 }
