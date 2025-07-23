@@ -3,30 +3,25 @@ body {
   background-color: #ffffff;
   color: #111111;
   font-family: "Myanmar Text", sans-serif;
-  margin: 0;
   padding: 20px;
-  transition: 0.3s ease;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark Mode */
 body.dark {
   background-color: #111111;
-  color: #f5d76e;
+  color: #FFD700; /* ဝါရောင် */
 }
 
-/* Toggle Button */
+/* Mode Toggle Button */
 #modeToggle {
   position: fixed;
   top: 10px;
   right: 10px;
   font-size: 24px;
-  border: none;
   background: none;
+  border: none;
   cursor: pointer;
   z-index: 9999;
-  transition: transform 0.3s ease;
-}
-
-#modeToggle:hover {
-  transform: scale(1.2);
 }
