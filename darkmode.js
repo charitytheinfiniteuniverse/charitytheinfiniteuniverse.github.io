@@ -1,28 +1,31 @@
-function toggleDarkMode() {
-  const body = document.body;
-  const button = document.getElementById("modeToggle");
+// Dark Mode Toggle Script
+const modeToggle = document.getElementById('modeToggle');
 
-  body.classList.toggle("dark-mode");
-
-  // Save mode preference
-  if (body.classList.contains("dark-mode")) {
-    localStorage.setItem("mode", "dark");
-    button.textContent = "🌙";
-  } else {
-    localStorage.setItem("mode", "light");
-    button.textContent = "☀️";
-  }
+// Set initial emoji
+function setEmoji() {
+  modeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
 }
 
-// Load saved mode on page load
-window.addEventListener("DOMContentLoaded", () => {
-  const savedMode = localStorage.getItem("mode");
-  const button = document.getElementById("modeToggle");
+// Load from localStorage
+if (localStorage.getItem('dark-mode') === 'enabled') {
+  document.body.classList.add('dark-mode');
+}
+setEmoji();
 
-  if (savedMode === "dark") {
-    document.body.classList.add("dark-mode");
-    button.textContent = "🌙";
-  } else {
-    button.textContent = "☀️";
-  }
+// Toggle mode on click
+modeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
+  localStorage.setItem('dark-mode', mode);
+  setEmoji();
 });
+
+// Fix button at top-right
+modeToggle.style.position = 'fixed';
+modeToggle.style.top = '10px';
+modeToggle.style.right = '10px';
+modeToggle.style.zIndex = '9999';
+modeToggle.style.fontSize = '1.5rem';
+modeToggle.style.background = 'transparent';
+modeToggle.style.border = 'none';
+modeToggle.style.cursor = 'pointer';
