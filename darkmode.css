@@ -1,25 +1,13 @@
-/* ✅ Default Light Mode */
-body {
-  font-family: "Myanmar Text", sans-serif;
-  background-color: #fff;
-  color: #000;
-  margin: 0;
-  padding: 1rem;
-}
-
-/* ✅ Dark Mode */
 body.dark-mode {
-  background-color: #000;
-  color: #FFD700; /* အဝါရောင်စာ */
+  background-color: #000000;
+  color: #FFD700;
 }
 
-/* Toggle Button Style */
-#modeToggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.bottom-nav {
+  background-color: #111111;
+  border-top: 1px solid #FFD700;
+}
+
+.bottom-nav a {
+  color: #FFD700;
 }
