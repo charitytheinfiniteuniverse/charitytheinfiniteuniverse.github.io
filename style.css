@@ -45,3 +45,12 @@ main {
   text-decoration: none; /* underline ဖယ် */
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
 }
+
+/* CSS Variable for light/dark mode background color */
+:root {
+  --bottom-nav-bg: white; /* Light mode အတွက် အဖြူ */
+}
+
+body.dark-mode {
+  --bottom-nav-bg: black; /* Dark mode အတွက် အမဲ */
+}
