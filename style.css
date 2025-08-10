@@ -16,7 +16,7 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: black;
+  background-color: var(--bottom-nav-bg, black); /* variable သုံး */
   display: flex;
   justify-content: space-around;
   padding: 0.75rem 0;
