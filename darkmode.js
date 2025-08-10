@@ -15,8 +15,11 @@ setEmoji();
 // Toggle mode on click
 modeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
+
+  // ✅ CSS variable အတွက် အလိုက်သင့်အောင် update
   const mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
   localStorage.setItem('dark-mode', mode);
+
   setEmoji();
 });
 
