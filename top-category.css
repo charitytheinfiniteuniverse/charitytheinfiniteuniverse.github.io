@@ -8,6 +8,7 @@ body {
 
 main {
   padding-bottom: 4rem; /* Bottom nav space */
+  padding-top: 6rem;    /* top-category နဲ့ modeToggle ခလုတ် အတွက်အပေါက် */
 }
 
 /* 🔝 Top Navigation Bar */
@@ -45,6 +46,22 @@ main {
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
 }
 
+/* 🔘 Dark Mode Toggle Button */
+#modeToggle {
+  display: block;
+  margin: 0.75rem auto 0 auto; /* top margin + horizontally centered */
+  background: transparent;
+  border: none;
+  color: #FFD700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#modeToggle:hover {
+  color: #ffcc00;
+}
+
 /* 🔻 Bottom Navigation Bar */
 .bottom-nav {
   position: fixed;
@@ -79,4 +96,4 @@ main {
   background-color: rgba(255, 215, 0, 0.25);
   text-decoration: none; /* underline ဖယ် */
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
-  }
+}
