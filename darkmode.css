@@ -10,7 +10,7 @@ body.dark-mode {
 
 .bottom-nav {
   position: fixed;
-  bottom: 100px; /* အောက်ကို 30px ရွှေ့ထား */
+  bottom: 1000px; /* အောက်ကို 30px ရွှေ့ထား */
   left: 0;
   right: 0;
   background-color: var(--bottom-nav-bg, #111111);
