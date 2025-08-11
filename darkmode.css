@@ -1,4 +1,9 @@
+:root {
+  --bottom-nav-bg: white; /* Light mode */
+}
+
 body.dark-mode {
+  --bottom-nav-bg: black; /* Dark mode */
   background-color: #000000;
   color: #FFD700;
 }
@@ -10,13 +15,4 @@ body.dark-mode {
 
 .bottom-nav a {
   color: #FFD700;
-}
-
-/* CSS variable definitions for light & dark mode */
-:root {
-  --bottom-nav-bg: white; /* Light mode */
-}
-
-.dark-mode {
-  --bottom-nav-bg: black; /* Dark mode */
 }
