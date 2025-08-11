@@ -1,47 +1,82 @@
-/* Default variables */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --border-color: #ddd;
+body {
+  font-family: "Myanmar Text", sans-serif;
+  background-color: #ffffff;
+  color: #FFD700; /* အဝါရောင်စာ */
+  margin: 0;
+  padding: 2rem;
 }
 
+main {
+  padding-bottom: 4rem; /* Bottom nav space */
+}
+
+/* 🔝 Top Navigation Bar */
 .top-category {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--top-nav-bg, black);
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px;
-  background-color: var(--bg-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Light mode variables */
-body.light-mode {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --border-color: #ddd;
-}
-
-/* Dark mode variables */
-body.dark-mode {
-  --bg-color: #000000;
-  --text-color: #ffffff;
-  --border-color: #333;
+  justify-content: space-around;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #FFD700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .top-category a {
+  color: #FFD700;
   text-decoration: none;
-  color: var(--text-color);
   font-weight: bold;
-  font-size: 16px;
-  transition: color 0.3s;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .top-category a:hover {
-  color: #ff6600;
+  background-color: rgba(255, 215, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-/* Optional active link style */
 .top-category a.active {
-  text-decoration: underline;
-  color: #ff6600;
+  background-color: rgba(255, 215, 0, 0.25);
+  text-decoration: none;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
 }
+
+/* 🔻 Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bottom-nav-bg, black); /* variable သုံး */
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 0;
+  border-top: 1px solid #FFD700;
+
+  /* လှအောင်ထပ်ထည့်ထားသည် */
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.bottom-nav a {
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.bottom-nav a:hover {
+  background-color: rgba(255, 215, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.bottom-nav a.active {
+  background-color: rgba(255, 215, 0, 0.25);
+  text-decoration: none; /* underline ဖယ် */
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+  }
