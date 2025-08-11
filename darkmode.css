@@ -9,9 +9,12 @@ body.dark-mode {
 }
 
 .bottom-nav {
+  position: fixed;
+  bottom: 10px; /* အောက်ကို 10px ရွှေ့ထား */
+  left: 0;
+  right: 0;
   background-color: var(--bottom-nav-bg, #111111);
   border-top: 1px solid #FFD700;
-  margin-bottom: 10px; /* အောက်သို့နည်းနည်းရွှေ့ရန် */
 }
 
 .bottom-nav a {
