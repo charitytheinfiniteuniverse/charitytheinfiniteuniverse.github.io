@@ -1,50 +1,42 @@
 body {
   font-family: "Myanmar Text", sans-serif;
   background-color: #ffffff;
-  color: #FFD700; /* အဝါရောင်စာ */
+  color: #FFD700; /* စာအဝါ */
   margin: 0;
-  padding: 0; /* <-- ဒီမှာ padding ကို 0 လုပ် */
+  padding: 0;
 }
 
+/* 🌗 Dark mode toggle fixed top-right */
+#modeToggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 📝 Main content */
 main {
-  padding: 2rem;
-  padding-bottom: 5rem; /* bottom-nav နဲ့ မတိုက်အောင် အပေါက်ချန် */
+  padding: 5rem 1rem 4rem; /* Top space for toggle, bottom space for nav */
+  text-align: center;
 }
 
-/* Bottom Navigation Bar */
-.bottom-nav {
+/* 📚 Bottom Category Bar */
+.bottom-category {
   position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
-  width: 100%; /* အကျယ်တစ်လုံးယူ */
-  background-color: var(--bottom-nav-bg, black); /* variable သုံး */
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 0.75rem 0;
-  border-top: 1px solid #FFD700;
-
-  /* လှအောင်ထပ်ထည့်ထားသည် */
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
-  z-index: 999; /* အပေါ်ဆုံးတင် */
+  background-color: #222;
+  padding: 0.8rem 0;
 }
 
-.bottom-nav a {
+.bottom-category a {
   color: #FFD700;
   text-decoration: none;
   font-weight: bold;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.bottom-nav a:hover {
-  background-color: rgba(255, 215, 0, 0.15);
-  transform: translateY(-2px);
-}
-
-.bottom-nav a.active {
-  background-color: rgba(255, 215, 0, 0.25);
-  text-decoration: none; /* underline ဖယ် */
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
 }
