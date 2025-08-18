@@ -19,7 +19,7 @@ body {
 
 /* 📝 Main content */
 main {
-  padding: 5rem 1rem 4rem; /* Top space for toggle, bottom space for nav */
+  padding: 5rem 1rem 5rem; /* bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
   text-align: center;
 }
 
