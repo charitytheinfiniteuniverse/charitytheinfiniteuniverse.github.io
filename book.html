@@ -49,9 +49,11 @@
   <p style="background-color:#121212; padding:10px; border-radius:5px;">၀၉ ၈၈၄ ၆၆၄ ၆၄၇</p>
   <p style="background-color:#121212; padding:10px; border-radius:5px;">09 884 664 647</p>
 
-  <!-- 🎁 Hidden Gift Image (phone number အောက်မှာပေါ်အောင် ဤနေရာကို ပြောင်းထားသည်) -->
-  <div id="giftImage" style="display:none; text-align:center; margin-top:1rem;">
-    <img src="https://salaryatana.netlify.app/salaryatana3.jpg" alt="Gift" style="max-width:100%;">
+  <!-- 🎁 Hidden Gift Image (fullscreen overlay) -->
+  <div id="giftImage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+       background:rgba(0,0,0,0.8); text-align:center; z-index:9999;">
+    <img src="https://salaryatana.netlify.app/salaryatana3.jpg" alt="Gift" 
+         style="max-width:90%; max-height:90%; margin-top:5%;">
   </div>
   
 <main style="margin-bottom: 150px;">
@@ -75,7 +77,11 @@
 <script>
 function toggleImage() {
   var imgDiv = document.getElementById("giftImage");
-  imgDiv.style.display = (imgDiv.style.display === "none" || imgDiv.style.display === "") ? "block" : "none";
+  if (imgDiv.style.display === "none" || imgDiv.style.display === "") {
+    imgDiv.style.display = "block";
+  } else {
+    imgDiv.style.display = "none";
+  }
 }
 </script>
   
