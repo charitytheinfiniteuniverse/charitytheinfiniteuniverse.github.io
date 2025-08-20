@@ -54,30 +54,29 @@
   <!-- မူရင်း content အားလုံး -->
 </main>    
 
-  <!-- 🔘 Fixed Minimal Telegram Emoji Button -->
-<div style="position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%); z-index: 10;">
-  <a href="https://t.me/salaryatanacommunity/51" target="_blank" 
-     style="font-size: 2.5rem; text-decoration: none;">
-     📜
+  <!-- 🔘 Fixed Minimal Telegram + Gift Buttons (Flex) -->
+<div style="position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 1.5rem; align-items: center;">
+
+  <!-- 🎁 Gift Button -->
+  <a href="#" onclick="toggleImage(); return false;" style="font-size: 2.5rem; text-decoration: none;">
+    🎁
+  </a>
+
+  <!-- 📜 Telegram Button -->
+  <a href="https://t.me/salaryatanacommunity/51" target="_blank" style="font-size: 2.5rem; text-decoration: none;">
+    📜
   </a>
 </div>
 
-  <!-- 🎁 Gift Button -->
-<a href="#" onclick="toggleImage(); return false;">🎁</a>
-
-<!-- Hidden Image -->
-<div id="giftImage" style="display:none;">
+<!-- Hidden Gift Image -->
+<div id="giftImage" style="display:none; text-align:center; margin-top:1rem;">
   <img src="https://salaryatana.netlify.app/salaryatana3.jpg" alt="Gift" style="max-width:100%;">
 </div>
 
 <script>
 function toggleImage() {
   var imgDiv = document.getElementById("giftImage");
-  if (imgDiv.style.display === "none" || imgDiv.style.display === "") {
-    imgDiv.style.display = "block";
-  } else {
-    imgDiv.style.display = "none";
-  }
+  imgDiv.style.display = (imgDiv.style.display === "none" || imgDiv.style.display === "") ? "block" : "none";
 }
 </script>
   
