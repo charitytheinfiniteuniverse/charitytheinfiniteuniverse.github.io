@@ -61,6 +61,25 @@
      📜
   </a>
 </div>
+
+  <!-- 🎁 Gift Button -->
+<a href="#" onclick="toggleImage(); return false;">🎁</a>
+
+<!-- Hidden Image -->
+<div id="giftImage" style="display:none;">
+  <img src="https://salaryatana.netlify.app/salaryatana3.jpg" alt="Gift" style="max-width:100%;">
+</div>
+
+<script>
+function toggleImage() {
+  var imgDiv = document.getElementById("giftImage");
+  if (imgDiv.style.display === "none" || imgDiv.style.display === "") {
+    imgDiv.style.display = "block";
+  } else {
+    imgDiv.style.display = "none";
+  }
+}
+</script>
   
   <!-- 🔻 Bottom Category Navigation -->
   <nav class="bottom-nav">
