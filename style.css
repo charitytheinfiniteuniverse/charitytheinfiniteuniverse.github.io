@@ -1,125 +1,55 @@
 body {
-  font-family: "Myanmar Text", sans-serif;
-  background-color: #ffffff;
-  color: #FFD700; /* စာအဝါ */
-  margin: 0;
-  padding: 0;
+font-family: "Myanmar Text", sans-serif;
+background-color: #ffffff;
+color: #FFD700; /* စာအဝါ */
+margin: 0;
+padding: 0;
 }
 
 /* 🌗 Dark mode toggle fixed top-right */
 #modeToggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+position: fixed;
+top: 1rem;
+right: 1rem;
+background: transparent;
+border: none;
+font-size: 1.5rem;
+cursor: pointer;
 }
 
-/* 📝 Main content */
+/* 📝 Main content /
 main {
-  padding: 5rem 1rem 5rem; /* bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* အလယ်ခလုတ် alignment */
+padding: 5rem 1rem 5rem; / bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
+text-align: center;
 }
 
 /* 📚 Bottom Category Bar */
 .bottom-category {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  background-color: #222;
-  padding: 0.8rem 0;
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+display: flex;
+justify-content: space-around;
+background-color: #222;
+padding: 0.8rem 0;
 }
 
 .bottom-category a {
-  color: #FFD700;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+color: #FFD700;
+text-decoration: none;
+font-weight: bold;
+padding: 6px 12px;
+border-radius: 6px;
+transition: background-color 0.3s ease;
 }
 
-/* 🌟 Active link style (soft gold) */
+/* 🌟 Active link style (soft gold) /
 .bottom-category a.active {
-  background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
-  text-decoration: none;
+background-color: rgba(255, 215, 0, 0.2); / အဖျော့ အဝါ /
+box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); / အဖျော့ shadow */
+text-decoration: none;
 }
 
-/* ===== 6 Platform Button Styles (Unified Font) ===== */
 
-/* Common Button Style */
-.app-btn {
-  display: block;
-  text-align: center;
-  margin: 1rem 0; /* margin horizontal မလိုဘူး, အလယ်နေအောင် */
-  padding: 1rem;
-  width: 100%;
-  max-width: 300px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  border: 2px solid #E0E0E0;
-  transition: all 0.3s ease;
-  font-family: "Myanmar Text", sans-serif; /* တစ်ခုထဲဖောင့် */
-}
 
-/* Platform-specific colors */
-.app-btn.messenger {
-  color: rgba(24, 119, 242, 0.6); /* Messenger blue */
-}
-
-.app-btn.telegram {
-  color: rgba(0, 136, 204, 0.7); /* Telegram blue */
-}
-
-.app-btn.viber {
-  color: rgba(115, 96, 242, 0.6); /* Viber purple */
-}
-
-.app-btn.tiktok {
-  color: #121212; /* TikTok dark */
-}
-
-.app-btn.youtube {
-  color: rgba(255, 0, 51, 0.6); /* YouTube red */
-}
-
-.app-btn.facebook {
-  color: rgba(24, 119, 242, 0.6); /* Facebook blue */
-}
-
-/* Hover effect for all buttons */
-.app-btn:hover {
-  background-color: rgba(0,0,0,0.05);
-}
-
-/* ===== Responsive adjustments ===== */
-@media (max-width: 768px) {
-  main {
-    padding: 3rem 1rem 5rem; /* phone view padding */
-  }
-
-  .app-btn {
-    width: 90%; /* phone view မှာ button width လျော့ပြီး margin auto */
-  }
-}
-
-@media (min-width: 769px) {
-  main {
-    padding: 5rem 1rem 5rem;
-  }
-
-  .app-btn {
-    width: 300px; /* desktop view အတွက် fixed max-width */
-  }
-}
