@@ -50,3 +50,50 @@ main {
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
   text-decoration: none;
 }
+
+/* ===== 6 Platform Button Styles ===== */
+
+/* Common Button Style */
+.app-btn {
+  display: block;
+  text-align: center;
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: 300px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: 2px solid #E0E0E0;
+  transition: all 0.3s ease;
+}
+
+/* Platform-specific colors */
+.app-btn.messenger {
+  color: rgba(24, 119, 242, 0.6); /* Messenger blue */
+}
+
+.app-btn.telegram {
+  color: rgba(0, 136, 204, 0.7); /* Telegram blue */
+}
+
+.app-btn.viber {
+  color: rgba(115, 96, 242, 0.6); /* Viber purple */
+}
+
+.app-btn.tiktok {
+  color: #121212; /* TikTok dark */
+}
+
+.app-btn.youtube {
+  color: rgba(255, 0, 51, 0.6); /* YouTube red */
+}
+
+.app-btn.facebook {
+  color: rgba(24, 119, 242, 0.6); /* Facebook blue */
+}
+
+/* Hover effect for all buttons */
+.app-btn:hover {
+  background-color: rgba(0,0,0,0.05);
+}
