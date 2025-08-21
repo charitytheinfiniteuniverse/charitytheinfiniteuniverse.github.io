@@ -37,21 +37,16 @@ text-decoration:none; font-weight:bold;">
          style="max-width:120%; max-height:110%;">  
   </div>  <main style="margin-bottom: 150px;">  
   <!-- မူရင်း content အားလုံး -->  
-</main>        <!-- 🔘 Fixed Minimal Telegram + Gift Buttons (Flex) -->  <div style="position: fixed; bottom: 70px; left: 50%; transform: translateX(-77%); z-index: 20; display: flex; gap: 0.5rem; align-items: center;">    <!-- 🎁 Gift Button -->    <a href="#" onclick="toggleImage(); return false;" style="font-size: 2.5rem; text-decoration: none;">  
-    🎁  
-  </a>    <!-- 📜 Telegram Button (📜 ခလုတ်ကို အလယ်တည့်တည့်မှာ ရှိအောင် gap တိုးထားသည်) -->    <a href="https://t.me/PhyoKyawHtat" target="_blank" style="font-size: 2.5rem; text-decoration: none;">  
-    📜  
-  </a>  
-</div>  <script>  
-function toggleImage() {  
-  var imgDiv = document.getElementById("giftImage");  
-  if (imgDiv.style.display === "none" || imgDiv.style.display === "") {  
-    imgDiv.style.display = "block";  
-  } else {  
-    imgDiv.style.display = "none";  
-  }  
-}  
-</script>    <!-- 🔻 Bottom Category Navigation -->    <nav class="bottom-nav">  
+</main>        
+
+    <!-- 🔘 Fixed Minimal Telegram Emoji Button -->      
+<div style="position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%); z-index: 10;">      
+<a href="https://t.me/PhyoKyawHtat" target="_blank"      
+style="font-size: 2.5rem; text-decoration: none;">      
+📜      
+</a>        
+</div>   
+  <!-- 🔻 Bottom Category Navigation -->    <nav class="bottom-nav">  
     <a href="index.html">🗂️ ပင်မ</a>  
     <a href="about.html">ℹ️ အကြောင်း</a>
     <a href="book.html" class="active">📒 စာအုပ်</a>  
