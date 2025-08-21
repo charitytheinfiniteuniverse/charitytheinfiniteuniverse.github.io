@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="darkmode.css" />
   <script defer src="darkmode.js"></script>
+  
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#FFD700">
 </head>
 <body>
 
@@ -60,15 +64,18 @@
   <!-- မူရင်း content အားလုံး -->
 </main>    
 
-  <!-- 🔘 Fixed Minimal Telegram + Gift Buttons (Flex) -->
+  <!-- 🔘 Fixed Minimal Telegram + Gift Buttons (Flex) + 📥 Add to Home Screen Button -->
 <div style="position: fixed; bottom: 70px; left: 50%; transform: translateX(-77%); z-index: 20; display: flex; gap: 0.5rem; align-items: center;">
+
+  <!-- 📥 Add to Home Screen Button (leftmost) -->
+  <button id="a2hs-btn" style="font-size: 2.5rem; border:none; background:none; cursor:pointer;">📥</button>
 
   <!-- 🎁 Gift Button -->
   <a href="#" onclick="toggleImage(); return false;" style="font-size: 2.5rem; text-decoration: none;">
     🎁
   </a>
 
-  <!-- 📜 Telegram Button (📜 ခလုတ်ကို အလယ်တည့်တည့်မှာ ရှိအောင် gap တိုးထားသည်) -->
+  <!-- 📜 Telegram Button -->
   <a href="https://t.me/PhyoKyawHtat" target="_blank" style="font-size: 2.5rem; text-decoration: none;">
     📜
   </a>
@@ -82,6 +89,29 @@ function toggleImage() {
   } else {
     imgDiv.style.display = "none";
   }
+}
+
+// Add to Home Screen (A2HS)
+let deferredPrompt;
+const a2hsBtn = document.getElementById("a2hs-btn");
+a2hsBtn.style.display = "none";
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  a2hsBtn.style.display = "inline-block";
+
+  a2hsBtn.addEventListener("click", () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choice) => {
+      deferredPrompt = null;
+    });
+  });
+});
+
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js");
 }
 </script>
   
