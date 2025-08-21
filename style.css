@@ -21,6 +21,9 @@ body {
 main {
   padding: 5rem 1rem 5rem; /* bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* အလယ်ခလုတ် alignment */
 }
 
 /* 📚 Bottom Category Bar */
@@ -51,14 +54,15 @@ main {
   text-decoration: none;
 }
 
-/* ===== 6 Platform Button Styles ===== */
+/* ===== 6 Platform Button Styles (Unified Font) ===== */
 
 /* Common Button Style */
 .app-btn {
   display: block;
   text-align: center;
-  margin: 1rem auto;
+  margin: 1rem 0; /* margin horizontal မလိုဘူး, အလယ်နေအောင် */
   padding: 1rem;
+  width: 100%;
   max-width: 300px;
   text-decoration: none;
   font-weight: bold;
@@ -66,6 +70,7 @@ main {
   border-radius: 8px;
   border: 2px solid #E0E0E0;
   transition: all 0.3s ease;
+  font-family: "Myanmar Text", sans-serif; /* တစ်ခုထဲဖောင့် */
 }
 
 /* Platform-specific colors */
@@ -96,4 +101,25 @@ main {
 /* Hover effect for all buttons */
 .app-btn:hover {
   background-color: rgba(0,0,0,0.05);
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 768px) {
+  main {
+    padding: 3rem 1rem 5rem; /* phone view padding */
+  }
+
+  .app-btn {
+    width: 90%; /* phone view မှာ button width လျော့ပြီး margin auto */
+  }
+}
+
+@media (min-width: 769px) {
+  main {
+    padding: 5rem 1rem 5rem;
+  }
+
+  .app-btn {
+    width: 300px; /* desktop view အတွက် fixed max-width */
+  }
 }
