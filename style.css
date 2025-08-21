@@ -17,9 +17,9 @@ font-size: 1.5rem;
 cursor: pointer;
 }
 
-/* 📝 Main content /
+/* 📝 Main content */
 main {
-padding: 5rem 1rem 5rem; / bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
+padding: 5rem 1rem 5rem; /* bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
 text-align: center;
 }
 
@@ -44,12 +44,9 @@ border-radius: 6px;
 transition: background-color 0.3s ease;
 }
 
-/* 🌟 Active link style (soft gold) /
+/* 🌟 Active link style (soft gold) */
 .bottom-category a.active {
-background-color: rgba(255, 215, 0, 0.2); / အဖျော့ အဝါ /
-box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); / အဖျော့ shadow */
+background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
+box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
 text-decoration: none;
 }
-
-
-
