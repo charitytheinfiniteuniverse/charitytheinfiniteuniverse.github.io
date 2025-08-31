@@ -1,55 +1,61 @@
 body {
-font-family: "Myanmar Text", sans-serif;
-background-color: #ffffff;
-color: #FFD700; /* စာအဝါ */
-margin: 0;
-padding: 0;
+  font-family: "Myanmar Text", sans-serif;
+  background-color: #ffffff;
+  color: #FFD700; /* စာအဝါ */
+  margin: 0;
+  padding: 0;
 }
 
 /* 🌗 Dark mode toggle fixed top-right */
 #modeToggle {
-position: fixed;
-top: 1rem;
-right: 1rem;
-background: transparent;
-border: none;
-font-size: 1.5rem;
-cursor: pointer;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* 📝 Main content */
 main {
-padding: 5rem 1rem 5rem; /* bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
-text-align: center;
+  padding: 5rem 1rem 5rem; /* bottom padding = 5rem, category bar အောက် မဖုံးအောင် */
+  text-align: center;
 }
 
 /* 🌟 Active link style (soft gold) */
 .bottom-category a.active {
-background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
-box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
-text-decoration: none;
+  background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
+  text-decoration: none;
 }
-
 
 /* 📚 Bottom Category Bar */
 .bottom-category {
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-display: flex;
-justify-content: space-around;
-background-color: #222;
-padding: 0.8rem 0; z-index: 5;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #222;
+  padding: 0.8rem 0; 
+  z-index: 5;
 }
 
 .bottom-category a {
-color: #FFD700;
-text-decoration: none;
-font-weight: bold;
-padding: 6px 12px;
-border-radius: 6px;
-transition: background-color 0.3s ease;
+  display: flex;            /* vertical layout */
+  flex-direction: column;   /* emoji အပေါ်၊ စာ အောက် */
+  align-items: center;
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
-
+.bottom-category a .icon {
+  font-size: 24px;       /* emoji အရွယ်အစား */
+  margin-bottom: 4px;    /* emoji နဲ့ စာကြား အကွာအဝေး */
+}
