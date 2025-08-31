@@ -31,7 +31,7 @@ main {
 }
 
 /* 📚 Bottom Category Bar */
-.bottom-category {
+.bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -43,7 +43,7 @@ main {
   z-index: 5;
 }
 
-.bottom-category a {
+.bottom-nav a {
   display: flex;            /* vertical layout */
   flex-direction: column;   /* emoji အပေါ်၊ စာ အောက် */
   align-items: center;
@@ -55,7 +55,7 @@ main {
   transition: background-color 0.3s ease;
 }
 
-.bottom-category a .icon {
+.bottom-nav a .icon {
   font-size: 24px;       /* emoji အရွယ်အစား */
   margin-bottom: 4px;    /* emoji နဲ့ စာကြား အကွာအဝေး */
 }
