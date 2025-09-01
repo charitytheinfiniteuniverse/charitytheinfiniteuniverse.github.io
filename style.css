@@ -63,12 +63,18 @@ main {
 /* 🔝 Fixed Top-Left Title */
 #fixedTitle {
   position: fixed;
-  top: 2rem;        /* အပေါ် margin */
-  left: 0.5rem;       /* ဘယ်ဘက် margin */
-  font-size: 1.5rem;  /* စာအရွယ် */
+  top: 1rem;           /* အပေါ် margin – လိုချင်သလို ပြင်နိုင် */
+  left: 0.5rem;        /* ဘယ်ဘက် margin */
+  font-size: 1.5rem;   /* စာအရွယ် */
   font-weight: bold;
-  color: #FFD700;     /* စာအဝါ */
+  color: #FFD700;      /* စာအဝါ */
   background: transparent; /* နောက်ခံမရှိ */
   z-index: 999;        /* အမြင့်ဆုံး */
   pointer-events: none; /* click မခံအောင် */
+}
+
+/* အခြားမူရင်း style မတွေ့ရင် */
+body {
+  margin: 0;
+  padding: 0;
 }
