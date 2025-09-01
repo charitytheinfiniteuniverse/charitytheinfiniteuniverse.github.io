@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="darkmode.css" />  
   <script defer src="darkmode.js"></script>  
 </head>  
-<body>    <!-- 🔘 Dark Mode Toggle Button -->  <button id="modeToggle">☀️</button>
+<body>  
+  
+   <!-- 🔘 Fixed Top-Left Title -->
+<div id="fixedTitle">salaryatana I သဠာယတန</div>
+  
+  <!-- 🔘 Dark Mode Toggle Button -->  <button id="modeToggle">☀️</button>
 
 <main style="padding-top: 4rem;">    <!-- Button -->  <a href="#" onclick="var img=document.getElementById('bookImage'); img.style.display=(img.style.display==='none'||img.style.display==='')?'block':'none'; return false;"    
 style="display:block; text-align:center; margin:1rem auto; padding:1rem; max-width:300px;     
@@ -35,10 +40,21 @@ background-color:#E0E0E0; color:#121212; border:2px solid #E0E0E0; border-radius
 text-decoration:none; font-weight:bold;">
 ရေးသားမှုပုံစံများအားလုံးကို ဖတ်ရန်
 </a>
-  <p style="background-color:#121212; padding:10px; border-radius:5px;">စာနှင့်လက်တွေ့နည်းကျ ဝိပဿနာတရားရှုမှတ်ခြင်း</p>  
-  <p style="background-color:#121212; padding:10px; border-radius:5px;">The Theory and Practice of Vipassanā Mediation</p>  
-  <p style="background-color:#121212; padding:10px; border-radius:5px;">၀၉ ၈၈၄ ၆၆၄ ၆၄၇</p>  
-  <p style="background-color:#121212; padding:10px; border-radius:5px;">09 884 664 647</p>    <!-- 🎁 Hidden Gift Image (only image, no background overlay) -->    <div id="giftImage" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);   
+  
+  <p style="background-color:#121212; padding:10px; border-radius:5px;">https://salaryatana.netlify.app </p>
+    
+<p style="background-color:#121212; padding:10px; border-radius:5px;">
+
+စာနှင့်လက်တွေ့နည်းကျ ဝိပဿနာတရားရှုမှတ်ခြင်း
+</p>
+    
+<p style="background-color:#121212; padding:10px; border-radius:5px;">၀၉ ၈၈၄ ၆၆၄ ၆၄၇ </p>  
+  
+<p style="background-color:#121212; padding:10px; border-radius:5px;">The Theory and Practice of Vipassanā Mediation</p>  
+  
+<p style="background-color:#121212; padding:10px; border-radius:5px;">09 884 664 647 </p>
+   
+  <!-- 🎁 Hidden Gift Image (only image, no background overlay) -->    <div id="giftImage" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);   
        text-align:center; z-index:9999;">  
     <img src="https://salaryatana.netlify.app/salaryatana3.jpg" alt="Gift"   
          style="max-width:120%; max-height:110%;">  
@@ -58,10 +74,24 @@ function toggleImage() {
     imgDiv.style.display = "none";  
   }  
 }  
-</script>    <!-- 🔻 Bottom Category Navigation -->    <nav class="bottom-nav">  
-    <a href="index.html">🗂️ ပင်မ</a>  
-    <a href="about.html">ℹ️ အကြောင်း</a>
-   <a href="pdf.html">📄 ဖိုင် </a>
-  <a href="book.html" class="active">📒 စာအုပ်</a>  
-  </nav>  </main>  </body>  
+</script>  
+  <!-- Bottom Category Navigation -->
+<nav class="bottom-nav">
+  <a href="index.html">
+    <span class="icon">🗂️</span>
+    <span class="text">ပင်မ</span>
+  </a>
+  <a href="about.html">
+    <span class="icon">ℹ️</span>
+    <span class="text">အကြောင်း</span>
+  </a>
+  <a href="pdf.html">
+    <span class="icon">📄</span>
+    <span class="text">ဖိုင်</span>
+  </a>
+  <a href="book.html" class="active">
+    <span class="icon">📒</span>
+    <span class="text">စာအုပ်</span>
+  </a>
+</nav>  </main>  </body>  
 </html>
