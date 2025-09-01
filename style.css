@@ -50,12 +50,12 @@ main {
   color: #FFD700;
   text-decoration: none;
   font-weight: bold;
-  padding: 6px 12px;
+  padding: 4px 6px;
   border-radius: 6px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; font-size: 12px;
 }
 
 .bottom-nav a .icon {
-  font-size: 24px;       /* emoji အရွယ်အစား */
+  font-size: 18px;       /* emoji အရွယ်အစား */
   margin-bottom: 4px;    /* emoji နဲ့ စာကြား အကွာအဝေး */
 }
