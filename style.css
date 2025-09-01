@@ -59,3 +59,16 @@ main {
   font-size: 18px;       /* emoji အရွယ်အစား */
   margin-bottom: 4px;    /* emoji နဲ့ စာကြား အကွာအဝေး */
 }
+
+/* 🔝 Fixed Top-Left Title */
+#fixedTitle {
+  position: fixed;
+  top: 0.5rem;        /* အပေါ် margin */
+  left: 0.5rem;       /* ဘယ်ဘက် margin */
+  font-size: 1.5rem;  /* စာအရွယ် */
+  font-weight: bold;
+  color: #FFD700;     /* စာအဝါ */
+  background: transparent; /* နောက်ခံမရှိ */
+  z-index: 20;        /* အမြင့်ဆုံး */
+  pointer-events: none; /* click မခံအောင် */
+}
