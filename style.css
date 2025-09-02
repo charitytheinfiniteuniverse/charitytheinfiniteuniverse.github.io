@@ -64,12 +64,12 @@ main {
 #fixedTitle {
   position: fixed;
   top: 0rem;           /* အပေါ် margin – လိုချင်သလို ပြင်နိုင် */
-  left: 1rem;        /* ဘယ်ဘက် margin */
-  font-size: 0.5rem;   /* စာအရွယ် */
+  left: 0.5rem;        /* ဘယ်ဘက် margin */
+  font-size: 1rem;   /* စာအရွယ် */
   font-weight: bold;
   background-color: black;
   color: #FFD700;
-  padding: 2px 6px;
+  padding: 3px 7px;
   border-radius: 6px;
   z-index: 9999;
   pointer-events: none;
