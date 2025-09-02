@@ -69,7 +69,7 @@ main {
   font-weight: bold;
   background-color: black;
   color: #FFD700;
-  padding: -3px 1px;
+  padding: 1px 4px;
   border-radius: 6px;
   z-index: 9999;
   pointer-events: none;
