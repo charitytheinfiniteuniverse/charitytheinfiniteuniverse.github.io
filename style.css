@@ -64,7 +64,7 @@ main {
 #fixedTitle {
   position: fixed;
   top: 0rem;           /* အပေါ် margin – လိုချင်သလို ပြင်နိုင် */
-  left: 0.5rem;        /* ဘယ်ဘက် margin */
+  left: 1rem;        /* ဘယ်ဘက် margin */
   font-size: 0.5rem;   /* စာအရွယ် */
   font-weight: bold;
   background-color: black;
