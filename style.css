@@ -66,10 +66,13 @@ main {
   top: 0rem;           /* အပေါ် margin – လိုချင်သလို ပြင်နိုင် */
   left: 0.5rem;        /* ဘယ်ဘက် margin */
   font-size: 1.5rem;   /* စာအရွယ် */
-  font-weight: bold; background-color: black;  /* အမဲရောင် */
-  color: #FFD700;      /* စာအဝါ */
-  z-index: 999;        /* အမြင့်ဆုံး */
-  pointer-events: none; /* click မခံအောင် */
+  font-weight: bold;
+  background-color: black;
+  color: #FFD700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  z-index: 9999;
+  pointer-events: none;
 }
 
 /* အခြားမူရင်း style မတွေ့ရင် */
