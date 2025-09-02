@@ -68,7 +68,6 @@ main {
   font-size: 1.5rem;   /* စာအရွယ် */
   font-weight: bold; background-color: black;  /* အမဲရောင် */
   color: #FFD700;      /* စာအဝါ */
-  background: transparent; /* နောက်ခံမရှိ */
   z-index: 999;        /* အမြင့်ဆုံး */
   pointer-events: none; /* click မခံအောင် */
 }
