@@ -66,7 +66,7 @@ main {
   top: 0rem;           /* အပေါ် margin – လိုချင်သလို ပြင်နိုင် */
   left: 0.5rem;        /* ဘယ်ဘက် margin */
   font-size: 1.5rem;   /* စာအရွယ် */
-  font-weight: bold;
+  font-weight: bold; background-color: black;  /* အမဲရောင် */
   color: #FFD700;      /* စာအဝါ */
   background: transparent; /* နောက်ခံမရှိ */
   z-index: 999;        /* အမြင့်ဆုံး */
