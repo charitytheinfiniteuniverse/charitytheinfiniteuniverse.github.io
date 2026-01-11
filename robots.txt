@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maranadhamma.netlify.app/sitemap.xml
