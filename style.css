@@ -93,3 +93,26 @@ body {
   border-radius: 50%; /* လိုဂိုကို အဝိုင်းပုံစံ ဖြစ်စေချင်လျှင် သုံးပါ */
   object-fit: cover;
 }
+
+/*လူဦးရေကြည့်တဲ့ဟာ*/
+.header-counter {
+    background-color: #000000; /* နောက်ခံအမည်း */
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #333; /* အောက်ကနေ မျဉ်းလေးတားထားချင်လျှင် */
+}
+
+.counter-label {
+    color: #FFC107; /* စာလုံးအရောင်အဝါ */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hits-badge {
+    height: 20px; /* Badge အရွယ်အစားကို စာသားနဲ့ ညှိထားသည် */
+    vertical-align: middle;
+}
+
+/* Header ကို Fix လုပ်ထားလျှင် ဒါကလည်း လိုက်ပါနေမှာဖြစ်သည် */
