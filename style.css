@@ -95,27 +95,38 @@ body {
 }
 
 /*လူဦးရေကြည့်တဲ့ဟာ*/
-.counter-fixed-btn {
+.fixed-counter-btn {
     position: fixed;
-    top: 45px; /* သင့် Header ခလုတ်ရဲ့ အမြင့်ပေါ်မူတည်ပြီး ဒါကို အနည်းငယ် အတိုးအလျှော့ လုပ်နိုင်ပါတယ် */
-    left: 10px; /* ဘယ်ဘက်အစွန်းမှာ ကပ်ထားရန် */
-    background-color: #000000; /* နောက်ခံ အမည်း */
-    padding: 5px 12px;
-    border-radius: 5px; /* ခလုတ်ပုံစံ ထောင့်လေးတွေ ဝိုင်းရန် */
+    top: 95px; /* မူလ Header ခလုတ်ရဲ့ အောက်နားမှာ ကွက်တိဖြစ်အောင် ညှိထားပါသည် */
+    left: 10px;
+    background-color: #000000;
+    padding: 6px 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
-    z-index: 999; /* Header ရဲ့အောက် (သို့မဟုတ်) အပေါ်မှာ ပေါ်နေစေရန် */
-    border: 1px solid #333; /* ခလုတ်ဘောင်လေး လှအောင် ထည့်ထားခြင်း */
+    z-index: 10000; /* အခြား element များထက် အပေါ်မှာ အမြဲရှိနေစေရန် */
+    border: 1px solid #FFC107; /* အဝါရောင် ဘောင်လေးထည့်လိုက်ပါသည် */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
-.counter-text {
-    color: #FFC107; /* စာလုံးအရောင် အဝါ */
+.counter-label {
+    color: #FFC107;
     font-size: 13px;
     font-weight: bold;
+    white-space: nowrap; /* စာသားကို တစ်ကြောင်းတည်းဖြစ်စေရန် */
 }
 
-.counter-badge {
-    height: 18px;
-    display: block;
+.hits-img {
+    height: 20px;
+    display: none; /* Load ဖြစ်မှ ပေါ်လာအောင် လုပ်ထားပါသည် */
 }
+
+/* ဖုန်း screen ပေါ်မူတည်ပြီး နေရာညှိရန် */
+@media (max-width: 600px) {
+    .fixed-counter-btn {
+        top: 90px;
+        padding: 4px 10px;
+    }
+}
+
