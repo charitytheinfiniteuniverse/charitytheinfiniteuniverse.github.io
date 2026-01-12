@@ -95,24 +95,27 @@ body {
 }
 
 /*လူဦးရေကြည့်တဲ့ဟာ*/
-.header-counter {
-    background-color: #000000; /* နောက်ခံအမည်း */
-    padding: 5px 10px;
+.counter-fixed-btn {
+    position: fixed;
+    top: 45px; /* သင့် Header ခလုတ်ရဲ့ အမြင့်ပေါ်မူတည်ပြီး ဒါကို အနည်းငယ် အတိုးအလျှော့ လုပ်နိုင်ပါတယ် */
+    left: 10px; /* ဘယ်ဘက်အစွန်းမှာ ကပ်ထားရန် */
+    background-color: #000000; /* နောက်ခံ အမည်း */
+    padding: 5px 12px;
+    border-radius: 5px; /* ခလုတ်ပုံစံ ထောင့်လေးတွေ ဝိုင်းရန် */
     display: flex;
     align-items: center;
     gap: 8px;
-    border-bottom: 1px solid #333; /* အောက်ကနေ မျဉ်းလေးတားထားချင်လျှင် */
+    z-index: 999; /* Header ရဲ့အောက် (သို့မဟုတ်) အပေါ်မှာ ပေါ်နေစေရန် */
+    border: 1px solid #333; /* ခလုတ်ဘောင်လေး လှအောင် ထည့်ထားခြင်း */
 }
 
-.counter-label {
-    color: #FFC107; /* စာလုံးအရောင်အဝါ */
-    font-size: 14px;
+.counter-text {
+    color: #FFC107; /* စာလုံးအရောင် အဝါ */
+    font-size: 13px;
     font-weight: bold;
 }
 
-.hits-badge {
-    height: 20px; /* Badge အရွယ်အစားကို စာသားနဲ့ ညှိထားသည် */
-    vertical-align: middle;
+.counter-badge {
+    height: 18px;
+    display: block;
 }
-
-/* Header ကို Fix လုပ်ထားလျှင် ဒါကလည်း လိုက်ပါနေမှာဖြစ်သည် */
