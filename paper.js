@@ -22,7 +22,7 @@ const contentArea = document.getElementById('reading-content');
 function changeFontSize(action) {
     if (!contentArea) return;
 
-    if (action === 'large' && currentFontSize < 32) {
+    if (action === 'large' && currentFontSize < 50) {
         currentFontSize += 2;
     } else if (action === 'small' && currentFontSize > 14) {
         currentFontSize -= 2;
