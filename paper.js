@@ -79,3 +79,9 @@ function showLastReadLink() {
 
 // စာမျက်နှာ Load ဖြစ်ပြီးရင် ခလုတ်လေး ရှိမရှိ စစ်မယ်
 window.addEventListener('load', showLastReadLink);
+
+// setting ခလုပ်အတွက်
+function toggleSetting() {
+    const settingOverlay = document.getElementById('setting-overlay');
+    settingOverlay.style.display = (settingOverlay.style.display === 'block') ? 'none' : 'block';
+}
