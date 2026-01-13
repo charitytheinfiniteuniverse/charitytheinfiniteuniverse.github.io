@@ -1,127 +1,110 @@
-/* Layout အခြေခံ */
-body.dark-mode {
-    background-color: #000;
-    color: #eee;
+/* ၁။ Layout အခြေခံ (မျက်လုံးမထိခိုက်သော Sepia Theme) */
+body.sepia-mode {
+    background-color: #f4ecd8; /* မျက်လုံးအေးသော အဝါဖျော့ */
+    color: #1a1a1a; /* စာလုံးအမည်းရောင် */
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Pyidaungsu', sans-serif;
+    transition: background 0.3s ease;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 700px; /* စာဖတ်ရပိုကောင်းအောင် အကျယ်ကို 700px ထားခြင်း */
     margin: 0 auto;
     padding-bottom: 80px;
 }
 
-/* ထိန်းချုပ်ခလုတ်များ */
+/* ၂။ ထိန်းချုပ်ခလုတ်များ (Top Bar) */
 .top-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: #111;
+    background: #eadebc; /* အဝါရင့်ရင့် */
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #d4c5a0;
 }
 
 .back-link {
-    color: #FFC107;
+    color: #443300; /* အညိုရင့်ရောင် */
     text-decoration: none;
     font-weight: bold;
 }
 
 .font-controls button {
-    background: #222;
-    color: #FFC107;
-    border: 1px solid #FFC107;
+    background: #f4ecd8;
+    color: #1a1a1a;
+    border: 1px solid #443300;
     padding: 5px 15px;
     margin-left: 8px;
     cursor: pointer;
     border-radius: 4px;
+    font-weight: bold;
 }
 
-/* မာတိကာ Popup Overlay */
+/* ၃။ မာတိကာ Popup Overlay */
 .toc-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none; /* JS ကနေ ဖွင့်ပေးလိမ့်မယ် */
+    background: rgba(0, 0, 0, 0.6); /* နောက်ခံကို မှိန်ထားခြင်း */
+    display: none; /* JS မှတစ်ဆင့် ဖွင့်မည် */
     z-index: 1000;
 }
 
 .toc-content {
-    background: #1a1a1a;
-    color: #FFC107;
-    width: 80%;
+    background: #f4ecd8; /* Overlay ထဲတွင်လည်း Sepia ဆက်သုံးခြင်း */
+    color: #1a1a1a;
+    width: 85%;
     max-width: 400px;
-    margin: 100px auto;
+    margin: 80px auto;
     padding: 25px;
     border-radius: 12px;
-    border: 1px solid #FFC107;
+    border: 2px solid #443300;
     position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .toc-list {
     list-style: none;
     padding: 0;
+    margin-top: 20px;
 }
 
 .toc-list li {
     padding: 12px 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #d4c5a0;
 }
 
 .toc-list li a {
-    color: #eee;
+    color: #1a1a1a;
     text-decoration: none;
     display: block;
+    font-size: 18px;
 }
 
+/* ၄။ Floating Buttons (မာတိကာဖွင့်ခလုတ် နှင့် အပေါ်တက်ခလုတ်) */
 .toc-toggle-btn {
     position: fixed;
     bottom: 25px;
     left: 20px;
-    background: #FFC107;
-    color: #000;
+    background: #443300; /* အညိုရင့် */
+    color: #f4ecd8;
     border: none;
     padding: 12px 20px;
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
     z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.close-btn {
-    position: absolute;
-    right: 15px; top: 10px;
-    font-size: 30px;
-    color: #FFC107;
-    cursor: pointer;
-}
-
-/* စာဖတ်ခန်း အခင်းအကျင်း */
-.content-area {
-    padding: 20px;
-    line-height: 1.6;
-}
-
-.book-header {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.book-header h1 {
-    color: #FFC107;
-}
-
-/* အပေါ်ပြန်တက်ခလုတ် */
 .top-btn {
     position: fixed;
     bottom: 25px;
     right: 20px;
-    background: #FFC107;
-    color: #000;
+    background: #443300;
+    color: #f4ecd8;
     width: 45px;
     height: 45px;
     display: flex;
@@ -131,4 +114,40 @@ body.dark-mode {
     text-decoration: none;
     z-index: 999;
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px; top: 10px;
+    font-size: 30px;
+    color: #443300;
+    cursor: pointer;
+}
+
+/* ၅။ စာဖတ်ခန်း အခင်းအကျင်း */
+.content-area {
+    padding: 20px;
+    line-height: 1.8; /* စာကြောင်းအကွာအဝေးကို ချဲ့ပြီး မျက်စိသက်သာအောင်လုပ်ခြင်း */
+    font-size: 19px;
+}
+
+.book-header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.book-header h1 {
+    color: #443300;
+    margin-bottom: 5px;
+}
+
+.book-header p {
+    color: #665522;
+    margin-top: 0;
+}
+
+/* Last Read Container Style */
+#last-read-container {
+    padding: 0 20px;
 }
