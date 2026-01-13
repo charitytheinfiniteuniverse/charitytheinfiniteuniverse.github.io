@@ -82,14 +82,13 @@ body.sepia-mode {
 }
 
 /* ၄။ Floating Buttons (Left Side) */
-/* မာတိကာ နှင့် အပေါ်တက်ခလုတ်ကို ဘယ်ဘက်ခြမ်းတွင် စုထားသည် */
 .floating-left-group {
     position: fixed;
     bottom: 25px;
     left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* ခလုတ်နှစ်ခုကြား အကွာအဝေး */
+    gap: 10px;
     z-index: 999;
 }
 
@@ -109,7 +108,6 @@ body.sepia-mode {
 .top-btn {
     width: 45px; height: 45px;
     display: flex; align-items: center; justify-content: center;
-    padding: 0; /* စက်ဝိုင်းပုံစံဖြစ်ရန် */
 }
 
 /* ၅။ မာတိကာ Popup Overlay */
@@ -130,6 +128,8 @@ body.sepia-mode {
     border: 2px solid #443300;
     position: relative;
 }
+
+.toc-list { list-style: none; padding: 0; }
 
 .toc-list li a {
     color: #1a1a1a;
