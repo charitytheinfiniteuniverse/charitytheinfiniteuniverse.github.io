@@ -88,27 +88,47 @@ body.sepia-mode {
     left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center; /* ခလုတ်တွေကို အလယ်တည့်တည့် စီရန် */
+    gap: 12px; /* ခလုတ်နှစ်ခုကြား အကွာအဝေး */
     z-index: 999;
 }
 
-.top-btn, .toc-toggle-btn {
+/* မာတိကာခလုတ် (မူလအတိုင်း ရှည်ရှည်လေး) */
+.toc-toggle-btn {
     background: #443300;
     color: #f4ecd8;
     border: none;
     padding: 12px 20px;
-    border-radius: 25px;
+    border-radius: 25px; /* ဘဲဥပုံစံ */
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
-    text-decoration: none;
 }
 
+/* အပေါ်ပြန်တက်ခလုတ် (သင်ပြောတဲ့ သေးသေးဝိုင်းဝိုင်းပုံစံ) */
 .top-btn {
-    width: 45px; height: 45px;
-    display: flex; align-items: center; justify-content: center;
+    background: #443300;
+    color: #f4ecd8;
+    width: 35px;  /* အရွယ်အစား သေးလိုက်သည် */
+    height: 35px; /* အရွယ်အစား သေးလိုက်သည် */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* ဝိုင်းစက်သွားစေရန် */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0.8; /* စာသားတွေသိပ်မဖုံးအောင် အနည်းငယ်ကြည်လင်စေရန် */
+    transition: 0.3s;
 }
+
+.top-btn:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Mouse တင်ရင် နည်းနည်းလေး ကြီးလာမည် */
+}
+
 
 /* ၅။ မာတိကာ Popup Overlay */
 .toc-overlay {
