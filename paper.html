@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>စာဖတ်ခန်း | မရဏဓမ္မ</title>
-    
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="paper.css">
-    
     <script defer src="paper.js"></script>
-    <link rel="icon" type="image/png" href="https://maranadhamma.netlify.app/maranadhammalogo1.png">
 </head>
-<body class="sepia-mode"> <div class="container">
+<body class="sepia-mode">
+
+    <div class="container">
         <nav class="top-controls">
             <a href="index.html" class="back-link">← ပင်မစာမျက်နှာ</a>
-            <div class="font-controls">
-                <button onclick="changeFontSize('small')">A-</button>
-                <button onclick="changeFontSize('large')">A+</button>
+            <div class="right-controls">
+                <div class="font-controls">
+                    <button onclick="changeFontSize('small')">A-</button>
+                    <button onclick="changeFontSize('large')">A+</button>
+                </div>
+                <button class="setting-btn" onclick="toggleSetting()">⚙️</button>
             </div>
         </nav>
 
@@ -32,34 +33,33 @@
                 <h2>နိဒါန်း</h2>
                 <p>ဒီနေရာမှာ နိဒါန်းစာသားထည့်ပါ...</p>
             </section>
-
-            <section id="chapter1">
-                <h2>သေခြင်းတရားသည် မြဲ၏</h2>
-                <p>ပထမအခန်း စာသားထည့်ပါ...</p>
-            </section>
-
-            <section id="chapter2">
-                <h2>ဘဝ၏ နောက်ဆုံးခရီး</h2>
-                <p>ဒုတိယအခန်း စာသားထည့်ပါ...</p>
-            </section>
         </article>
     </div>
 
-    <button class="toc-toggle-btn" id="toc-toggle">☰ မာတိကာ</button>
+    <div class="floating-left-group">
+        <a href="#" class="top-btn" title="အပေါ်ဆုံးသို့">↑</a>
+        <button class="toc-toggle-btn" id="toc-toggle" onclick="toggleTOC()">☰ မာတိကာ</button>
+    </div>
+
+    <div id="setting-overlay" class="setting-overlay" onclick="toggleSetting()">
+        <div class="setting-content" onclick="event.stopPropagation()">
+            <h3 style="margin-top:0; color:#443300;">ချိန်ညှိချက်များ</h3>
+            <button class="setting-item" onclick="window.print()">📄 PDF အဖြစ်သိမ်းရန်</button>
+            <button class="setting-item" onclick="alert('မှတ်သားပြီးပါပြီ')">🔖 စာမှတ်ရန် (Bookmark)</button>
+            <button class="setting-item" onclick="location.reload()">🔄 Refresh လုပ်ရန်</button>
+            <button class="setting-item" onclick="toggleSetting()" style="background:#d4c5a0;">ပိတ်ရန်</button>
+        </div>
+    </div>
 
     <div id="toc-overlay" class="toc-overlay">
         <div class="toc-content">
             <span class="close-btn" onclick="toggleTOC()">&times;</span>
             <h3>မာတိကာ</h3>
-            <ul class="toc-list">
+            <ul class="toc-list" id="toc-list">
                 <li><a href="#intro" onclick="toggleTOC()">နိဒါန်း</a></li>
-                <li><a href="#chapter1" onclick="toggleTOC()">သေခြင်းတရားသည် မြဲ၏</a></li>
-                <li><a href="#chapter2" onclick="toggleTOC()">ဘဝ၏ နောက်ဆုံးခရီး</a></li>
             </ul>
         </div>
     </div>
-
-    <a href="#" id="topBtn" class="top-btn">↑</a>
 
 </body>
 </html>
