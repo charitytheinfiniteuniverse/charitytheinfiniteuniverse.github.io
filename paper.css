@@ -236,3 +236,12 @@ body.focus-mode .top-controls {
     border: none !important;
     box-shadow: none !important;
 }
+
+/* မာတိကာတွင် လက်ရှိဖတ်နေသည့် အခန်းကို Highlight ပြရန် */
+.toc-list li a.active-chapter {
+    color: #b38b00 !important; /* ရွှေရောင် သို့မဟုတ် ခပ်တောက်တောက်အရောင် */
+    font-weight: bold !important;
+    border-left: 3px solid #443300;
+    padding-left: 10px;
+}
+
