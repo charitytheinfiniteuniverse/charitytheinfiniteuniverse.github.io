@@ -73,7 +73,7 @@ function showLastReadLink() {
     }
 }
 
-// စာမျက်နှာ Load ဖြစ်ချိန်တွင် အလုပ်လုပ်ရန်
+// စာမျက်နှာ Load ဖြစ်ချိန်တွင် အလုပ်လုပ်ရန် လုပ်ထားသည်
 window.addEventListener('load', function() {
     const savedSize = localStorage.getItem('userFontSize');
     const contentArea = document.getElementById('reading-content');
