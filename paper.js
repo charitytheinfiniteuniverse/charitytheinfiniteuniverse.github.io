@@ -74,3 +74,20 @@ window.addEventListener('load', function() {
     // ဖတ်လက်စ link ရှိက ပြရန်
     showLastReadLink();
 });
+
+//ဆိုဒ်ပြောင်းတဲ့ ခလုပ်နှစ်ခုကြားက ဂဏန်းပြရန်
+let currentSize = 20; // မူလဆိုဒ်ကို ၂၀ ထားပါစို့
+
+function changeFontSize(action) {
+    const display = document.getElementById('font-size-display');
+    const content = document.getElementById('reading-content');
+
+    if (action === 'large') {
+        currentSize += 2;
+    } else if (action === 'small' && currentSize > 12) {
+        currentSize -= 2;
+    }
+
+    content.style.fontSize = currentSize + "px";
+    display.innerText = currentSize; // နံပါတ်ကို screen မှာ ပြောင်းပေးခြင်း
+}
