@@ -90,3 +90,19 @@ window.addEventListener('load', function() {
     saveCurrentPage();
     showLastReadLink();
 });
+
+
+// Fullscreen Toggle လုပ်ရန်
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        // Fullscreen Mode သို့ ဝင်ခြင်း
+        document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Fullscreen Error: ${err.message}`);
+        });
+    } else {
+        // Fullscreen Mode မှ ထွက်ခြင်း
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+}
