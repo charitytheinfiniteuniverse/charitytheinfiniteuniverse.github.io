@@ -87,51 +87,50 @@ body.sepia-mode {
 }
 
 
-/* ၄။ Floating Buttons (သီးသန့်စီ ခွဲလိုက်သည်) */
-
-/* (က) အပေါ်ပြန်တက်ခလုတ် - ဘယ်ဘက်အစွန်းကပ်ရန် */
-.top-btn {
+/* ၄။ Floating Buttons (Left Side) */
+.floating-left-group {
     position: fixed;
-    bottom: 85px; /* မာတိကာခလုတ်ရဲ့ အပေါ်နားမှာ ထားရန် */
-    left: 100px;      /* ဘယ်ဘက်အစွန်းကို လုံးဝကပ်ရန် */
-    background: #443300;
-    color: #f4ecd8;
-    width: 35px;
-    height: 35px;
+    bottom: 25px;
+    left: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0 50% 50% 0; /* ညာဘက်ခြမ်းပဲ ဝိုင်းပြီး ဘယ်ဘက်ကို အပြားထားခြင်း (ပိုကြည့်ကောင်းစေရန်) */
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    opacity: 0.8;
+    flex-direction: column;
+    align-items: center; 
+    gap: 12px; 
     z-index: 999;
-    transition: 0.3s;
 }
 
-/* (ခ) မာတိကာခလုတ် - ဘယ်ဘက်အစွန်းကပ်ရန် */
 .toc-toggle-btn {
-    position: fixed;
-    bottom: 25px; /* အောက်ခြေမှ အကွာအဝေး */
-    left: 0;      /* ဘယ်ဘက်အစွန်းကို လုံးဝကပ်ရန် */
     background: #443300;
     color: #f4ecd8;
     border: none;
-    padding: 10px 15px;
-    border-radius: 0 25px 25px 0; /* ညာဘက်ခြမ်းပဲ ဝိုင်းထားခြင်း */
+    padding: 12px 20px;
+    border-radius: 25px; 
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
-    z-index: 999;
+}
+
+.top-btn {
+    background: #443300;
+    color: #f4ecd8;
+    width: 35px;  
+    height: 35px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0.8; 
     transition: 0.3s;
 }
 
-.top-btn:hover, .toc-toggle-btn:hover {
+.top-btn:hover {
     opacity: 1;
-    padding-left: 10px; /* Mouse တင်ရင် နည်းနည်းလေး ကြွလာစေရန် */
+    transform: scale(1.1); 
 }
 
 
