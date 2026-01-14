@@ -86,19 +86,8 @@ body.sepia-mode {
     text-align: center;
 }
 
-/* ၄။ Floating Buttons (Left Side) */
-.floating-left-group {
-    position: fixed;
-    bottom: 25px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    gap: 12px; 
-    z-index: 999;
-}
 
-./* ၄။ Floating Buttons (သီးသန့်စီ ခွဲလိုက်သည်) */
+/* ၄။ Floating Buttons (သီးသန့်စီ ခွဲလိုက်သည်) */
 
 /* (က) အပေါ်ပြန်တက်ခလုတ် - ဘယ်ဘက်အစွန်းကပ်ရန် */
 .top-btn {
