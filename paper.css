@@ -201,32 +201,36 @@ body.sepia-mode {
     }
 }
 
-/* Fullscreen ခလုတ် Style သီးသန့် */
+/* Fullscreen ခလုတ် Style */
 .fullscreen-round-btn {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     border: 1px solid #443300;
-    background: rgba(234, 222, 188, 0.4); /* နောက်ခံကာလာအဖျော့ (Transparent) */
+    background: rgba(234, 222, 188, 0.4);
     color: #443300;
     cursor: pointer;
-    position: absolute;
-    top: 45px; /* ပင်မလင့်ခ်ရဲ့ အောက်နားလေးမှာ ပေါ်ရန် */
+    position: fixed; /* နေရာ ပုံသေဖြစ်အောင် fixed သုံးပါ */
+    top: 45px;
     left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    z-index: 1001;
-    transition: background 0.3s;
+    z-index: 2000; /* အားလုံးရဲ့ အပေါ်မှာ ရှိနေစေရန် */
+    transition: 0.3s;
 }
 
-.fullscreen-round-btn:hover {
-    background: rgba(234, 222, 188, 0.8);
+/* Focus Mode အသက်ဝင်ချိန် (Fullscreen ခလုတ်ကလွဲပြီး အကုန်ဖျောက်ရန်) */
+body.focus-mode .top-controls .back-link,
+body.focus-mode .top-controls .right-controls,
+body.focus-mode .floating-left-group,
+body.focus-mode .book-header {
+    display: none !important;
 }
 
-/* Fullscreen ဖြစ်နေချိန်မှာ ခလုတ်ကို ပိုမှိန်သွားစေရန် */
-:fullscreen .fullscreen-round-btn {
-    opacity: 0.5;
+/* Focus Mode မှာ အပေါ် Bar နောက်ခံကို ဖျောက်ခြင်း */
+body.focus-mode .top-controls {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
-
