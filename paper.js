@@ -92,17 +92,19 @@ window.addEventListener('load', function() {
 });
 
 
-// Fullscreen Toggle လုပ်ရန်
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        // Fullscreen Mode သို့ ဝင်ခြင်း
-        document.documentElement.requestFullscreen().catch(err => {
-            console.error(`Fullscreen Error: ${err.message}`);
-        });
+function toggleReadingMode() {
+    // Body မှာ focus-mode ဆိုတဲ့ class ကို အဖွင့်အပိတ် လုပ်ခြင်း
+    document.body.classList.toggle('focus-mode');
+    
+    const fsBtn = document.getElementById('fs-btn');
+    
+    if (document.body.classList.contains('focus-mode')) {
+        // Focus Mode ထဲရောက်ရင် ခလုတ်ပုံစံ ပြောင်းရန် (ဥပမာ - ပြန်ထွက်ဖို့ သင်္ကေတ)
+        fsBtn.innerHTML = '✖'; 
+        fsBtn.style.background = 'rgba(234, 222, 188, 0.2)'; // ပိုမှိန်သွားစေရန်
     } else {
-        // Fullscreen Mode မှ ထွက်ခြင်း
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
+        // ပုံမှန် Mode ပြန်ရောက်ရင်
+        fsBtn.innerHTML = '⛶';
+        fsBtn.style.background = 'rgba(234, 222, 188, 0.4)';
     }
 }
