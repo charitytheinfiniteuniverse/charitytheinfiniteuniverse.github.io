@@ -108,3 +108,48 @@ function toggleReadingMode() {
         fsBtn.style.background = 'rgba(234, 222, 188, 0.4)';
     }
 }
+
+// စာမျက်နှာ စဖွင့်တာနဲ့ အလုပ်လုပ်မည့်အပိုင်း
+window.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    const tocLinks = document.querySelectorAll('.toc-list li a');
+
+    // ၁။ Intersection Observer ဖြင့် လက်ရှိရောက်နေသည့် အခန်းကို ရှာခြင်း
+    const observerOptions = {
+        root: null,
+        threshold: 0.6 // အခန်းတစ်ခုရဲ့ ၆၀% ကို မြင်ရရင် Highlight ပြမယ်
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                
+                // မာတိကာမှာ Highlight ပြောင်းခြင်း
+                tocLinks.forEach(link => {
+                    link.classList.remove('active-chapter');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-chapter');
+                        
+                        // လက်ရှိဖတ်နေတဲ့ အခန်း ID ကို မှတ်ထားခြင်း
+                        localStorage.setItem('lastReadChapter', id);
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // ၂။ နောက်တစ်ခါ ပြန်ဝင်လာရင် ဖတ်လက်စနေရာကို အလိုအလျောက် သွားရန်
+    const lastSavedChapter = localStorage.getItem('lastReadChapter');
+    if (lastSavedChapter) {
+        setTimeout(() => {
+            const targetElement = document.getElementById(lastSavedChapter);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 500); // ၀.၅ စက္ကန့် စောင့်ပြီးမှ scroll လုပ်ခြင်း
+    }
+});
+
