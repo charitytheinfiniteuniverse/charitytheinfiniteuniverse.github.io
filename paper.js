@@ -114,10 +114,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
     const tocLinks = document.querySelectorAll('.toc-list li a');
 
-    // ၁။ Intersection Observer ဖြင့် လက်ရှိရောက်နေသည့် အခန်းကို ရှာခြင်း
     const observerOptions = {
         root: null,
-        threshold: 0.6 // အခန်းတစ်ခုရဲ့ ၆၀% ကို မြင်ရရင် Highlight ပြမယ်
+        rootMargin: '-10% 0px -70% 0px', // Screen ရဲ့ အပေါ်ပိုင်းနား ရောက်လာရင် ပိုသိသာစေရန်
+        threshold: 0
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -125,13 +125,10 @@ window.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 
-                // မာတိကာမှာ Highlight ပြောင်းခြင်း
                 tocLinks.forEach(link => {
                     link.classList.remove('active-chapter');
                     if (link.getAttribute('href') === `#${id}`) {
                         link.classList.add('active-chapter');
-                        
-                        // လက်ရှိဖတ်နေတဲ့ အခန်း ID ကို မှတ်ထားခြင်း
                         localStorage.setItem('lastReadChapter', id);
                     }
                 });
@@ -141,15 +138,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => observer.observe(section));
 
-    // ၂။ နောက်တစ်ခါ ပြန်ဝင်လာရင် ဖတ်လက်စနေရာကို အလိုအလျောက် သွားရန်
+    // အထူးပြင်ဆင်ချက် - စာမျက်နှာ အပေါ်ဆုံးရောက်နေရင် "နိဒါန်း" ကို Highlight ပြရန်
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < 100) {
+            tocLinks.forEach(link => link.classList.remove('active-chapter'));
+            const introLink = document.querySelector('.toc-list li a[href="#intro"]');
+            if (introLink) {
+                introLink.classList.add('active-chapter');
+                localStorage.setItem('lastReadChapter', 'intro');
+            }
+        }
+    });
+
+    // ဖတ်လက်စနေရာသို့ ပြန်သွားရန်
     const lastSavedChapter = localStorage.getItem('lastReadChapter');
-    if (lastSavedChapter) {
+    if (lastSavedChapter && lastSavedChapter !== 'intro') {
         setTimeout(() => {
             const targetElement = document.getElementById(lastSavedChapter);
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
             }
-        }, 500); // ၀.၅ စက္ကန့် စောင့်ပြီးမှ scroll လုပ်ခြင်း
+        }, 500);
     }
 });
-
