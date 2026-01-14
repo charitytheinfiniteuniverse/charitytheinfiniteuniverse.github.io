@@ -172,7 +172,7 @@ body.sepia-mode {
 .book-header { text-align: center; padding: 40px 20px; }
 .book-header h1 { color: #443300; }
 
-/* စာပိုဒ်တွင် enter ခြားထားတဲ့အတိုင်း ပေါ်စေရန် */
+/* စာပိုဒ်တွင် enter ခြားထားတဲ့အတိုင်း ပေါ်စေရန် ပြုလုပ်ထား */
 .content-area {
     white-space: pre-line; /* ဒါဆိုရင် HTML ထဲမှာ Enter ခေါက်သမျှ အကုန်ပေါ်ပါပြီ */
 }
