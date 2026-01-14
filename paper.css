@@ -104,7 +104,7 @@ body.sepia-mode {
 .top-btn {
     position: fixed;
     bottom: 85px; /* မာတိကာခလုတ်ရဲ့ အပေါ်နားမှာ ထားရန် */
-    left: 30px;      /* ဘယ်ဘက်အစွန်းကို လုံးဝကပ်ရန် */
+    left: 100px;      /* ဘယ်ဘက်အစွန်းကို လုံးဝကပ်ရန် */
     background: #443300;
     color: #f4ecd8;
     width: 35px;
