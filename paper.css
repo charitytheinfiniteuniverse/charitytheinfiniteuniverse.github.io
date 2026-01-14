@@ -200,3 +200,33 @@ body.sepia-mode {
         color: black !important;
     }
 }
+
+/* Fullscreen ခလုတ် Style သီးသန့် */
+.fullscreen-round-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #443300;
+    background: rgba(234, 222, 188, 0.4); /* နောက်ခံကာလာအဖျော့ (Transparent) */
+    color: #443300;
+    cursor: pointer;
+    position: absolute;
+    top: 45px; /* ပင်မလင့်ခ်ရဲ့ အောက်နားလေးမှာ ပေါ်ရန် */
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    z-index: 1001;
+    transition: background 0.3s;
+}
+
+.fullscreen-round-btn:hover {
+    background: rgba(234, 222, 188, 0.8);
+}
+
+/* Fullscreen ဖြစ်နေချိန်မှာ ခလုတ်ကို ပိုမှိန်သွားစေရန် */
+:fullscreen .fullscreen-round-btn {
+    opacity: 0.5;
+}
+
