@@ -177,3 +177,28 @@ body.sepia-mode {
     white-space: pre-line; /* ဒါဆိုရင် HTML ထဲမှာ Enter ခေါက်သမျှ အကုန်ပေါ်ပါပြီ */
 }
 
+
+@media print {
+    /* Print ထုတ်တဲ့အခါ မလိုတာတွေကို ဖျောက်ခြင်း */
+    .top-controls, 
+    .floating-left-group, 
+    .setting-overlay, 
+    .toc-overlay,
+    #modeToggle {
+        display: none !important;
+    }
+
+    /* စာဖတ်ခန်းကို အပြည့်ပြသခြင်း */
+    .container {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body {
+        background: white !important; /* PDF မှာ နောက်ခံအဝါမပါဘဲ အဖြူပေါ်စာမည်း ပေါ်စေရန် */
+        color: black !important;
+    }
+}
+
+
