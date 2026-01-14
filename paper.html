@@ -70,7 +70,10 @@
     <div id="setting-overlay" class="setting-overlay" onclick="toggleSetting()">
         <div class="setting-content" onclick="event.stopPropagation()">
             <h3 style="margin-top:0; color:#443300;">ချိန်ညှိချက်များ</h3>
-            <button class="setting-item" onclick="window.print()">📄 PDF အဖြစ်သိမ်းရန်</button>
+            
+
+            <button class="setting-item" onclick="downloadPDF()">📄 PDF အဖြစ်သိမ်းရန်</button>
+
             <button class="setting-item" onclick="alert('မှတ်သားပြီးပါပြီ')">🔖 စာမှတ်ရန် (Bookmark)</button>
             <button class="setting-item" onclick="location.reload()">🔄 Refresh လုပ်ရန်</button>
             <button class="setting-item" onclick="toggleSetting()" style="background:#d4c5a0;">ပိတ်ရန်</button>
