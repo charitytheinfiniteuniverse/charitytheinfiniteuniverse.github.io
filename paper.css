@@ -10,19 +10,24 @@ body.sepia-mode {
     max-width: 700px;
     margin: 0 auto;
     padding-bottom: 80px;
+    padding-top: 70px; /* Top Bar နဲ့ မငြိစေရန် အပေါ်မှ နေရာချန်ထားခြင်း */
 }
 
-/* ၂။ Top Bar & Setting Controls */
+/* ၂။ Top Bar & Setting Controls (စာလုံးဆိုဒ်ကြီးလျှင် မရွေ့အောင် ပြင်ဆင်ထားသည်) */
 .top-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 0 20px; /* ဘေး padding ကိုပဲ ထားသည် */
     background: #eadebc;
-    position: sticky;
+    position: fixed; /* စာဖတ်လျှင် အပေါ်မှာ အမြဲကပ်နေစေရန် sticky မှ fixed သို့ ပြောင်းသည် */
     top: 0;
-    z-index: 100;
+    left: 0;
+    width: 100%;
+    height: 60px; /* အမြင့်ကို ပုံသေ သတ်မှတ်လိုက်သည် */
+    z-index: 1000;
     border-bottom: 1px solid #d4c5a0;
+    box-sizing: border-box;
 }
 
 .back-link {
@@ -60,7 +65,7 @@ body.sepia-mode {
     background: #f4ecd8;
     width: 250px;
     position: absolute;
-    top: 60px; right: 20px;
+    top: 65px; right: 20px;
     padding: 20px;
     border-radius: 12px;
     border: 2px solid #443300;
@@ -88,45 +93,43 @@ body.sepia-mode {
     left: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* ခလုတ်တွေကို အလယ်တည့်တည့် စီရန် */
-    gap: 12px; /* ခလုတ်နှစ်ခုကြား အကွာအဝေး */
+    align-items: center; 
+    gap: 12px; 
     z-index: 999;
 }
 
-/* မာတိကာခလုတ် (မူလအတိုင်း ရှည်ရှည်လေး) */
 .toc-toggle-btn {
     background: #443300;
     color: #f4ecd8;
     border: none;
     padding: 12px 20px;
-    border-radius: 25px; /* ဘဲဥပုံစံ */
+    border-radius: 25px; 
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
 }
 
-/* အပေါ်ပြန်တက်ခလုတ် (သင်ပြောတဲ့ သေးသေးဝိုင်းဝိုင်းပုံစံ) */
 .top-btn {
     background: #443300;
     color: #f4ecd8;
-    width: 35px;  /* အရွယ်အစား သေးလိုက်သည် */
-    height: 35px; /* အရွယ်အစား သေးလိုက်သည် */
+    width: 35px;  
+    height: 35px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%; /* ဝိုင်းစက်သွားစေရန် */
+    border-radius: 50%; 
     text-decoration: none;
     font-weight: bold;
     font-size: 16px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    opacity: 0.8; /* စာသားတွေသိပ်မဖုံးအောင် အနည်းငယ်ကြည်လင်စေရန် */
+    opacity: 0.8; 
     transition: 0.3s;
 }
 
 .top-btn:hover {
     opacity: 1;
-    transform: scale(1.1); /* Mouse တင်ရင် နည်းနည်းလေး ကြီးလာမည် */
+    transform: scale(1.1); 
 }
 
 
@@ -172,14 +175,12 @@ body.sepia-mode {
 .book-header { text-align: center; padding: 40px 20px; }
 .book-header h1 { color: #443300; }
 
-/* စာပိုဒ်တွင် enter ခြားထားတဲ့အတိုင်း ပေါ်စေရန် ပြုလုပ်ထား */
 .content-area {
-    white-space: pre-line; /* ဒါဆိုရင် HTML ထဲမှာ Enter ခေါက်သမျှ အကုန်ပေါ်ပါပြီ */
+    white-space: pre-line; 
 }
 
 
 @media print {
-    /* Print ထုတ်တဲ့အခါ မလိုတာတွေကို ဖျောက်ခြင်း */
     .top-controls, 
     .floating-left-group, 
     .setting-overlay, 
@@ -188,7 +189,6 @@ body.sepia-mode {
         display: none !important;
     }
 
-    /* စာဖတ်ခန်းကို အပြည့်ပြသခြင်း */
     .container {
         width: 100% !important;
         margin: 0 !important;
@@ -196,9 +196,7 @@ body.sepia-mode {
     }
 
     body {
-        background: white !important; /* PDF မှာ နောက်ခံအဝါမပါဘဲ အဖြူပေါ်စာမည်း ပေါ်စေရန် */
+        background: white !important; 
         color: black !important;
     }
 }
-
-
