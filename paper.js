@@ -32,10 +32,10 @@ function changeFontSize(action) {
     const contentArea = document.getElementById('reading-content');
     if (!contentArea) return;
 
-    if (action === 'large' && currentFontSize < 50) {
-        currentFontSize += 2;
-    } else if (action === 'small' && currentFontSize > 12) {
-        currentFontSize -= 2;
+    if (action === 'large' && currentFontSize < 70) {
+        currentFontSize += 1;
+    } else if (action === 'small' && currentFontSize > 4) {
+        currentFontSize -= 1;
     }
     
     // စာလုံးဆိုဒ်ကို ပြောင်းလဲခြင်း
