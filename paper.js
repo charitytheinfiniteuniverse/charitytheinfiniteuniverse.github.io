@@ -16,31 +16,46 @@ function toggleSetting() {
     }
 }
 
-// ၃။ စာလုံးအကြီးအသေး ချိန်ညှိရန်
+// ၃။ PDF ဖိုင်ဒေါင်းလော့ဆွဲရန် (အသစ်ထည့်လိုက်သည့်နေရာ)
+function downloadPDF() {
+    toggleSetting(); // Setting menu ကို အရင်ပိတ်ပါ (စာထဲမှာ မပေါ်စေရန်)
+    setTimeout(() => {
+        window.print(); // ၀.၅ စက္ကန့်လောက် စောင့်ပြီးမှ Print window ဖွင့်ပါ
+    }, 500);
+}
+
+// ၄။ စာလုံးအကြီးအသေး ချိန်ညှိရန် (နံပါတ်ပြသခြင်းအပါအဝင်)
 let currentFontSize = 19;
-const contentArea = document.getElementById('reading-content');
 
 function changeFontSize(action) {
+    const display = document.getElementById('font-size-display');
     const contentArea = document.getElementById('reading-content');
     if (!contentArea) return;
 
     if (action === 'large' && currentFontSize < 50) {
         currentFontSize += 2;
-    } else if (action === 'small' && currentFontSize > 14) {
+    } else if (action === 'small' && currentFontSize > 12) {
         currentFontSize -= 2;
     }
     
+    // စာလုံးဆိုဒ်ကို ပြောင်းလဲခြင်း
     contentArea.style.fontSize = currentFontSize + 'px';
+    
+    // နံပါတ်ပြသသည့်နေရာရှိလျှင် Update လုပ်ခြင်း
+    if (display) {
+        display.innerText = currentFontSize;
+    }
+    
     localStorage.setItem('userFontSize', currentFontSize);
 }
 
-// ၄။ ဖတ်လက်စစာမျက်နှာကို မှတ်ထားပေးရန်
+// ၅။ ဖတ်လက်စစာမျက်နှာကို မှတ်ထားပေးရန်
 function saveCurrentPage() {
     localStorage.setItem('lastReadTitle', document.title);
     localStorage.setItem('lastReadUrl', window.location.href);
 }
 
-// ၅။ ပြန်လည်ဖတ်ရှုရန် ခလုတ်ပြသခြင်း
+// ၆။ ပြန်လည်ဖတ်ရှုရန် ခလုတ်ပြသခြင်း
 function showLastReadLink() {
     const lastTitle = localStorage.getItem('lastReadTitle');
     const lastUrl = localStorage.getItem('lastReadUrl');
@@ -60,34 +75,18 @@ function showLastReadLink() {
 
 // စာမျက်နှာ Load ဖြစ်ချိန်တွင် အလုပ်လုပ်ရန်
 window.addEventListener('load', function() {
-    // သိမ်းထားသော font size ကို ပြန်ဖော်ရန်
     const savedSize = localStorage.getItem('userFontSize');
     const contentArea = document.getElementById('reading-content');
+    const display = document.getElementById('font-size-display');
+
     if (savedSize && contentArea) {
         currentFontSize = parseInt(savedSize);
         contentArea.style.fontSize = currentFontSize + 'px';
+        if (display) {
+            display.innerText = currentFontSize;
+        }
     }
 
-    // လက်ရှိစာမျက်နှာကို သိမ်းဆည်းရန်
     saveCurrentPage();
-    
-    // ဖတ်လက်စ link ရှိက ပြရန်
     showLastReadLink();
 });
-
-//ဆိုဒ်ပြောင်းတဲ့ ခလုပ်နှစ်ခုကြားက ဂဏန်းပြရန်
-let currentSize = 20; // မူလဆိုဒ်ကို ၂၀ ထားပါစို့
-
-function changeFontSize(action) {
-    const display = document.getElementById('font-size-display');
-    const content = document.getElementById('reading-content');
-
-    if (action === 'large') {
-        currentSize += 2;
-    } else if (action === 'small' && currentSize > 12) {
-        currentSize -= 2;
-    }
-
-    content.style.fontSize = currentSize + "px";
-    display.innerText = currentSize; // နံပါတ်ကို screen မှာ ပြောင်းပေးခြင်း
-}
