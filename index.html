@@ -2,87 +2,115 @@
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>မရဏဓမ္မ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မရဏဓမ္မ | Maranadhamma</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body class="reading-mode">
 
+    <div id="pull-to-refresh">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
     <nav class="top-nav glass">
-        <div class="nav-brand">မရဏဓမ္မ</div>
-        <div class="nav-actions">
-            <i class="fas fa-search" id="searchBtn"></i>
-            <i class="fas fa-moon" id="themeToggle"></i>
-            <i class="fas fa-bars" id="tocBtn"></i>
+        <div class="nav-left">မရဏဓမ္မ | maranadhamma</div>
+        <div class="nav-right">
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+            <button id="tocBtn"><i class="fas fa-list-ul"></i></button>
+            <div class="theme-toggles">
+                <button onclick="setTheme('dark')"><i class="fas fa-moon"></i></button>
+                <button onclick="setTheme('light')"><i class="fas fa-sun"></i></button>
+                <button onclick="setTheme('reading')"><i class="fas fa-book"></i></button>
+            </div>
         </div>
     </nav>
+    <div id="searchOverlay" class="search-overlay">
+        <input type="text" id="searchInput" placeholder="ရှာဖွေရန်...">
+        <div id="searchSuggestions"></div>
+        <button id="closeSearch">Close</button>
+    </div>
+    <main class="content-wrapper">
+        <div class="spacer-30"></div>
 
-    <main class="container">
-        <div class="spacer-top"></div>
-
-        <header class="hero scroll-reveal">
-            <h1 id="greetingMsg" class="soft-breath">မင်္ဂလာညချမ်းပါ</h1>
-            <p id="dhammaQuote" class="quote">အပ္ပမာဒေန သမ္ပာဒေထ</p>
-        </header>
-
-        <section class="section scroll-reveal">
-            <h2 class="section-title">စာမူ</h2>
-            <div class="carousel-wrapper">
-                <div class="carousel" id="carousel1">
-                    <div class="card placeholder">စာမူ ၁</div>
-                    <div class="card placeholder">စာမူ ၂</div>
-                    <div class="card placeholder">စာမူ ၃</div>
-                </div>
-                <div class="carousel-btns">
-                    <button onclick="moveLeft('carousel1')"><i class="fas fa-chevron-left"></i></button>
-                    <button onclick="moveRight('carousel1')"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
+        <section class="reveal">
+            <h2 id="greeting" class="soft-breath">မင်္ဂလာပါ</h2>
+            <p id="dhammaQuote" class="dhamma-quote italic text-black"></p>
         </section>
-
-        <section class="section scroll-reveal">
-            <h2 class="section-title">စာတမ်း</h2>
-            <div class="carousel-wrapper">
-                <div class="carousel auto-scroll" id="carousel2">
-                    <div class="card placeholder">စာတမ်း ၁</div>
-                    <div class="card placeholder">စာတမ်း ၂</div>
-                    <div class="card placeholder">စာတမ်း ၃</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="chip-section scroll-reveal">
-            <div class="chip-container">
-                <div class="chip">တယ်လီဂရန်</div>
-                <div class="chip">တယ်လီဂရန်</div>
-                <div class="chip">၀၉ ၈၈၄ ၆၆၄ ၆၄၇</div>
-                <div class="chip">vipassanā meditation</div>
-            </div>
-        </section>
-
-        <div class="data-mode">
-            <span>Data Saving Mode</span>
-            <input type="checkbox" id="dataSave">
+        <div class="data-save-container reveal">
+            <label>Data Saving Mode: </label>
+            <input type="checkbox" id="dataSaveToggle">
         </div>
+        <section class="reveal">
+            <h3 class="section-title text-black">စာမူ</h3>
+            <div class="carousel-container" id="carousel-samu">
+                <div class="carousel-track">
+                    <div class="card"><img data-src="https://via.placeholder.com/150x200?text=Book1" class="lazy" alt="Book 1"></div>
+                    <div class="card"><img data-src="https://via.placeholder.com/150x200?text=Book2" class="lazy" alt="Book 2"></div>
+                    <div class="card"><img data-src="https://via.placeholder.com/150x200?text=Book3" class="lazy" alt="Book 3"></div>
+                    </div>
+                <div class="carousel-controls">
+                    <button onclick="scrollFirst('carousel-samu')"><i class="fas fa-angle-double-left"></i></button>
+                    <button onclick="scrollLast('carousel-samu')"><i class="fas fa-angle-double-right"></i></button>
+                </div>
+            </div>
+        </section>
+        <section class="reveal">
+            <h3 class="section-title text-black">စာတမ်း</h3>
+            <div class="carousel-container" id="carousel-satan">
+                <div class="carousel-track">
+                    <div class="card"><img data-src="https://via.placeholder.com/150x200?text=Paper1" class="lazy" alt="Paper 1"></div>
+                    <div class="card"><img data-src="https://via.placeholder.com/150x200?text=Paper2" class="lazy" alt="Paper 2"></div>
+                </div>
+            </div>
+        </section>
+        <section class="reveal">
+            <h3 class="section-title text-black">လူမှုကွန်ယက်</h3>
+            <div class="carousel-container" id="carousel-social">
+                <div class="carousel-track social-track">
+                    <button class="social-btn">တယ်လီဂရန်</button>
+                    <button class="social-btn">တယ်လီဂရန်</button>
+                    <button class="social-btn">တယ်လီဂရန်</button>
+                </div>
+            </div>
+        </section>
+        <section class="reveal" style="margin-bottom: 100px;">
+            <div class="carousel-container" id="carousel-info">
+                <div class="carousel-track sign-track">
+                    <div class="signboard">၀၉ ၈၈၄ ၆၆၄ ၆၄၇</div>
+                    <div class="signboard">https://maranadhamma.netlify.app</div>
+                    <div class="signboard">vipassanā meditation</div>
+                </div>
+            </div>
+        </section>
+        </main>
 
-        <div class="spacer-bottom"></div>
-    </main>
-
-    <div class="floating-group">
-        <button class="float-btn" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></button>
-        <button class="float-btn" onclick="window.scrollTo(0,document.body.scrollHeight)"><i class="fas fa-arrow-down"></i></button>
-        <button class="float-btn"><i class="far fa-paper-plane"></i></button>
+    <div class="fab-group">
+        <button class="fab-sm" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+        <button class="fab-sm" onclick="scrollToBottom()"><i class="fas fa-arrow-down"></i></button>
+        <button class="fab-lg"><i class="fas fa-paper-plane"></i></button>
         <div class="logo-circle">Logo</div>
     </div>
-
     <nav class="bottom-nav glass">
-        <div class="nav-item active"><i class="fas fa-home"></i><span>ပင်မ</span></div>
-        <div class="nav-item"><i class="fas fa-video"></i><span>ဗီဒီယို</span></div>
-        <div class="nav-item"><i class="fas fa-info-circle"></i><span>အကြောင်း</span></div>
-        <div class="nav-item"><i class="fas fa-shield-alt"></i><span>သက်သေ</span></div>
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>ပင်မ</span>
+        </a>
+        <a href="video.html" class="nav-item">
+            <i class="fas fa-play-circle"></i>
+            <span>ဗီဒီယို</span>
+        </a>
+        <a href="about.html" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>အကြောင်း</span>
+        </a>
+        <a href="proof.html" class="nav-item">
+            <i class="fas fa-check-shield"></i>
+            <span>သက်သေ</span>
+        </a>
     </nav>
-
     <script src="script.js"></script>
 </body>
 </html>
