@@ -1,34 +1,61 @@
-// Dark Mode Toggle Script
+/* --- Darkmode.js အစ --- */
+
 const modeToggle = document.getElementById('modeToggle');
 
-// Set initial emoji
+// လက်ရှိ Mode အလိုက် Emoji အမှန်ကို ပြသရန် Function
 function setEmoji() {
-  modeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+  if (document.body.classList.contains('reading-mode')) {
+    modeToggle.textContent = '📒';
+  } else if (document.body.classList.contains('dark-mode')) {
+    modeToggle.textContent = '🌙';
+  } else {
+    modeToggle.textContent = '☀️';
+  }
 }
 
-// Load from localStorage
-if (localStorage.getItem('dark-mode') === 'enabled') {
+// စာမျက်နှာ စဖွင့်ချိန်တွင် အရင်ရွေးထားသော Mode ရှိမရှိ စစ်ဆေးခြင်း
+const savedTheme = localStorage.getItem('theme-mode');
+if (savedTheme === 'reading') {
+  document.body.classList.add('reading-mode');
+} else if (savedTheme === 'dark') {
   document.body.classList.add('dark-mode');
 }
 setEmoji();
 
-// Toggle mode on click
+// ခလုတ်နှိပ်သည့်အခါ Mode များ အလှည့်ကျပြောင်းလဲပုံ
 modeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+  const body = document.body;
 
-  // ✅ CSS variable အတွက် အလိုက်သင့်အောင် update
-  const mode = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
-  localStorage.setItem('dark-mode', mode);
+  if (!body.classList.contains('reading-mode') && !body.classList.contains('dark-mode')) {
+    // ၁။ အဖြူရောင်မှ Reading Mode သို့ပြောင်းခြင်း
+    body.classList.add('reading-mode');
+    localStorage.setItem('theme-mode', 'reading');
+  } 
+  else if (body.classList.contains('reading-mode')) {
+    // ၂။ Reading Mode မှ Dark Mode သို့ပြောင်းခြင်း
+    body.classList.remove('reading-mode');
+    body.classList.add('dark-mode');
+    localStorage.setItem('theme-mode', 'dark');
+  } 
+  else {
+    // ၃။ Dark Mode မှ အဖြူရောင် (Default) သို့ ပြန်သွားခြင်း
+    body.classList.remove('dark-mode');
+    localStorage.setItem('theme-mode', 'white');
+  }
 
-  setEmoji();
+  setEmoji(); // Emoji ကို Update လုပ်ခြင်း
 });
 
-// Fix button at top-right
-modeToggle.style.position = 'fixed';
-modeToggle.style.top = '10px';
-modeToggle.style.right = '10px';
-modeToggle.style.zIndex = '9999';
-modeToggle.style.fontSize = '1.5rem';
-modeToggle.style.background = 'transparent';
-modeToggle.style.border = 'none';
-modeToggle.style.cursor = 'pointer';
+// Mode Toggle ခလုတ်၏ တည်နေရာနှင့် ပုံစံ (Top Right Fix)
+Object.assign(modeToggle.style, {
+  position: 'fixed',
+  top: '10px',
+  right: '10px',
+  zIndex: '9999',
+  fontSize: '1.5rem',
+  background: 'transparent',
+  border: 'none',
+  cursor: 'pointer'
+});
+
+/* --- Darkmode.js အဆုံး --- */
