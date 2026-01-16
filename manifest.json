@@ -1,19 +1,14 @@
 {
   "name": "Maranadhamma",
-  "short_name": "မရဏဓမ္မ",
-  "start_url": "/index.html",
+  "short_name": "Maranadhamma",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#fdfae6",
-  "theme_color": "#d4c88c",
+  "background_color": "#fdf6e3",
+  "theme_color": "#d3ad69",
   "icons": [
     {
       "src": "https://via.placeholder.com/192",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://via.placeholder.com/512",
-      "sizes": "512x512",
       "type": "image/png"
     }
   ]
