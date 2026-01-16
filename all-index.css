@@ -1,63 +1,61 @@
-.main-container {
-    margin-top: 100px;
-    margin-bottom: 200px;
-    padding: 0 15px;
+/* Mobile Responsive */
+body { margin: 0; padding: 0; overflow-x: hidden; font-family: sans-serif; }
+
+.mobile-container {
+    padding: 110px 15px 150px;
+    max-width: 100%;
 }
 
-.center-logo {
-    display: block; 
-    margin: 1rem auto; 
-    max-width: 120px;
+.main-logo {
+    display: block; margin: 0 auto 20px;
+    max-width: 120px; height: auto;
 }
 
-/* Featured Card Style */
+/* Featured Section */
 .featured-book { margin-bottom: 30px; }
-.featured-card {
+.f-card {
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid #E67E22;
-    border-radius: 12px;
-    padding: 20px;
-    position: relative;
+    border-radius: 12px; padding: 15px;
+    position: relative; display: flex; align-items: center; gap: 15px;
 }
-.badge {
-    position: absolute; top: -12px; left: 15px;
-    background: #E67E22; color: #fff;
-    padding: 2px 10px; border-radius: 4px; font-size: 12px;
+.f-badge {
+    position: absolute; top: -10px; left: 15px;
+    background: #E67E22; color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 12px;
 }
-.card-body { display: flex; gap: 15px; align-items: center; }
-.book-img-large { width: 100px; border-radius: 5px; }
+.f-img { width: 90px; border-radius: 6px; }
+.read-btn {
+    display: inline-block; margin-top: 8px;
+    background: #E67E22; color: #fff; padding: 5px 15px;
+    text-decoration: none; border-radius: 4px; font-size: 14px;
+}
 
 /* Book Grid */
 .book-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 15px; margin-bottom: 40px;
 }
+.book-card { text-align: center; }
 .book-card img {
-    width: 100%; height: 140px; border-radius: 5px;
-    object-fit: cover; background: #333;
+    width: 100%; height: 160px; object-fit: cover;
+    border-radius: 8px; background: #333;
 }
 
-/* All Buttons Styling (နဂိုအရောင်များကို ထိန်းထားသည်) */
-.app-btn-new {
+/* Action Buttons (မျက်လုံးမထိခိုက်သော အဝါဖျော့ + စာလုံးအမဲ) */
+.action-buttons { display: flex; flex-direction: column; gap: 10px; }
+.custom-btn {
     display: block; text-align: center;
-    margin: 0.8rem auto; padding: 0.8rem;
-    max-width: 300px; border-radius: 8px;
-    text-decoration: none; font-size: 1.1rem;
-    background-color: #E0E0E0;
-    border: 2px solid #E0E0E0;
-    cursor: pointer;
+    padding: 12px; width: 100%; box-sizing: border-box;
+    background-color: #FFF9C4; /* အဝါဖျော့ */
+    color: #000000; /* စာလုံးအမဲ */
+    text-decoration: none; border-radius: 8px;
+    font-size: 1.1rem; border: 1px solid #FBC02D;
+    cursor: pointer; font-weight: bold;
 }
-
-/* နဂိုရှိပြီးသား စာလုံးအရောင်များ */
-.telegram-c, .telegram-g { color: rgba(0, 136, 204, 0.7); [span_16](start_span)}
-.viber-c { color: rgba(115, 96, 242, 0.6); }[span_16](end_span)
-.facebook-c { color: rgba(24, 119, 242, 0.6); [span_17](start_span)}
 
 /* Search Logic */
 .hidden { display: none; }
-#searchWrapper input {
-    width: 100%; max-width: 300px; display: block;
-    margin: 5px auto; padding: 10px; border-radius: 5px;
+#bookSearch {
+    width: 100%; padding: 12px; margin-top: 5px;
+    border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box;
 }
