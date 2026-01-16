@@ -1,178 +1,80 @@
-/* အခြေခံ Setup အစ */
 :root {
-    --bg-color: #fdfae6; /* အဝါဖျော့ */
-    --text-color: #1a1a1a; /* အမဲရောင် */
-    --glass-bg: rgba(253, 250, 230, 0.7);
+    --bg: #fdfae6;
+    --text: #2c2c2c;
     --accent: #d4c88c;
-    --transition: 0.3s ease;
+    --glass: rgba(253, 250, 230, 0.85);
 }
 
 body.dark-mode {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --glass-bg: rgba(18, 18, 18, 0.7);
+    --bg: #1a1a1a;
+    --text: #f0f0f0;
+    --glass: rgba(26, 26, 26, 0.85);
 }
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; }
+
+.container { padding: 0 20px; }
+
+/* Navigation */
+.glass { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+.top-nav {
+    position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 20px; z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color var(--transition), color var(--transition);
-    overflow-x: hidden;
-}
-/* အခြေခံ Setup အဆုံး */
+.nav-brand { font-weight: bold; font-size: 1.1rem; }
+.nav-actions i { margin-left: 20px; font-size: 1.2rem; cursor: pointer; }
 
-/* Glassmorphism အစ */
-.glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-/* Glassmorphism အဆုံး */
+/* Hero */
+.spacer-top { height: 80px; }
+.hero { text-align: left; margin-bottom: 40px; }
+.hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
+.quote { opacity: 0.8; font-size: 1rem; }
 
-/* Nav Bars အစ */
-.top-nav, .bottom-nav {
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
+/* Carousels */
+.section { margin-bottom: 30px; }
+.section-title { font-size: 1.3rem; margin-bottom: 15px; border-left: 4px solid var(--accent); padding-left: 10px; }
+
+.carousel-wrapper { position: relative; }
+.carousel {
+    display: flex; overflow-x: auto; gap: 15px; scroll-behavior: smooth;
+    padding-bottom: 10px; scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar { display: none; }
+
+.card {
+    min-width: 140px; height: 180px; background: var(--accent);
+    border-radius: 15px; display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: bold; flex-shrink: 0;
 }
 
-.top-nav { top: 0; height: 60px; }
-.bottom-nav { 
-    bottom: 0; 
-    height: 70px; 
-    justify-content: space-around;
+.carousel-btns { display: flex; gap: 10px; margin-top: 10px; }
+.carousel-btns button { background: none; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 5px; color: var(--text); }
+
+/* Chips */
+.chip-container { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+.chip { background: white; padding: 10px 15px; border-radius: 12px; border: 1px solid #ddd; font-size: 0.9rem; color: #444; }
+
+/* Floating & Bottom Nav */
+.floating-group { position: fixed; right: 20px; bottom: 100px; display: flex; flex-direction: column; gap: 12px; z-index: 999; }
+.float-btn { width: 45px; height: 45px; border-radius: 50%; border: none; background: var(--glass); box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--text); }
+.logo-circle { width: 55px; height: 55px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; }
+
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 75px;
+    display: flex; justify-content: space-around; align-items: center;
+    padding-bottom: env(safe-area-inset-bottom); z-index: 1000;
 }
+.nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.8rem; opacity: 0.6; }
+.nav-item i { font-size: 1.4rem; margin-bottom: 5px; }
+.nav-item.active { opacity: 1; color: var(--accent); }
 
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 12px;
-}
+.spacer-bottom { height: 100px; }
 
-.nav-item i { font-size: 20px; margin-bottom: 4px; }
-.nav-item.active { color: var(--accent); }
-/* Nav Bars အဆုံး */
-
-/* Spacers အစ */
-.spacer-30mm { height: 113px; }
-.spacer-10mm { height: 38px; }
-/* Spacers အဆုံး */
-
-/* Animations အစ */
-.soft-breath {
-    animation: soft-breath 4s infinite ease-in-out;
-}
-
-@keyframes soft-breath {
-    0%, 100% { opacity: 0.7; transform: scale(0.99); }
-    50% { opacity: 1; transform: scale(1); }
-}
-
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.6s ease-out;
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-/* Animations အဆုံး */
-
-/* Carousel အစ */
-.carousel-container {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    padding: 10px 0;
-}
-
-.infinite-carousel {
-    display: flex;
-    gap: 15px;
-    padding: 0 15px;
-    cursor: grab;
-    transition: transform 0.2s;
-}
-
-.carousel-item, .social-item, .info-item {
-    min-width: 150px;
-    height: 200px;
-    background: var(--glass-bg);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-    border: 1px solid var(--accent);
-}
-
-.carousel-item:active { transform: scale(1.05); }
-
-.social-item, .info-item {
-    height: 60px;
-    padding: 0 20px;
-}
-/* Carousel အဆုံး */
-
-/* Floating UI အစ */
-.floating-controls {
-    position: fixed;
-    right: 15px;
-    bottom: 85px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 999;
-}
-
-.circle-6mm { width: 23px; height: 23px; border-radius: 50%; padding: 0; font-size: 10px; }
-.circle-15mm { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; }
-.logo-fixed { position: fixed; left: 15px; bottom: 85px; }
-
-button {
-    border: none;
-    cursor: pointer;
-    background: var(--glass-bg);
-    color: var(--text-color);
-    padding: 10px;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-button:active { transform: scale(1.05); }
-/* Floating UI အဆုံး */
-
-/* Scrollbar အစ */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
-}
-/* Scrollbar အဆုံး */
-
-/* Lazy Load Transition အစ */
-.fade-in {
-    opacity: 0;
-    transition: opacity 1s ease-in;
-}
-.fade-in.loaded { opacity: 1; }
-/* Lazy Load Transition အဆုံး */
+/* Animations */
+@keyframes soft-breath { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+.soft-breath { animation: soft-breath 3s infinite; }
