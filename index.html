@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မရဏဓမ္မ | maranadhamma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body class="reading-mode">
+
+    <div id="pull-to-refresh">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+    <nav class="top-nav glass">
+        <div class="logo">မရဏဓမ္မ | maranadhamma</div>
+        <div class="nav-controls">
+            <button id="searchBtn" title="Search"><i class="fas fa-search"></i></button>
+            <button id="themeToggle" title="Change Theme"><i class="fas fa-moon"></i></button>
+            <button id="tocBtn" title="Table of Contents"><i class="fas fa-list-ul"></i></button>
+        </div>
+    </nav>
+    <div id="searchOverlay" class="overlay glass">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="ရှာဖွေရန်...">
+            <div id="searchSuggestions"></div>
+        </div>
+    </div>
+    <div id="tocOverlay" class="overlay glass">
+        <ul id="tocList">
+            </ul>
+    </div>
+    <main id="content">
+        <div class="spacer-30mm"></div>
+        <section class="greeting-section scroll-reveal">
+            <h1 id="greetingMsg" class="soft-breath">မင်္ဂလာပါ</h1>
+            <p id="dhammaQuote" class="soft-breath"></p>
+        </section>
+        <section id="sarmu" class="scroll-reveal">
+            <h2 class="section-title">စာမူ</h2>
+            <div class="carousel-container">
+                <div class="infinite-carousel" id="carousel-sarmu">
+                    </div>
+            </div>
+            <div class="carousel-nav">
+                <button onclick="scrollToStart('carousel-sarmu')">အစသို့</button>
+                <button onclick="scrollToEnd('carousel-sarmu')">အဆုံးသို့</button>
+            </div>
+        </section>
+        <div class="spacer-10mm"></div>
+
+        <section id="sardan" class="scroll-reveal">
+            <h2 class="section-title">စာတမ်း</h2>
+            <div class="carousel-container auto-scroll">
+                <div class="infinite-carousel" id="carousel-sardan">
+                    </div>
+            </div>
+        </section>
+        <div class="spacer-10mm"></div>
+
+        <section id="sittan" class="scroll-reveal">
+            <h2 class="section-title">စစ်တမ်း</h2>
+            <div class="carousel-container auto-scroll">
+                <div class="infinite-carousel" id="carousel-sittan">
+                    </div>
+            </div>
+        </section>
+        <section class="social-section scroll-reveal">
+            <div class="infinite-carousel" id="carousel-social">
+                <div class="social-item">တယ်လီဂရန်</div>
+                <div class="social-item">တယ်လီဂရန်</div>
+                <div class="social-item">တယ်လီဂရန်</div>
+            </div>
+            <div class="carousel-nav">
+                <button onclick="scrollToStart('carousel-social')"><i class="fas fa-angle-double-left"></i></button>
+                <button onclick="scrollToEnd('carousel-social')"><i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </section>
+        <section class="info-section scroll-reveal">
+            <div class="infinite-carousel" id="carousel-info">
+                <div class="info-item">၀၉ ၈၈၄ ၆၆၄ ၆၄၇</div>
+                <div class="info-item">https://maranadhamma.netlify.app</div>
+                <div class="info-item">vipassanā meditation</div>
+            </div>
+        </section>
+        </main>
+
+    <div class="floating-controls">
+        <button id="scrollTop" class="glass circle-6mm"><i class="fas fa-chevron-up"></i></button>
+        <button id="scrollBottom" class="glass circle-6mm"><i class="fas fa-chevron-down"></i></button>
+        <button id="msgBtn" class="glass"><i class="far fa-envelope"></i></button>
+        <div class="logo-fixed circle-15mm glass">
+            <img src="https://via.placeholder.com/56" alt="Logo" class="lazy">
+        </div>
+    </div>
+    <div class="data-save-container scroll-reveal">
+        <label>Data Saving Mode: <input type="checkbox" id="dataSaveToggle"></label>
+    </div>
+    <nav class="bottom-nav glass">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>ပင်မ</span>
+        </a>
+        <a href="video.html" class="nav-item">
+            <i class="fas fa-video"></i>
+            <span>ဗီဒီယို</span>
+        </a>
+        <a href="about.html" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>အကြောင်း</span>
+        </a>
+        <a href="proof.html" class="nav-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>သက်သေ</span>
+        </a>
+    </nav>
+    <script src="script.js"></script>
+</body>
+</html>
