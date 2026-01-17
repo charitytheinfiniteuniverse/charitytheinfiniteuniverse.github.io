@@ -1,27 +1,38 @@
+/* --- ခလုတ်များ ဒီဇိုင်း အစ (Button Styles Start) --- */
+
+/* (၁) ပုံမှန် အလင်းရောင်စနစ်သုံး ခလုတ်ဒီဇိုင်း (Light Mode Button) */
 .app-btn {
-  display: block;
-  text-align: center;
-  margin: 1rem auto;
-  padding: 1rem;
-  max-width: 300px;
-  background-color: #ffffff;   /* Light mode → White */
-  text-decoration: none;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  transition: background-color 0.3s, color 0.3s;
-  border: 1px solid #ccc;
+  display: block;              /* ခလုတ်ကို တစ်ကြောင်းလုံး နေရာယူစေခြင်း */
+  text-align: center;          /* စာသားကို အလယ်သို့ ပို့ခြင်း */
+  margin: 1rem auto;           /* အထက်အောက် ခြားပြီး ဘယ်ညာကို အလယ်သို့ ပို့ခြင်း */
+  padding: 1rem;               /* ခလုတ်အတွင်းရှိ စာသားနှင့် အနားသတ်ကြား အကွာအဝေး */
+  max-width: 300px;            /* ခလုတ်၏ အကျယ်ဆုံး အတိုင်းအတာ */
+  background-color: #ffffff;   /* ခလုတ်နောက်ခံအရောင် (အဖြူရောင်) */
+  text-decoration: none;       /* စာသားအောက်က မျဉ်းတားကို ဖျောက်ခြင်း */
+  font-size: 1.2rem;           /* စာသားအရွယ်အစား */
+  border-radius: 8px;          /* ခလုတ်ဒေါင့်များကို ဝိုင်းစေခြင်း */
+  transition: background-color 0.3s, color 0.3s; /* အရောင်ပြောင်းလဲမှု နူးညံ့စေရန် */
+  border: 1px solid #ccc;      /* ခလုတ်ဘောင် အနားသတ်မျဉ်း */
 }
 
+/* (၂) ခလုတ်ပေါ်သို့ Mouse တင်လိုက်ချိန် (Hover State) */
 .app-btn:hover {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0;   /* Mouse တင်ချိန်တွင် အရောင်အနည်းငယ် ရင့်သွားစေရန် */
 }
 
-/* 🌙 Dark Mode */
+/* --- Dark Mode အတွက် ဒီဇိုင်းသီးသန့် အစ --- */
+
+/* 🌙 (၃) အမှောင်စနစ်သုံး ခလုတ်ဒီဇိုင်း (Dark Mode Style) */
 body.dark-mode .app-btn {
-  background-color: #000000;   /* Dark mode → Black */
-  border: 1px solid #444;
+  background-color: #000000;   /* အမှောင်စနစ်တွင် နောက်ခံကို (အနက်ရောင်) ပြောင်းခြင်း */
+  border: 1px solid #444;      /* ဘောင်မျဉ်းကို အမှောင်ရောင် ပြောင်းခြင်း */
 }
 
+/* 🌙 (၄) အမှောင်စနစ်တွင် Mouse တင်လိုက်ချိန် */
 body.dark-mode .app-btn:hover {
-  background-color: #111;
+  background-color: #111;      /* အမှောင်စနစ်တွင် Mouse တင်ပါက မီးခိုးရင့်ရောင် ပြောင်းခြင်း */
 }
+
+/* --- Dark Mode အတွက် ဒီဇိုင်းသီးသန့် အဆုံး --- */
+
+/* --- ခလုတ်များ ဒီဇိုင်း အဆုံး (Button Styles End) --- */
