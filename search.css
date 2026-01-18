@@ -9,60 +9,60 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    z-index: 2001; /* အပေါ်ဆုံးမှာ အမြဲရှိရန် */
-    padding: 5px;
+    z-index: 3000; /* အမြဲတမ်း အပေါ်ဆုံးမှာ ရှိနေရန် */
 }
 /* ၁။ Search Icon နေရာချခြင်း အဆုံး */
 
-/* ၂။ Search Overlay ပြင်ဆင်ခြင်း အစ */
+/* ၂။ Blur နောက်ခံ Overlay ဒီဇိုင်း အစ */
 .search-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.4); 
+    background: rgba(0, 0, 0, 0.2); /* အမှောင်ဘက်ကို နည်းနည်းသွားမှ စာရိုက်ရတာ ရှင်းမယ် */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    z-index: 1500; /* Main ထက် အပေါ်ရောက်ရုံပဲ ထားမည် */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 100px;
+    z-index: 50; /* အောက်ဆုံးအလွှာမှာ ထားခြင်းဖြင့် ခလုတ်တွေကို မကွယ်စေရန် */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    /* နှိပ်လိုက်တဲ့အခါ အောက်ကလင့်တွေဆီ အာရုံရောက်အောင် လုပ်ခြင်း */
-    pointer-events: none; 
+    transition: opacity 0.3s ease;
 }
 
-/* ဖွင့်လိုက်တဲ့အခါ စာရိုက်ကွက်ကိုပဲ နှိပ်လို့ရအောင် ပြန်လုပ်ခြင်း */
 .search-overlay.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; 
 }
-/* ၂။ Search Overlay ပြင်ဆင်ခြင်း အဆုံး */
+/* ၂။ Blur နောက်ခံ Overlay ဒီဇိုင်း အဆုံး */
 
-/* ၃။ Search Box (Input) ဒီဇိုင်း အစ */
+/* ၃။ စာရိုက်ကွက် (Search Bar) ဒီဇိုင်း အစ */
 .search-container {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 90%;
     max-width: 500px;
-    position: relative;
-    pointer-events: auto; /* Box ကိုတော့ နှိပ်လို့ရရမည် */
+    z-index: 2500; /* ခလုတ်တွေထက်ရော Blur ထက်ရော အပေါ်မှာ ထားခြင်း */
+    display: none;
+}
+
+.search-container.active {
+    display: block;
 }
 
 #searchInput {
     width: 100%;
-    padding: 15px 25px;
+    padding: 15px 50px 15px 25px; /* ညာဘက်မှာ X ခလုတ်အတွက် နေရာချန်ထားခြင်း */
     border-radius: 30px;
     border: 2px solid #4caf50;
     font-size: 18px;
     outline: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     background: white;
 }
 
+/* ပိတ်ရန် ✕ ခလုတ်ကို Search Bar ထဲမှာ အလုပ်လုပ်အောင် ထားခြင်း */
 .close-search {
     position: absolute;
     right: 20px;
@@ -71,7 +71,9 @@
     font-size: 22px;
     color: #888;
     cursor: pointer;
+    z-index: 2600; /* Input ထက် မြင့်နေမှ နှိပ်လို့ရမည် */
+    padding: 5px;
 }
-/* ၃။ Search Box ဒီဇိုင်း အဆုံး */
+/* ၃။ စာရိုက်ကွက် ဒီဇိုင်း အဆုံး */
 
 /* --- SEARCH CSS FULL END (အဆုံး) --- */
