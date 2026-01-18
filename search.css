@@ -1,32 +1,30 @@
-/* --- SEARCH CSS FULL START (ရှာဖွေမှု အသွင်အပြင် အစ) --- */
+/* --- SEARCH CSS FULL START (အစ) --- */
 
-/* ၁။ Search Icon (🔍) ကို Dark Mode ဘေးတွင် နေရာချခြင်း အစ */
+/* ၁။ Search Icon (🔍) နေရာချခြင်း အစ */
 #searchToggle {
     position: fixed;
     top: 20px;
-    right: 85px; /* ModeToggle က 20px မှာဆိုရင် ဒါက သူ့ဘေးမှာ ကွက်တိဖြစ်အောင် ထားတာပါ */
+    right: 85px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1001; /* အပေါ်ဆုံးမှာ ရှိနေစေရန် */
+    z-index: 2001; /* အပေါ်ဆုံးမှာ အမြဲရှိရန် */
     padding: 5px;
-    transition: transform 0.2s ease;
 }
-#searchToggle:active { transform: scale(0.9); }
 /* ၁။ Search Icon နေရာချခြင်း အဆုံး */
 
-/* ၂။ Full Screen မှန်ကြည် Overlay ဒီဇိုင်း အစ */
+/* ၂။ Search Overlay ပြင်ဆင်ခြင်း အစ */
 .search-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.4); /* နောက်ခံကို ပိုကြည်စေပြီး အောက်ကလင့်တွေကို မြင်ရစေရန် */
-    backdrop-filter: blur(15px); /* မှန်ကြည် Effect */
+    background: rgba(255, 255, 255, 0.4); 
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    z-index: 2000;
+    z-index: 1500; /* Main ထက် အပေါ်ရောက်ရုံပဲ ထားမည် */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,34 +32,37 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    /* နှိပ်လိုက်တဲ့အခါ အောက်ကလင့်တွေဆီ အာရုံရောက်အောင် လုပ်ခြင်း */
+    pointer-events: none; 
 }
 
-/* Overlay ပွင့်လာလျှင် အသုံးပြုရန် class */
+/* ဖွင့်လိုက်တဲ့အခါ စာရိုက်ကွက်ကိုပဲ နှိပ်လို့ရအောင် ပြန်လုပ်ခြင်း */
 .search-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto; 
 }
-/* ၂။ Full Screen မှန်ကြည် Overlay အဆုံး */
+/* ၂။ Search Overlay ပြင်ဆင်ခြင်း အဆုံး */
 
-/* ၃။ Search Box (စာရိုက်ကွက်) ဒီဇိုင်း အစ */
+/* ၃။ Search Box (Input) ဒီဇိုင်း အစ */
 .search-container {
     width: 90%;
     max-width: 500px;
     position: relative;
+    pointer-events: auto; /* Box ကိုတော့ နှိပ်လို့ရရမည် */
 }
 
 #searchInput {
     width: 100%;
     padding: 15px 25px;
     border-radius: 30px;
-    border: 2px solid #4caf50; /* အစိမ်းရောင်ဘောင် */
+    border: 2px solid #4caf50;
     font-size: 18px;
     outline: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     background: white;
 }
 
-/* ပိတ်ရန် ✕ ခလုတ် */
 .close-search {
     position: absolute;
     right: 20px;
@@ -73,4 +74,4 @@
 }
 /* ၃။ Search Box ဒီဇိုင်း အဆုံး */
 
-/* --- SEARCH CSS FULL END (ရှာဖွေမှု အသွင်အပြင် အဆုံး) --- */
+/* --- SEARCH CSS FULL END (အဆုံး) --- */
