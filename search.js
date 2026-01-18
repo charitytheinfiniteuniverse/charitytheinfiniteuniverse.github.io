@@ -5,32 +5,39 @@ function toggleSearchOverlay() {
     const overlay = document.getElementById('searchOverlay');
     const input = document.getElementById('searchInput');
     
+    // active class ကို အဖွင့်/အပိတ် လုပ်ခြင်း
     overlay.classList.toggle('active');
     
-    // ပွင့်လာလျှင် စာရိုက်ရန် အဆင်သင့်ဖြစ်အောင် cursor ချပေးခြင်း
+    // Overlay ပွင့်လာလျှင် စာရိုက်ရန် cursor တန်းချပေးခြင်း
     if (overlay.classList.contains('active')) {
         setTimeout(() => input.focus(), 300);
     } else {
-        input.value = ''; // ပိတ်လိုက်လျှင် ရိုက်ထားသော စာများဖျက်ရန်
-        applySearch(); // List ကို မူလအတိုင်း ပြန်ပြရန်
+        // ပိတ်လိုက်လျှင် စာများကိုဖျက်ပြီး list ကို မူလအတိုင်း ပြန်ပြခြင်း
+        input.value = ''; 
+        applySearch(); 
     }
 }
 /* ၁။ Overlay ပွင့်/ပိတ် လုပ်ဆောင်ချက် အဆုံး */
 
 
-/* ၂။ တကယ့် ရှာဖွေမှု ပြုလုပ်သော လုပ်ဆောင်ချက် အစ */
+/* ၂။ တကယ့် ရှာဖွေမှု ပြုလုပ်သော ပင်မလုပ်ဆောင်ချက် အစ */
 function applySearch() {
+    // ရိုက်လိုက်တဲ့စာကို ယူပြီး အသေးစာလုံးပြောင်းခြင်း
     let searchValue = document.getElementById('searchInput').value.toLowerCase();
-    // class="search-item" ပေးထားသော ခလုတ်များကို လိုက်ရှာမည်
+    
+    // class="search-item" လို့ ပေးထားတဲ့ link အားလုံးကို ယူခြင်း
     let items = document.getElementsByClassName('search-item');
 
     for (let i = 0; i < items.length; i++) {
         let text = items[i].textContent.toLowerCase();
         
+        // စာသား ပါဝင်မှု ရှိမရှိ စစ်ဆေးခြင်း
         if (text.includes(searchValue)) {
-            items[i].style.display = ""; // စာသားတူရင် ပြမည်
+            // စာသားတူလျှင် သင့်ရဲ့ မူရင်း Button ပုံစံအတိုင်း display: block နဲ့ ပြန်ပြမည်
+            items[i].style.display = "block"; 
         } else {
-            items[i].style.display = "none"; // မတူရင် ဖျောက်မည်
+            // မတူလျှင် ဖျောက်ထားမည်
+            items[i].style.display = "none"; 
         }
     }
 }
