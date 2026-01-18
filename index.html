@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css">    
   <link rel="stylesheet" href="darkmode.css">    
   <link rel="stylesheet" href="search.css">
+
   <script defer src="darkmode.js"></script>   
   <link rel="icon" type="image/png" href="https://maranadhamma.netlify.app/maranadhammalogo1.png">
   <link rel="apple-touch-icon" href="https://maranadhamma.netlify.app/maranadhammalogo1.png">
@@ -22,16 +23,16 @@
 
   <div id="fixedTitle">မရဏဓမ္မ | maranadhamma</div>    
 
-<button id="searchToggle" class="pos-index" onclick="toggleSearchOverlay()">🔍</button>
+  <button id="searchToggle" class="pos-index" onclick="toggleSearchOverlay()">🔍</button>
 
   <button id="modeToggle">☀️</button>    
 
-
-      <div class="search-container">
-          <input type="text" id="searchInput" onkeyup="applySearch()" placeholder="တရားတော်များ ရှာဖွေရန်..." autocomplete="off">
-          <span class="close-search" onclick="toggleSearchOverlay()">✕</span>
-      </div>
-      
+  <div class="search-container">
+    <div style="position: relative;">
+      <input type="text" id="searchInput" oninput="applySearch()" placeholder="တရားတော်များ ရှာဖွေရန်..." autocomplete="off">
+      <span class="close-search" onclick="toggleSearchOverlay()">✕</span>
+    </div>
+  </div>
 
   <main style="margin-top: 120px; margin-bottom: 400px;">
     <img src="https://maranadhamma.netlify.app/maranadhammalogo1.png" alt="မရဏဓမ္မ" style="display: block; margin: 1rem auto; max-width: 90%; height: auto;">    
@@ -109,5 +110,6 @@
   </nav>
 
   <script src="search.js"></script>
-  </body>      
+
+</body>      
 </html>
