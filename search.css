@@ -2,9 +2,9 @@
 
 /* ၁။ အခြေခံ ခလုတ်ဒီဇိုင်း (အားလုံးအတွက် တူညီသည်) အစ */
 #searchToggle {
-    position: fixed;
-    background: none;
-    border: none;
+    position: fixed !important; /* အခြား CSS များက လာတား၍မရအောင် important သုံးထားသည် */
+    background: none !important;
+    border: none !important;
     font-size: 24px;
     cursor: pointer;
     z-index: 3000;
@@ -15,31 +15,33 @@
 
 /* ၂။ စာမျက်နှာအလိုက် နေရာသတ်မှတ်ခြင်း (Class များ) အစ */
 
-/* ပင်မစာမျက်နှာ (Index) အတွက် နေရာ */
+/* ပင်မစာမျက်နှာ (Index) အတွက် နေရာ - ဤနေရာတွင် စိတ်ကြိုက်တိုးနိုင်ပါသည် */
 .pos-index {
-    top: 10px;
-    right: 30px;
+    top: 15px !important;    /* အပေါ်/အောက် တိုးရန် */
+    right: 85px !important;  /* ညာဘက်မှ အကွာအဝေး (ဘယ်ညာတိုးရန်) */
+    left: auto !important;   /* ဘယ်ဘက်ကပ်မနေစေရန် auto ထားသည် */
 }
 
 /* အကြောင်းအရာ (About) စာမျက်နှာအတွက် နေရာ */
 .pos-about {
-    top: 20px;
-    right: 20px; /* ဥပမာ - ညာဘက်ကို ပိုကပ်ထားမယ် */
+    top: 20px !important;
+    right: 20px !important;
+    left: auto !important;
 }
 
 /* သုတေသန (Research) စာမျက်နှာအတွက် နေရာ */
 .pos-research {
-    bottom: 150px; /* ဥပမာ - အောက်နားမှာ ထားချင်ရင် */
-    right: 20px;
+    top: 20px !important;
+    right: 20px !important;
+    left: auto !important;
 }
-
 /* ၂။ စာမျက်နှာအလိုက် နေရာသတ်မှတ်ခြင်း အဆုံး */
 
 
 /* ၃။ Search Bar (စာရိုက်ကွက်) ဒီဇိုင်း အစ */
 .search-container {
     position: fixed;
-    top: -100px;
+    top: -100px; /* အစပိုင်းတွင် အပေါ်၌ ဖျောက်ထားသည် */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -48,6 +50,7 @@
     transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Search Bar ပွင့်လာလျှင် အောက်သို့လျှောဆင်းလာရန် */
 .search-container.active {
     top: 80px;
 }
@@ -63,6 +66,7 @@
     background: white;
 }
 
+/* ပိတ်ရန် ✕ ခလုတ် */
 .close-search {
     position: absolute;
     right: 20px;
