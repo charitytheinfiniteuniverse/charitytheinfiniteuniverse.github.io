@@ -1,34 +1,55 @@
-/* --- SEARCH CSS FULL START (ရှာဖွေမှု အသွင်အပြင် အစ) --- */
+/* --- SEARCH CSS FULL START (အစ) --- */
 
-/* ၁။ Search Icon (🔍) ကို နေရာချခြင်း အစ */
+/* ၁။ အခြေခံ ခလုတ်ဒီဇိုင်း (အားလုံးအတွက် တူညီသည်) အစ */
 #searchToggle {
     position: fixed;
-    top: 20px;
-    right: 85px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    z-index: 3000; /* အပေါ်ဆုံးမှာ ရှိနေရန် */
+    z-index: 3000;
     padding: 5px;
 }
-/* ၁။ Search Icon နေရာချခြင်း အဆုံး */
+/* ၁။ အခြေခံ ခလုတ်ဒီဇိုင်း အဆုံး */
 
-/* ၂။ စာရိုက်ကွက် (Search Bar) ဒီဇိုင်း အစ */
+
+/* ၂။ စာမျက်နှာအလိုက် နေရာသတ်မှတ်ခြင်း (Class များ) အစ */
+
+/* ပင်မစာမျက်နှာ (Index) အတွက် နေရာ */
+.pos-index {
+    top: 20px;
+    right: 85px;
+}
+
+/* အကြောင်းအရာ (About) စာမျက်နှာအတွက် နေရာ */
+.pos-about {
+    top: 20px;
+    right: 20px; /* ဥပမာ - ညာဘက်ကို ပိုကပ်ထားမယ် */
+}
+
+/* သုတေသန (Research) စာမျက်နှာအတွက် နေရာ */
+.pos-research {
+    bottom: 150px; /* ဥပမာ - အောက်နားမှာ ထားချင်ရင် */
+    right: 20px;
+}
+
+/* ၂။ စာမျက်နှာအလိုက် နေရာသတ်မှတ်ခြင်း အဆုံး */
+
+
+/* ၃။ Search Bar (စာရိုက်ကွက်) ဒီဇိုင်း အစ */
 .search-container {
     position: fixed;
-    top: -100px; /* အစပိုင်းတွင် အပေါ်မှာ ဖျောက်ထားမည် */
+    top: -100px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 500px;
-    z-index: 3001; /* Search Icon ထက် မြင့်စေရန် */
-    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* အပေါ်ကနေ လျှောဆင်းလာမည့် Animation */
+    z-index: 3001;
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Search Bar ပွင့်လာသည့်အခါ အောက်သို့ ဆင်းလာရန် */
 .search-container.active {
-    top: 80px; /* Title ရဲ့ အောက်နားတွင် ရပ်မည် */
+    top: 80px;
 }
 
 #searchInput {
@@ -38,12 +59,10 @@
     border: 2px solid #4caf50;
     font-size: 18px;
     outline: none;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2); /* အမှောင်ရိပ် ထင်ထင်ရှားရှား ထည့်ထားသည် */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     background: white;
-    color: #333;
 }
 
-/* ပိတ်ရန် ✕ ခလုတ် */
 .close-search {
     position: absolute;
     right: 20px;
@@ -52,8 +71,7 @@
     font-size: 22px;
     color: #888;
     cursor: pointer;
-    padding: 5px;
 }
-/* ၂။ စာရိုက်ကွက် ဒီဇိုင်း အဆုံး */
+/* ၃။ Search Bar ဒီဇိုင်း အဆုံး */
 
-/* --- SEARCH CSS FULL END (ရှာဖွေမှု အသွင်အပြင် အဆုံး) --- */
+/* --- SEARCH CSS FULL END (အဆုံး) --- */
