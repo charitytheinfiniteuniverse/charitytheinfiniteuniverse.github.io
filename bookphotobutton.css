@@ -1,17 +1,18 @@
 /* bookphotobutton.css အပိုင်း အစ */
 .btn-box {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .read-btn-style {
     display: inline-block;
     padding: 12px 40px;
-    background-color: #FFD700; /* ရွှေဝါရောင် */
+    background-color: #FFD700;
     color: #000;
     text-decoration: none;
     font-weight: bold;
     border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 /* bookphotobutton.css အပိုင်း အဆုံး */
