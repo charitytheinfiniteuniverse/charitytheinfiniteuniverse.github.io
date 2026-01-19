@@ -1,0 +1,24 @@
+/* bookphoto.css အပိုင်း အစ */
+.book-viewer-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 20px auto;
+}
+
+.slider-box {
+    width: 100%;
+    overflow: hidden; /* ပုံ ၂ ပုံလုံး တစ်ပြိုင်နက်မပေါ်စေရန် */
+    border-radius: 12px;
+    background: #000;
+}
+
+.slider-wrapper {
+    display: flex; /* ပုံများကို ဘေးတိုက်စီရန် */
+    transition: transform 0.4s ease-out; /* ဆွဲလိုက်ရင် အိအိလေးသွားရန် */
+}
+
+.slide-img {
+    width: 100%; /* ပုံကို ဘောင်အပြည့်ယူရန် */
+    flex-shrink: 0;
+}
+/* bookphoto.css အပိုင်း အဆုံး */
