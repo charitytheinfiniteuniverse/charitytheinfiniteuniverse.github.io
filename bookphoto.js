@@ -1,31 +1,46 @@
 /* bookphoto.js အပိုင်း အစ */
 const wrapper = document.getElementById('sliderWrapper');
+const box = document.getElementById('sliderBox');
 let startX = 0;
 let currentIndex = 0;
+let isDragging = false;
 
-// လက်စတင်ထိတွေ့မှုကို မှတ်သားခြင်း
-wrapper.addEventListener('touchstart', (e) => {
+// Touch (ဖုန်းအတွက်)
+box.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
+    isDragging = true;
 });
 
-// လက်လွှတ်လိုက်တဲ့အခါ ဘယ်ဘက်/ညာဘက် ဆွဲသလား စစ်ဆေးခြင်း
-wrapper.addEventListener('touchend', (e) => {
+box.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
     const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-
-    if (diff > 50) {
-        // ဘယ်ဘက်ကိုဆွဲလျှင် (နောက်တစ်ပုံသွား)
-        currentIndex++;
-    } else if (diff < -50) {
-        // ညာဘက်ကိုဆွဲလျှင် (ရှေ့ပုံပြန်သွား)
-        currentIndex--;
-    }
-
-    // Infinity (ပုံ ၂ ပုံတည်းမို့ ၁ ကနေ ၂၊ ၂ ကနေ ၁ ပြန်ပတ်ခြင်း)
-    if (currentIndex > 1) currentIndex = 0;
-    if (currentIndex < 0) currentIndex = 1;
-
-    // ပုံကို နေရာရွှေ့ပေးခြင်း
-    wrapper.style.transform = `translateX(${currentIndex * -100}%)`;
+    handleSwipe(startX, endX);
+    isDragging = false;
 });
+
+// Mouse (Desktop စမ်းသပ်ရန်)
+box.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    isDragging = true;
+});
+
+window.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    handleSwipe(startX, e.clientX);
+    isDragging = false;
+});
+
+function handleSwipe(s, e) {
+    const diff = s - e;
+    if (Math.abs(diff) > 50) { // ၅၀ ပစ်ဇယ်ထက်ပိုဆွဲမှ အလုပ်လုပ်မည်
+        if (diff > 0) currentIndex++; // ဘယ်ဘက်ဆွဲ (ရှေ့တိုး)
+        else currentIndex--; // ညာဘက်ဆွဲ (နောက်ဆုတ်)
+
+        // Infinity Loop (၀ မှ ၁၊ ၁ မှ ၀ တစ်လှည့်စီပတ်ရန်)
+        if (currentIndex > 1) currentIndex = 0;
+        if (currentIndex < 0) currentIndex = 1;
+
+        wrapper.style.transform = `translateX(${currentIndex * -100}%)`;
+    }
+}
 /* bookphoto.js အပိုင်း အဆုံး */
