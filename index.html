@@ -32,31 +32,37 @@
 
     
 <style>
-  /*အစ ပုံတွေအပြင်က ပတ်ထားတဲ့ box (Container) */
   .scroll-container {
-    display: flex;             /* ပုံတွေကို ဘေးချင်းကပ်ပေးမယ် */
-    overflow-x: auto;          /* ဘေးတိုက် scroll လုပ်လို့ရအောင် လုပ်မယ် */
-    scroll-snap-type: x mandatory; /* ဆွဲလိုက်ရင် ပုံကို အလယ်မှာ ကွက်တိ ရပ်ပေးမယ် */
-    gap: 10px;                 /* ပုံတစ်ပုံနဲ့ တစ်ပုံကြား အကွာအဝေး */
-    padding: 1rem;
-    -webkit-overflow-scrolling: touch; /* iPhone တွေမှာ ပိုချောချောမွေ့မွေ့ ဖြစ်စေဖို့ */
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 20px;
+    -webkit-overflow-scrolling: touch;
+    align-items: center; /* ပုံတွေကို အလယ်မှာ တန်းနေအောင် လုပ်ပေးတယ် */
   }
 
-  /* ပုံတစ်ပုံချင်းစီရဲ့ setting */
   .scroll-container img {
-    flex: 0 0 85%;             /* ပုံတစ်ပုံကို screen ရဲ့ ၈၅% ပဲ ယူမယ် (ဒါမှ နောက်ပုံရဲ့ အစလေးကို မြင်ရမှာပါ) */
-    scroll-snap-align: center;  /* ဆွဲပြီးလွှတ်လိုက်ရင် ပုံကို အလယ်ကို ပို့ပေးမယ် */
-    height: auto;
-    border-radius: 8px;        /* ပုံကို ထောင့်လေးတွေ နည်းနည်းဝိုင်းပေးမယ် */
-    object-fit: cover;
+    /* ပုံရဲ့ အကျယ်ကို ဖုန်း screen ရဲ့ ၆၀% လောက်ပဲ ထားကြည့်ပါ */
+    flex: 0 0 60%; 
+    
+    /* အမြင့်ကို fixed တစ်ခု သတ်မှတ်ပေးလိုက်ပါ (ဒါမှ အကြီးကြီး မဖြစ်မှာပါ) */
+    height: 200px; 
+    
+    /* ပုံ ပျက်မသွားဘဲ box ထဲမှာ အံကိုက်ဖြစ်အောင် လုပ်ပေးတယ် */
+    object-fit: contain; 
+    
+    scroll-snap-align: center;
+    border: 1px solid #eee; /* ပုံဘောင်လေး ထည့်ချင်ရင် */
+    border-radius: 12px;
+    background: #f9f9f9; /* ပုံနောက်ခံ အရောင် (Logo ဆိုရင် လိုအပ်နိုင်ပါတယ်) */
   }
 
-  /* Scroll bar ကို ဖျောက်ထားချင်ရင် ဒီ code ထည့်ပါ */
   .scroll-container::-webkit-scrollbar {
     display: none;
   }
-  
 </style>
+
 
 <div class="scroll-container">
   <img src="https://maranadhamma.netlify.app/bookphoto1.jpg" alt="ရှေ့မျက် ">
