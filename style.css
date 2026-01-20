@@ -94,3 +94,68 @@ body {
   object-fit: cover;
 }
 
+/* ---ဓာတ်ပုံဘေးဆွဲ CSS အစ --- */
+
+body {
+    font-family: 'Pyidaungsu', sans-serif;
+    background-color: #fcfaf5;
+    margin: 0;
+    padding: 10px;
+}
+
+/* ၁။ ခေါင်းစဉ် အလှပြင်ဆင်ခြင်း */
+.section-title {
+    font-size: 1.1rem;
+    margin: 20px 0 10px 5px;
+    border-left: 5px solid #ffc107; /* အဝါရောင် ဘေးလိုင်းလေး */
+    padding-left: 12px;
+}
+
+/* ၂။ ပုံများကို ဘေးတိုက် Scroll ဆွဲနိုင်အောင် လုပ်ဆောင်ခြင်း */
+.gallery-list {
+    display: flex;             /* ပုံများကို ဘေးချင်းကပ်စီရန် */
+    overflow-x: auto;          /* ပိုနေသောပုံများကို ဘေးသို့ဆွဲကြည့်ရန် */
+    gap: 15px;                 /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး */
+    padding: 10px 5px;
+    
+    /* Scroll bar အစင်းကြောင်းကို ဖျောက်ရန် */
+    scrollbar-width: none;     /* Firefox အတွက် */
+    -ms-overflow-style: none;  /* IE အတွက် */
+    -webkit-overflow-scrolling: touch; /* ဖုန်းမှာ ဆွဲရတာ ချောမွေ့စေရန် */
+}
+
+/* Chrome နှင့် Safari ဘောက်ဇာများအတွက် Scroll bar ဖျောက်ရန် */
+.gallery-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* ၃။ ဓာတ်ပုံကတ် တစ်ခုချင်းစီ၏ အရွယ်အစား */
+.gallery-item {
+    flex: 0 0 160px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၁၆၀ pixel ပဲ ထားရန် */
+    background: #ffffff;
+    border-radius: 12px;       /* ထောင့်များကို ဝိုင်းရန် */
+    overflow: hidden;          /* ပုံများ ဘောင်အပြင်မထွက်ရန် */
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ၄။ ဓာတ်ပုံများ ဖုန်း Screen ပေါ်တွင် အကြီးကြီးမဖြစ်အောင် ထိန်းခြင်း */
+.gallery-item img {
+    width: 100%;               /* ကတ်အကျယ်အတိုင်း ဖြန့်ရန် */
+    height: 140px;             /* အမြင့်ကို ၁၄၀ pixel ထက် ပိုမကြီးစေရန် */
+    object-fit: cover;         /* ပုံစံမပျက်ဘဲ အကွက်ထဲ အပြည့်ဖြည့်ရန် */
+    display: block;
+}
+
+/* ၅။ ပုံအောက်မှ စာသား */
+.gallery-item .text {
+    padding: 10px;
+    font-size: 13px;
+    text-align: center;
+    color: #333;
+    font-weight: 500;
+}
+
+/* ---ဓာတ်ပုံဘေးဆွဲ CSS အဆုံး --- */
+
+
