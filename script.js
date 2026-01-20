@@ -1,27 +1,20 @@
 // --- JS အစ ---
-// script.js ထဲက အဟောင်းတွေကို အကုန်ဖျက်ပြီး ဒါကိုပဲ ထည့်ပါ
+const marquee = document.getElementById('marquee');
 
-const scrollContainer = document.getElementById('infinite-scroll');
+marquee.addEventListener('scroll', () => {
+    // ပုံတစ်တွဲစာရဲ့ အရှည်ကို တွက်မယ်
+    // ပုံ ၃ ပုံ + Gap ၃ ခု စုစုပေါင်း အကျယ်
+    const itemWidth = 160 + 15; // ပုံအကျယ် + Gap
+    const totalOriginalWidth = itemWidth * 3; // ပုံ ၃ ပုံစာ အရှည်
 
-// ၁။ ပုံတွေကို ပတ်ချာလည်ဖြစ်အောင် ပွားယူခြင်း (Cloning)
-// ပုံ ၃ ပုံပဲရှိရင် ၆ ပုံဖြစ်သွားအောင် လုပ်ပေးတာပါ
-const items = [...scrollContainer.children];
-items.forEach(item => {
-    let clone = item.cloneNode(true);
-    scrollContainer.appendChild(clone);
-});
-
-// ၂။ ဆွဲနေစဉ် အဆုံးရောက်မရောက် စစ်ဆေးခြင်း
-scrollContainer.addEventListener('scroll', () => {
-    // ပုံတွေက နှစ်ဆဖြစ်သွားလို့ scroll ရဲ့ တစ်ဝက်နေရာ (maxScroll) ကို ရှာတာပါ
-    let maxScroll = scrollContainer.scrollWidth / 2; 
-    
-    if (scrollContainer.scrollLeft >= maxScroll) {
-        // အဆုံး (တစ်ဝက်) ရောက်ရင် အစကို ချက်ချင်းပြန်ပို့
-        scrollContainer.scrollLeft = 0.5;
-    } else if (scrollContainer.scrollLeft <= 0) {
-        // ဘယ်ဘက်အစွန်းရောက်ရင် တစ်ဝက်နေရာကို ပြန်ပို့
-        scrollContainer.scrollLeft = maxScroll - 0.5;
+    // အကယ်၍ ဆွဲလိုက်လို့ မူလ ၃ ပုံစာ အရှည်ထက် ကျော်သွားရင်
+    if (marquee.scrollLeft >= totalOriginalWidth) {
+        // ချက်ချင်း မူလနေရာကို ပြန်ပို့ (ဒါပေမဲ့ ပုံတူတွေရှိနေလို့ ခုန်သွားတာကို မြင်ရမှာမဟုတ်ပါ)
+        marquee.scrollLeft -= totalOriginalWidth;
+    } 
+    // ဘယ်ဘက်ကို အဆုံးထိ ဆွဲရင်လည်း Loop ပြန်ဖြစ်အောင်
+    else if (marquee.scrollLeft <= 0) {
+        marquee.scrollLeft += totalOriginalWidth;
     }
 });
 // --- JS အဆုံး ---
