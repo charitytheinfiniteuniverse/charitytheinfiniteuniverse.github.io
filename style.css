@@ -94,8 +94,9 @@ body {
   object-fit: cover;
 }
 
-/* ---ဓာတ်ပုံဘေးဆွဲ CSS အစ --- */
+/* --- ဓာတ်ပုံဘေးဆွဲ CSS အစ --- */
 
+/* ၁။ စာမျက်နှာ အခြေခံ သတ်မှတ်ချက် */
 body {
     font-family: 'Pyidaungsu', sans-serif;
     background-color: #fcfaf5;
@@ -103,7 +104,7 @@ body {
     padding: 10px;
 }
 
-/* ၁။ ခေါင်းစဉ် အလှပြင်ဆင်ခြင်း */
+/* ၂။ ခေါင်းစဉ် အလှပြင်ဆင်ခြင်း */
 .section-title {
     font-size: 1.1rem;
     margin: 20px 0 10px 5px;
@@ -111,17 +112,18 @@ body {
     padding-left: 12px;
 }
 
-/* ၂။ ပုံများကို ဘေးတိုက် Scroll ဆွဲနိုင်အောင် လုပ်ဆောင်ခြင်း */
+/* ၃။ ပုံများကို ဘေးတိုက် Scroll ဆွဲနိုင်အောင် လုပ်ဆောင်ခြင်း (Container) */
 .gallery-list {
     display: flex;             /* ပုံများကို ဘေးချင်းကပ်စီရန် */
     overflow-x: auto;          /* ပိုနေသောပုံများကို ဘေးသို့ဆွဲကြည့်ရန် */
     gap: 15px;                 /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး */
     padding: 10px 5px;
+    scroll-behavior: smooth;   /* ဆွဲလိုက်ရင် ချောမွေ့စွာသွားရန် */
     
     /* Scroll bar အစင်းကြောင်းကို ဖျောက်ရန် */
     scrollbar-width: none;     /* Firefox အတွက် */
     -ms-overflow-style: none;  /* IE အတွက် */
-    -webkit-overflow-scrolling: touch; /* ဖုန်းမှာ ဆွဲရတာ ချောမွေ့စေရန် */
+    -webkit-overflow-scrolling: touch; /* iPhone မှာ ဆွဲရတာ ချောမွေ့စေရန် */
 }
 
 /* Chrome နှင့် Safari ဘောက်ဇာများအတွက် Scroll bar ဖျောက်ရန် */
@@ -129,17 +131,22 @@ body {
     display: none;
 }
 
-/* ၃။ ဓာတ်ပုံကတ် တစ်ခုချင်းစီ၏ အရွယ်အစား */
+/* ၄။ ဓာတ်ပုံကတ် တစ်ခုချင်းစီ၏ အရွယ်အစားနှင့် အလှအပ (Link ပါဝင်သည်) */
 .gallery-item {
-    flex: 0 0 160px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၁၆၀ pixel ပဲ ထားရန် */
+    flex: 0 0 160px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၁၆၀ pixel အသေထားရန် */
     background: #ffffff;
     border-radius: 12px;       /* ထောင့်များကို ဝိုင်းရန် */
     overflow: hidden;          /* ပုံများ ဘောင်အပြင်မထွက်ရန် */
     border: 1px solid #eee;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    
+    /* Link ချိတ်ထားလျှင် စာသားမျဉ်းတားဖျောက်ရန် */
+    text-decoration: none; 
+    display: flex;
+    flex-direction: column;
 }
 
-/* ၄။ ဓာတ်ပုံများ ဖုန်း Screen ပေါ်တွင် အကြီးကြီးမဖြစ်အောင် ထိန်းခြင်း */
+/* ၅။ ဓာတ်ပုံများ ဖုန်း Screen ပေါ်တွင် အံကိုက်ဖြစ်အောင် ထိန်းခြင်း */
 .gallery-item img {
     width: 100%;               /* ကတ်အကျယ်အတိုင်း ဖြန့်ရန် */
     height: 140px;             /* အမြင့်ကို ၁၄၀ pixel ထက် ပိုမကြီးစေရန် */
@@ -147,7 +154,7 @@ body {
     display: block;
 }
 
-/* ၅။ ပုံအောက်မှ စာသား */
+/* ၆။ ပုံအောက်မှ စာသား */
 .gallery-item .text {
     padding: 10px;
     font-size: 13px;
@@ -156,23 +163,4 @@ body {
     font-weight: 500;
 }
 
-/* ---ဓာတ်ပုံဘေးဆွဲ CSS အဆုံး --- */
-
-/*မျဉ်းတားဖျေက် အစနေရာ*/
-/* Link ပုံစံကြောင့် စာသားအရောင် မပြောင်းအောင် ထိန်းခြင်း */
-.gallery-item {
-    text-decoration: none; /* စာသားအောက်က မြောင်းကို ဖျောက်ခြင်း */
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 160px;
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #eee;
-}
-
-/* ပုံစံ ချောမွေ့အောင် ဒါလေး ထည့်ပေးပါ */
-.gallery-list {
-    scroll-behavior: smooth; 
-}
-/*မျဉ်းတားဖျောက် အဆုံးနေရာ*/
+/* --- ဓာတ်ပုံဘေးဆွဲ CSS အဆုံး --- */
