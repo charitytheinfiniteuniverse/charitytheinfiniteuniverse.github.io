@@ -158,4 +158,21 @@ body {
 
 /* ---ဓာတ်ပုံဘေးဆွဲ CSS အဆုံး --- */
 
+/*မျဉ်းတားဖျေက် အစနေရာ*/
+/* Link ပုံစံကြောင့် စာသားအရောင် မပြောင်းအောင် ထိန်းခြင်း */
+.gallery-item {
+    text-decoration: none; /* စာသားအောက်က မြောင်းကို ဖျောက်ခြင်း */
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 160px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
 
+/* ပုံစံ ချောမွေ့အောင် ဒါလေး ထည့်ပေးပါ */
+.gallery-list {
+    scroll-behavior: smooth; 
+}
+/*မျဉ်းတားဖျောက် အဆုံးနေရာ*/
