@@ -111,22 +111,26 @@ function toggleReadingMode() {
 
 // စာမျက်နှာ စဖွင့်တာနဲ့ အလုပ်လုပ်မည့်အပိုင်း
 window.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section');
+    // ၁။ section အစား h1, h2, h3 အားလုံးကို ရှာခိုင်းလိုက်တာပါ
+    const headers = document.querySelectorAll('section h1, section h2, section h3');
     const tocLinks = document.querySelectorAll('.toc-list li a');
 
     const observerOptions = {
         root: null,
-        rootMargin: '-10% 0px -70% 0px', // Screen ရဲ့ အပေါ်ပိုင်းနား ရောက်လာရင် ပိုသိသာစေရန်
+        rootMargin: '-10% 0px -75% 0px', 
         threshold: 0
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                
+            // ၂။ Screen ပေါ်မှာ ပေါ်လာတဲ့ ခေါင်းစဉ်ရဲ့ ID ကို ယူမယ်
+            const id = entry.target.getAttribute('id');
+            
+            if (entry.isIntersecting && id) {
                 tocLinks.forEach(link => {
+                    // အရင်ရှိနေတဲ့ active အရောင်တွေကို အကုန်ဖြုတ်မယ်
                     link.classList.remove('active-chapter');
+                    // မာတိကာထဲက href နဲ့ ခေါင်းစဉ် ID တူရင် ဝါရောင် (active-chapter) ပြမယ်
                     if (link.getAttribute('href') === `#${id}`) {
                         link.classList.add('active-chapter');
                         localStorage.setItem('lastReadChapter', id);
@@ -136,7 +140,35 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    sections.forEach(section => observer.observe(section));
+    // ၃။ ခေါင်းစဉ် (h1, h2, h3) တိုင်းကို လိုက်ကြည့်ခိုင်းမယ်
+    headers.forEach(header => {
+        if (header.id) {
+            observer.observe(header);
+        }
+    });
+
+    // ၄။ Scroll အပေါ်ဆုံးရောက်ရင် "နိဒါန်း" ကို အလိုအလျောက် highlight ပြဖို့
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < 100) {
+            tocLinks.forEach(link => link.classList.remove('active-chapter'));
+            const introLink = document.querySelector('.toc-list li a[href="#intro"]');
+            if (introLink) {
+                introLink.classList.add('active-chapter');
+            }
+        }
+    });
+
+    // ၅။ ဖတ်လက်စနေရာကို ပြန်သွားဖို့
+    const lastSavedChapter = localStorage.getItem('lastReadChapter');
+    if (lastSavedChapter && lastSavedChapter !== 'intro') {
+        setTimeout(() => {
+            const targetElement = document.getElementById(lastSavedChapter);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 500);
+    }
+});
 
     // အထူးပြင်ဆင်ချက် - စာမျက်နှာ အပေါ်ဆုံးရောက်နေရင် "နိဒါန်း" ကို Highlight ပြရန်
     window.addEventListener('scroll', () => {
