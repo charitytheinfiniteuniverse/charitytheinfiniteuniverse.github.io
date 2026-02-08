@@ -110,7 +110,7 @@ function toggleReadingMode() {
 }
 
 // စာမျက်နှာ စဖွင့်တာနဲ့ အလုပ်လုပ်မည့်အပိုင်း
-Window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
     const tocLinks = document.querySelectorAll('.toc-list li a');
 
@@ -138,7 +138,6 @@ Window.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => observer.observe(section));
 
-
     // အထူးပြင်ဆင်ချက် - စာမျက်နှာ အပေါ်ဆုံးရောက်နေရင် "နိဒါန်း" ကို Highlight ပြရန်
     window.addEventListener('scroll', () => {
         if (window.scrollY < 100) {
@@ -162,3 +161,5 @@ Window.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 });
+
+ဒါက js ပါ
