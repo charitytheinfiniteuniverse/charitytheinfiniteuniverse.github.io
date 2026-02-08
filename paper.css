@@ -176,6 +176,7 @@ body.sepia-mode {
 .content-area { padding: 20px; line-height: 1.8; font-size: 19px; }
 .book-header { text-align: center; padding: 40px 20px; }
 .book-header h1 { color: #443300; }
+.book-header h2 { color: #443300; }
 
 .content-area {
     white-space: pre-line; 
