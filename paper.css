@@ -4,6 +4,10 @@ body.sepia-mode {
     color: #1a1a1a;
     margin: 0;
     font-family: 'Pyidaungsu', sans-serif;
+    /* Font ကြီးလျှင် ဘေးတိုက် Scroll မဖြစ်အောင် ထိန်းချုပ်ခြင်း */
+    overflow-x: hidden; 
+    position: relative;
+    width: 100%;
 }
 
 .container {
@@ -11,20 +15,23 @@ body.sepia-mode {
     margin: 0 auto;
     padding-bottom: 80px;
     padding-top: 70px; /* Top Bar နဲ့ မငြိစေရန် အပေါ်မှ နေရာချန်ထားခြင်း */
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* ၂။ Top Bar & Setting Controls (စာလုံးဆိုဒ်ကြီးလျှင် မရွေ့အောင် ပြင်ဆင်ထားသည်) */
+/* ၂။ Top Bar & Setting Controls */
 .top-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* ဘေး padding ကိုပဲ ထားသည် */
+    padding: 0 20px; 
     background: #eadebc;
-    position: fixed; /* စာဖတ်လျှင် အပေါ်မှာ အမြဲကပ်နေစေရန် sticky မှ fixed သို့ ပြောင်းသည် */
+    position: fixed; 
     top: 0;
     left: 0;
-    width: 100%;
-    height: 60px; /* အမြင့်ကို ပုံသေ သတ်မှတ်လိုက်သည် */
+    /* ဖုန်းမျက်နှာပြင် အကျယ်အတိအကျယူရန် vw ကိုသုံးသည် */
+    width: 100vw; 
+    height: 60px; 
     z-index: 1000;
     border-bottom: 1px solid #d4c5a0;
     box-sizing: border-box;
@@ -86,7 +93,6 @@ body.sepia-mode {
     text-align: center;
 }
 
-
 /* ၄။ Floating Buttons (Left Side) */
 .floating-left-group {
     position: fixed;
@@ -133,8 +139,6 @@ body.sepia-mode {
     transform: scale(1.1); 
 }
 
-
-
 /* ၅။ မာတိကာ Popup Overlay */
 .toc-overlay {
     position: fixed;
@@ -173,15 +177,28 @@ body.sepia-mode {
 }
 
 /* ၆။ စာဖတ်ခန်း Style */
-.content-area { padding: 20px; line-height: 1.8; font-size: 19px; }
 .book-header { text-align: center; padding: 40px 20px; }
-.book-header h1 { color: #443300; }
-.book-header h2 { color: #443300; }
 
-.content-area {
-    white-space: pre-line; 
+/* ခေါင်းစဉ်ကြီးလျှင် အောက်ကြောင်းဆင်းပေးရန် ပြင်ဆင်ချက် */
+.book-header h1, 
+.book-header h2 { 
+    color: #443300; 
+    inline-size: 100%;
+    overflow-wrap: break-word; 
+    word-break: break-word;
 }
 
+/* စာကိုယ်ပိုင်း Font ကြီးလျှင် ဘေးမကားစေရန် ပြင်ဆင်ချက် */
+.content-area { 
+    padding: 20px; 
+    line-height: 1.6; 
+    font-size: 19px; 
+    white-space: pre-line;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word; 
+    word-wrap: break-word;
+}
 
 @media print {
     .top-controls, 
@@ -213,17 +230,17 @@ body.sepia-mode {
     background: rgba(234, 222, 188, 0.4);
     color: #443300;
     cursor: pointer;
-    position: fixed; /* နေရာ ပုံသေဖြစ်အောင် fixed သုံးပါ */
+    position: fixed; 
     top: 80px;
     left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000; /* အားလုံးရဲ့ အပေါ်မှာ ရှိနေစေရန် */
+    z-index: 2000; 
     transition: 0.3s;
 }
 
-/* Focus Mode အသက်ဝင်ချိန် (Fullscreen ခလုတ်ကလွဲပြီး အကုန်ဖျောက်ရန်) */
+/* Focus Mode အသက်ဝင်ချိန် */
 body.focus-mode .top-controls .back-link,
 body.focus-mode .top-controls .right-controls,
 body.focus-mode .floating-left-group,
@@ -231,7 +248,6 @@ body.focus-mode .book-header {
     display: none !important;
 }
 
-/* Focus Mode မှာ အပေါ် Bar နောက်ခံကို ဖျောက်ခြင်း */
 body.focus-mode .top-controls {
     background: transparent !important;
     border: none !important;
@@ -240,9 +256,8 @@ body.focus-mode .top-controls {
 
 /* မာတိကာတွင် လက်ရှိဖတ်နေသည့် အခန်းကို Highlight ပြရန် */
 .toc-list li a.active-chapter {
-    color: #b38b00 !important; /* ရွှေရောင် သို့မဟုတ် ခပ်တောက်တောက်အရောင် */
+    color: #b38b00 !important; 
     font-weight: bold !important;
     border-left: 3px solid #443300;
     padding-left: 10px;
 }
-
