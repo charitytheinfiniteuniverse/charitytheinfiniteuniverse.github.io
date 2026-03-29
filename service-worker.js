@@ -2,17 +2,26 @@ const CACHE_NAME = 'thaychinthabaw-v1';
 // အောက်က list ထဲမှာ offline ဖတ်ချင်တဲ့ ဖိုင်နာမည်တွေ အကုန်ထည့်ပါ
 const urlsToCache = [
   '/',
+  const urlsToCache = [
+  '/',
   '/index.html',
   '/paper.html',
+  '/about.html',
   '/style.css',
   '/paper.css',
-  '/paper.js',
+  '/darkmode.css',
+  '/buttons.css',
   '/script.js',
+  '/paper.js',
+  '/darkmode.js',
   '/bookphoto1.jpg',
   '/bookphoto2.jpg',
-  '/bookphoto3.jpg'
+  '/bookphoto3.jpg',
+  '/thaychinthabawlogo1.png',
+  '/manifest.json'
 ];
 
+  
 // ဖိုင်တွေကို သိမ်းဆည်းခြင်း (Install)
 self.addEventListener('install', event => {
   event.waitUntil(
