@@ -82,8 +82,7 @@ body {
   margin-right: 8px;
   padding: 6px 10px;
   /* Bar ထဲမှာ လှပအောင် border လေး ထည့်ပေးနိုင်ပါတယ် */
-  border: 1px solid var(--accent-gold);
-  border-radius: 5px;
+  border: none;
 }
 
 #modeToggle:active {
