@@ -46,16 +46,8 @@ modeToggle.addEventListener('click', () => {
   setEmoji(); // Emoji ကို Update လုပ်ခြင်း
 });
 
-// Mode Toggle ခလုတ်၏ တည်နေရာနှင့် ပုံစံ (Top Right Fix)
-Object.assign(modeToggle.style, {
-  position: 'fixed',
-  top: '10px',
-  right: '10px',
-  zIndex: '9999',
-  fontSize: '1.5rem',
-  background: 'transparent',
-  border: 'none',
-  cursor: 'pointer'
-});
+
+
+
 
 /* --- Darkmode.js အဆုံး --- */
