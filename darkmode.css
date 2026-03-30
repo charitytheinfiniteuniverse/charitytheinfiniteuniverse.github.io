@@ -57,4 +57,38 @@ body {
   transition: all 0.3s ease;
 }
 
+/* --- ခလုတ်နေရာ သတ်မှတ်ချက်များ --- */
+
+/* ၁။ index.html အတွက် (ညာဘက်အပေါ်ထောင့်မှာ Fixed ထားခြင်း) */
+/* ခလုတ်က main ထဲမှာဖြစ်ဖြစ်၊ body အောက်မှာ တိုက်ရိုက်ဖြစ်ဖြစ် ရှိနေရင် ဒီအတိုင်း ပေါ်ပါမယ် */
+#modeToggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s ease;
+}
+
+/* ၂။ paper.html အတွက် (Bar ထဲမှာ ပုံမှန်အတိုင်း ရှိနေစေခြင်း) */
+/* ခလုတ်က .right-controls ဆိုတဲ့ class ထဲမှာ ရှိနေရင် fixed ပုံစံကို ဖျက်ချလိုက်တာပါ */
+.right-controls #modeToggle {
+  position: static !important; /* နေရာကို Bar ထဲမှာပဲ ပုံမှန်ပြန်ဖြစ်စေသည် */
+  font-size: 1.2rem;
+  margin-right: 8px;
+  padding: 6px 10px;
+  /* Bar ထဲမှာ လှပအောင် border လေး ထည့်ပေးနိုင်ပါတယ် */
+  border: 1px solid var(--accent-gold);
+  border-radius: 5px;
+}
+
+#modeToggle:active {
+  transform: scale(0.9);
+}
+
+
 /* --- darkmode.css အဆုံး --- */
