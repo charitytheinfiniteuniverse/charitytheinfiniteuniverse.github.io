@@ -191,7 +191,7 @@ body.sepia-mode {
 /* စာကိုယ်ပိုင်း Font ကြီးလျှင် ဘေးမကားစေရန် ပြင်ဆင်ချက် */
 .content-area { 
     padding: 20px; 
-    line-height: 1.6; 
+    line-height: 2.0; 
     font-size: 19px; 
     white-space: pre-line;
     width: 100%;
