@@ -6,16 +6,20 @@
     <title>စာဖတ်ခန်း | သေခြင်းသဘော</title>
     <link rel="stylesheet" href="paper.css">
     <script defer src="paper.js"></script>
+    
+    <link rel="stylesheet" href="darkmode.css">
     <link rel="icon" type="image/png" href="https://thaychinthabaw.netlify.app/thaychinthabawlogo1.png">
 </head>
 <body class="sepia-mode">
-
+<script src="darkmode.js"></script>
     <div class="container">
         <nav class="top-controls">
             <a href="index.html" class="back-link">← ပင်မ</a>
             <button id="fs-btn" class="fullscreen-round-btn" onclick="toggleReadingMode()">⛶</button>
 
             <div class="right-controls">
+
+<button id="modeToggle" class="setting-btn" style="margin-right: 10px;">☀️</button>
                 <div class="font-controls">
                     <button onclick="changeFontSize('small')">A-</button>
                     <span id="font-size-display" style="margin: 0 10px; font-weight: bold; color: #443300;">20</span>
