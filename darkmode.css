@@ -91,4 +91,20 @@ body {
 }
 
 
+/* --- paper.html အတွက် သီးသန့် Dark Mode စာသားအဖြူရောင် --- */
+
+/* .content-area ပါတဲ့ စာမျက်နှာ (paper.html) ရဲ့ Dark Mode မှာသာ အလုပ်လုပ်ပါမယ် */
+body.dark-mode .content-area, 
+body.dark-mode .book-header h1,
+body.dark-mode .book-header p {
+  color: #ffffff !important; /* စာသားကို အဖြူရောင် ပြောင်းလဲခြင်း */
+}
+
+/* White Mode မှာ စာသားကို အမည်းရောင် ထားချင်ရင် ဒါကိုပါ ထည့်ပါ */
+body:not(.dark-mode):not(.reading-mode) .content-area,
+body:not(.dark-mode):not(.reading-mode) .book-header h1 {
+  color: #000000 !important;
+}
+
+
 /* --- darkmode.css အဆုံး --- */
