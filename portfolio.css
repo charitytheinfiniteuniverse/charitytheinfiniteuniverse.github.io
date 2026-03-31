@@ -1,234 +1,133 @@
 :root {
-    --primary-gold: #FFD700;
-    --bg-black: #050505;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 215, 0, 0.15);
-    --text-main: #ffffff;
-    --text-dim: #a0a0a0;
-    --neo-border: 2px solid #000;
+    --primary-gold: #D4AF37; /* အနည်းငယ် နူးညံ့သော ရွှေရောင် */
+    --bg-dark: #080808;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --text-main: #e0e0e0;
+    --text-muted: #888;
 }
 
 body {
-    background-color: var(--bg-black);
+    background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Inter', 'Pyidaungsu', sans-serif;
     margin: 0;
-    overflow-x: hidden;
-    line-height: 1.6;
-    padding-bottom: 80px; /* Mobile Nav အတွက် နေရာချန် */
+    display: flex;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.main-wrapper {
+    width: 100%;
+    max-width: 480px;
+    padding: 60px 25px;
+    box-sizing: border-box;
 }
 
-/* Bento Grid System */
-.bento-container {
-    display: grid;
-    grid-template-columns: 1fr; /* Mobile: Single Column */
-    gap: 15px;
-    padding: 20px;
+/* Profile Section */
+.profile-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-/* Bento Box Base Style */
-.bento-box {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: var(--neo-border);
-    border-radius: 20px;
-    padding: 25px;
+.avatar-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-gold);
+    padding: 5px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(20%);
+}
+
+.profile-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.profile-tagline {
+    color: var(--primary-gold);
+    font-size: 0.85rem;
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+/* Cards */
+.bio-card, .focus-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    letter-spacing: 2.5px;
+    margin-bottom: 15px;
+    display: block;
+    opacity: 0.7;
+}
+
+.bio-content {
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #ccc;
+    margin: 0;
+}
+
+/* Dharma List */
+.dharma-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dharma-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.95rem;
+    color: #bbb;
+}
+
+.dharma-list li:last-child {
+    border-bottom: none;
+}
+
+/* Navigation Buttons */
+.nav-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 18px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
     transition: 0.3s ease;
 }
 
-.bento-box:hover {
+.nav-button:hover {
     border-color: var(--primary-gold);
-    transform: scale(1.02);
+    background: rgba(212, 175, 55, 0.05);
 }
 
-/* Hero Box Specific */
-.profile-bio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.footer {
     text-align: center;
-}
-
-.profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid var(--primary-gold);
-    margin-bottom: 20px;
-    object-fit: cover;
-}
-
-.badge {
-    background: rgba(255, 215, 0, 0.1);
-    color: var(--primary-gold);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.hero-title {
-    font-size: clamp(2rem, 8vw, 3.5rem);
-    font-weight: 800;
-    margin: 15px 0;
-    line-height: 1.1;
-}
-
-.highlight {
-    background: linear-gradient(to right, #fff, var(--primary-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-text {
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto 25px;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.btn-primary, .btn-secondary {
-    padding: 12px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 0.9rem;
-}
-
-.btn-primary {
-    background: var(--primary-gold);
-    color: #000;
-}
-
-.btn-secondary {
-    background: rgba(255,215,0,0.1);
-    color: var(--primary-gold);
-    border: 1px solid var(--primary-gold);
-}
-
-/* Stat Box Specific */
-.stat-number {
-    font-size: 1.5rem;
-    color: var(--primary-gold);
-}
-
-/* Skill Tags Style */
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-
-.skill-tags span {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 5px 12px;
-    border-radius: 20px;
+    margin-top: 60px;
+    color: var(--text-muted);
     font-size: 0.8rem;
-}
-
-/* Skills Grid */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px;
-}
-
-.skill-box {
-    background: rgba(255, 215, 0, 0.05);
-    border: 1px solid var(--glass-border);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.85rem;
-    transition: 0.3s;
-}
-
-.skill-box:hover {
-    background: var(--primary-gold);
-    color: #000;
-}
-
-/* Mobile Navigation */
-.mobile-nav {
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    border-radius: 50px;
-    display: flex;
-    justify-content: space-around;
-    padding: 15px;
-    z-index: 1000;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-}
-
-.nav-item {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.nav-item.active {
-    color: var(--primary-gold);
-}
-
-/* Desktop Styles (Bento Grid) */
-@media (min-width: 768px) {
-    .container { padding: 40px; }
-    
-    .bento-container {
-        grid-template-columns: 2fr 1fr; /* 2 Columns on Desktop */
-        grid-template-rows: repeat(2, minmax(200px, 1fr));
-        gap: 20px;
-        padding: 40px;
-    }
-
-    .profile-bio {
-        grid-row: span 2; /* ဓာတ်ပုံပါတဲ့ Box ကို အမြင့် ၂ ဆ ယူရန် */
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        padding: 40px;
-    }
-
-    .profile-img {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 25px;
-    }
-
-    .hero-actions { justify-content: center; }
-
-    .skills-grid { grid-template-columns: repeat(6, 1fr); }
-}
-
-/* Initial Animate-In Style */
-.animate-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
+    font-style: italic;
 }
