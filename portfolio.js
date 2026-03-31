@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target); // တစ်ခါပဲ animate လုပ်ရန်
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1 }); // 10% မြင်ရရင် animate လုပ်ရန်
 
     reveals.forEach(el => {
         el.style.opacity = "0";
@@ -19,15 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // ၂။ Hover Effect for Project Cards
-    const cards = document.querySelectorAll('.project-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
+    // ၂။ Handle Mobile Nav Active State
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelector('.nav-item.active').classList.remove('active');
+            this.classList.add('active');
         });
     });
 });
