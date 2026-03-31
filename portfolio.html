@@ -3,55 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Creative Developer</title>
+    <title>Portfolio | Developer & Creator</title>
     <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="darkmode.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="badge">Available for Projects</span>
-            <h1 class="reveal-text">Elevating Digital <br><span class="highlight">Experiences</span></h1>
-            <p class="fade-in">Web Developer & Content Creator specialized in Algorand Ecosystem.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn-primary">View Works</a>
-                <a href="index.html" class="btn-secondary">Back to Home</a>
+    <section class="hero-bento animate-in">
+        <div class="bento-container">
+            
+            <div class="bento-box profile-bio glass-morphism">
+                <img src="https://thaychinthabaw.netlify.app/thaychinthabawlogo1.png" alt="Profile" class="profile-img">
+                <div class="bio-content">
+                    <span class="badge">DESIGN . CODE . CREATE</span>
+                    <h1 class="hero-title">Elevating <span class="highlight">Experiences</span></h1>
+                    <p class="hero-text">ကျွန်တော်ကတော့ နည်းပညာနဲ့ ဒစ်ဂျစ်တယ် အကြောင်းအရာတွေကို အကောင်းဆုံး ဖန်တီးနေသူ တစ်ဦးဖြစ်ပါတယ်။ ဝက်ဘ်ဆိုက် ရေးဆွဲခြင်း၊ SEO စီမံခြင်းနဲ့ Blockchain သုတေသန လုပ်ငန်းတွေကို လုပ်ဆောင်နေပါတယ်။</p>
+                    <div class="hero-actions">
+                        <a href="index.html" class="btn-primary">View Projects</a>
+                        <a href="#about" class="btn-secondary">About Me</a>
+                    </div>
+                </div>
             </div>
+
+            <div class="bento-box quick-skills glass-morphism">
+                <h3>Core Stack</h3>
+                <div class="skill-tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JS</span>
+                    <span>SEO</span>
+                    <span>Algorand</span>
+                </div>
+            </div>
+
+            <div class="bento-box highlight-stat glass-morphism">
+                <h2 class="stat-number">သေခြင်းသဘော</h2>
+                <p>Digital Research Platform</p>
+                <a href="index.html" class="project-link">Visit Project ↗</a>
+            </div>
+
         </div>
     </section>
 
-    <div class="container">
-        <section class="glass-card scroll-reveal">
-            <h2 class="section-title">About Me</h2>
-            <p>ကျွန်တော်ကတော့ နည်းပညာနဲ့ ဗုဒ္ဓဓမ္မကို ပေါင်းစပ်ပြီး ဒစ်ဂျစ်တယ်လောကမှာ အကျိုးရှိမယ့် အကြောင်းအရာတွေကို ဖန်တီးနေသူ တစ်ဦးဖြစ်ပါတယ်။ HTML/CSS/JS အပြင် Blockchain နည်းပညာတွေကိုပါ အထူးပြုလေ့လာနေပါတယ်။</p>
+    <div class="container animate-in">
+        
+        <section id="about" class="about-card bento-box glass-morphism scroll-reveal">
+            <h2 class="section-title">ကျွန်ုပ်အကြောင်း (About Me)</h2>
+            <div class="about-content">
+                <p>မင်္ဂလာပါ။ "သေခြင်းသဘော" ဝက်ဘ်ဆိုက်ကို တည်ထောင်သူဖြစ်ပါတယ်။ နည်းပညာနဲ့ ဗုဒ္ဓဓမ္မကို ပေါင်းစပ်ပြီး ဗဟုသုတတွေကို စနစ်တကျ မျှဝေပေးဖို့ ကြိုးစားနေသူ တစ်ဦးဖြစ်ပါတယ်။</p>
+                <p>အမြဲတမ်း သင်ယူနေပြီး နောက်ဆုံးပေါ် Modern Web Standards တွေနဲ့ လူသုံးအများဆုံး ပုံစံတွေကို အသုံးချပြီး ဖန်တီးတတ်ပါတယ်။</p>
+            </div>
         </section>
 
         <section class="skills-section scroll-reveal">
-            <h2 class="section-title">Core Stack</h2>
+            <h2 class="section-title">ကျွမ်းကျင်မှုများ</h2>
             <div class="skills-grid">
-                <div class="skill-box"><span>HTML5</span></div>
-                <div class="skill-box"><span>CSS3</span></div>
-                <div class="skill-box"><span>JavaScript</span></div>
-                <div class="skill-box"><span>Algorand</span></div>
-                <div class="skill-box"><span>SEO</span></div>
-                <div class="skill-box"><span>UI Design</span></div>
+                <div class="skill-box"><span>Web Development</span></div>
+                <div class="skill-box"><span>SEO Management</span></div>
+                <div class="skill-box"><span>Content Strategy</span></div>
+                <div class="skill-box"><span>UI/UX Design</span></div>
+                <div class="skill-box"><span>Algorand DeFi</span></div>
+                <div class="skill-box"><span>Research</span></div>
             </div>
         </section>
 
-        <section id="projects" class="projects-grid">
-            <div class="project-card scroll-reveal">
-                <h3>သေခြင်းသဘော Web</h3>
-                <p>ဝိပဿနာနှင့် ပါဠိစာပေဆိုင်ရာ သုတေသန Platform။</p>
-                <a href="index.html" class="link-arrow">Visit Project ↗</a>
-            </div>
-            <div class="project-card scroll-reveal">
-                <h3>Blockchain Analysis</h3>
-                <p>Algorand Consensus နှင့် P2P Networking လေ့လာချက်များ။</p>
-                <a href="#" class="link-arrow">Read Case Study ↗</a>
-            </div>
-        </section>
+    </div>
+
+    <div class="mobile-nav animate-in">
+        <a href="index.html" class="nav-item home-nav active">Home</a>
+        <a href="#about" class="nav-item">About</a>
+        <a href="portfolio.html" class="nav-item">Portfolio</a>
     </div>
 
     <script src="portfolio.js"></script>
