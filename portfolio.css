@@ -5,49 +5,79 @@
     --glass-border: rgba(255, 215, 0, 0.15);
     --text-main: #ffffff;
     --text-dim: #a0a0a0;
+    --neo-border: 2px solid #000;
 }
 
 body {
     background-color: var(--bg-black);
     color: var(--text-main);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Pyidaungsu', sans-serif;
     margin: 0;
     overflow-x: hidden;
     line-height: 1.6;
+    padding-bottom: 80px; /* Mobile Nav အတွက် နေရာချန် */
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Hero Section Style */
-.hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
+/* Bento Grid System */
+.bento-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: Single Column */
+    gap: 15px;
+    padding: 20px;
 }
 
-.hero-content { text-align: center; }
+/* Bento Box Base Style */
+.bento-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: var(--neo-border);
+    border-radius: 20px;
+    padding: 25px;
+    transition: 0.3s ease;
+}
+
+.bento-box:hover {
+    border-color: var(--primary-gold);
+    transform: scale(1.02);
+}
+
+/* Hero Box Specific */
+.profile-bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-gold);
+    margin-bottom: 20px;
+    object-fit: cover;
+}
 
 .badge {
     background: rgba(255, 215, 0, 0.1);
     color: var(--primary-gold);
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 30px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    border: 1px solid var(--glass-border);
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 10vw, 5rem);
+    font-size: clamp(2rem, 8vw, 3.5rem);
     font-weight: 800;
-    margin: 20px 0;
+    margin: 15px 0;
     line-height: 1.1;
 }
 
@@ -57,82 +87,148 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism Cards */
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    padding: 40px;
-    border-radius: 24px;
-    margin-bottom: 30px;
+.hero-text {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 25px;
 }
 
-.section-title {
-    font-size: 2rem;
-    color: var(--primary-gold);
-    margin-bottom: 20px;
+.hero-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
-/* Skills Grid */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-}
-
-.skill-box {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--glass-border);
-    padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.skill-box:hover {
-    background: rgba(255, 215, 0, 0.1);
-    transform: scale(1.05);
-}
-
-/* Project Cards */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-}
-
-.project-card {
-    background: var(--glass-bg);
-    padding: 30px;
-    border-radius: 24px;
-    border: 1px solid var(--glass-border);
-    transition: 0.4s;
-}
-
-.project-card:hover {
-    border-color: var(--primary-gold);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+.btn-primary, .btn-secondary {
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
 }
 
 .btn-primary {
     background: var(--primary-gold);
     color: #000;
-    padding: 15px 35px;
+}
+
+.btn-secondary {
+    background: rgba(255,215,0,0.1);
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+}
+
+/* Stat Box Specific */
+.stat-number {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+}
+
+/* Skill Tags Style */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.skill-tags span {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.skill-box {
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.skill-box:hover {
+    background: var(--primary-gold);
+    color: #000;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
     border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.nav-item {
+    color: var(--text-dim);
     text-decoration: none;
-    font-weight: 800;
-    margin: 10px;
-    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* Scroll Animation Class */
-.reveal {
+.nav-item.active {
+    color: var(--primary-gold);
+}
+
+/* Desktop Styles (Bento Grid) */
+@media (min-width: 768px) {
+    .container { padding: 40px; }
+    
+    .bento-container {
+        grid-template-columns: 2fr 1fr; /* 2 Columns on Desktop */
+        grid-template-rows: repeat(2, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 40px;
+    }
+
+    .profile-bio {
+        grid-row: span 2; /* ဓာတ်ပုံပါတဲ့ Box ကို အမြင့် ၂ ဆ ယူရန် */
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 25px;
+    }
+
+    .hero-actions { justify-content: center; }
+
+    .skills-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* Initial Animate-In Style */
+.animate-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
 }
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
 }
