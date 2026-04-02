@@ -255,7 +255,7 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
 
 /* ၃။ ဓာတ်ပုံကတ် တစ်ခုချင်းစီ၏ အရွယ်အစားနှင့် အလှအပ */
 .gallery-item {
-    flex: 0 0 160px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၁၆၀ pixel အသေထားရန် */
+    flex: 0 0 200px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၁၆၀ pixel အသေထားရန် */
     background: var(--card-bg); /* Portfolio နောက်ခံအတိုင်း အသုံးပြုရန် */
     border-radius: 12px;       /* ထောင့်များကို ဝိုင်းရန် */
     overflow: hidden;          /* ပုံများ ဘောင်အပြင်မထွက်ရန် */
@@ -266,7 +266,7 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
 /* ၄။ ဓာတ်ပုံများ အံကိုက်ဖြစ်အောင် ထိန်းခြင်း */
 .gallery-item img {
     width: 100%;               /* ကတ်အကျယ်အတိုင်း ဖြန့်ရန် */
-    height: 120px;             /* အမြင့်ကို ၁၂၀ pixel သတ်မှတ်ရန် */
+    height: 150px;             /* အမြင့်ကို ၁၂၀ pixel သတ်မှတ်ရန် */
     object-fit: cover;         /* ပုံစံမပျက်ဘဲ အကွက်ထဲ အပြည့်ဖြည့်ရန် */
     display: block;
 }
