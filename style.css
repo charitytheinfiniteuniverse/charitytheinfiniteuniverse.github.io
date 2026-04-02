@@ -24,7 +24,7 @@ main {
 }
 
 /* 🌟 Active link style (soft gold) */
-.bottom-category a.active {
+.bottom-nav a.active {
   background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
   text-decoration: none;
