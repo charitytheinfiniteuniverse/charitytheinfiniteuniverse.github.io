@@ -192,3 +192,42 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
     border: 1px solid #ddd;
 }
 
+
+/* 📚 Bottom Navigation (style.css မူရင်းအတိုင်း) */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #222; /* နောက်ခံအမည်းရောင် */
+  padding: 0.8rem 0; 
+  z-index: 9999;
+}
+
+.bottom-nav a {
+  display: flex;            /* vertical layout */
+  flex-direction: column;   /* emoji အပေါ်၊ စာ အောက် */
+  align-items: center;
+  color: #FFD700;           /* စာသား အဝါရောင် */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease; 
+  font-size: 14px;          /* စာသားအရွယ်အစား */
+}
+
+/* Emoji အတွက် style */
+.bottom-nav a .icon {
+  font-size: 20px;          /* emoji အရွယ်အစား */
+  margin-bottom: 4px;       /* emoji နဲ့ စာကြား အကွာအဝေး */
+}
+
+/* Active ဖြစ်နေတဲ့ ခလုတ် (ဥပမာ - စာရေးသူ စာမျက်နှာရောက်နေလျှင်) */
+.bottom-nav a.active {
+  background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+}
+
