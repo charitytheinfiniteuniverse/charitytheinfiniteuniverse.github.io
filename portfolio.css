@@ -216,19 +216,13 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
   padding: 4px 6px;
   border-radius: 6px;
   transition: background-color 0.3s ease; 
-  font-size: 14px;          /* စာသားအရွယ်အစား */
+  font-size: 16px;          /* စာသားအရွယ်အစား */
 }
 
 /* Emoji အတွက် style */
 .bottom-nav a .icon {
-  font-size: 20px;          /* emoji အရွယ်အစား */
+  font-size: 18px;          /* emoji အရွယ်အစား */
   margin-bottom: 4px;       /* emoji နဲ့ စာကြား အကွာအဝေး */
-}
-
-/* Active ဖြစ်နေတဲ့ ခလုတ် (ဥပမာ - စာရေးသူ စာမျက်နှာရောက်နေလျှင်) */
-.bottom-nav a.active {
-  background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
 }
 
 
@@ -236,6 +230,7 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
 .bottom-nav a.active {
   background-color: rgba(255, 215, 0, 0.2); /* အဖျော့ အဝါ */
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.3); /* အဖျော့ shadow */
-  text-decoration: none;
+  text-decoration: none; !important;
+  opacity: 1 !important;
 }
 
