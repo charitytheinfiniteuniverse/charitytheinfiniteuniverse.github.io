@@ -79,10 +79,11 @@ body {
     opacity: 0.7;
 }
 
+/* စာသားအရောင် အဝါရောင်မဖြစ်စေရန် အသေသတ်မှတ်ချက် */
 .bio-content {
     line-height: 1.8;
     font-size: 1rem;
-    color: #ccc;
+    color: var(--text-main) !important; /* ဤနေရာတွင် အဖြူ/မီးခိုးရောင်သို့ အသေပြောင်းထားပါသည် */
     margin: 0;
 }
 
@@ -97,7 +98,7 @@ body {
     padding: 8px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     font-size: 0.95rem;
-    color: #bbb;
+    color: #bbb !important; /* ဤနေရာတွင်လည်း အဝါရောင်မဖြစ်စေရန် ပြင်ထားပါသည် */
 }
 
 .dharma-list li:last-child {
@@ -134,7 +135,6 @@ body {
 
 /* --- အရောင်မှိန်ခြင်းနှင့် ခလုတ်ပျောက်ခြင်း ပြင်ဆင်ချက် --- */
 
-/* ၁။ Light Mode & Read Mode မှာ စာသားတွေ ပိုကြည်လင်စေရန် */
 body.reading-mode .bio-content,
 body.reading-mode .dharma-list li {
     color: #5b4636 !important; /* Read mode အတွက် အညိုရင့် */
@@ -146,54 +146,48 @@ body:not(.dark-mode):not(.reading-mode) .profile-name {
     color: #111111 !important; /* Light mode အတွက် အမည်းရောင် */
 }
 
-/* ၂။ Label (အပေါ်က ခေါင်းစဉ်သေး) အရောင်ကို ညှိခြင်း */
 body:not(.dark-mode) .label {
     opacity: 1 !important;
-    color: #8b4513 !important; /* Light/Read မှာ ပိုရင့်သော ရွှေညိုရောင် */
+    color: #8b4513 !important;
 }
 
-/* ၃။ အောက်ဆုံးက ခလုတ် (Navigation Buttons) များကို အသေပြင်ဆင်ခြင်း */
 .nav-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--primary-gold) !important; /* ခလုတ်နောက်ခံကို ရွှေရောင် အသေထားပါ */
+    background: var(--primary-gold) !important;
     padding: 18px 25px;
     border-radius: 12px;
     text-decoration: none;
-    color: #000000 !important; /* စာသားကို အမည်းရောင် အသေထားပါ (ဒါမှ မြင်ရမှာပါ) */
+    color: #000000 !important;
     margin-bottom: 15px;
     border: 1px solid rgba(0,0,0,0.1);
     font-weight: 600;
     transition: 0.3s ease;
 }
 
-/* ခလုတ်ထဲက Icon (မြှားလေး) အရောင်ကိုပါ အမည်းပြောင်းခြင်း */
 .nav-button .icon {
     color: #000000 !important;
 }
 
-/* ၄။ Dark Mode မှာ ခလုတ်ကို ပိုလင်းစေချင်ရင် */
 body.dark-mode .nav-button {
-    background: #FFD700 !important; /* ပိုတောက်သော ရွှေရောင် */
+    background: #FFD700 !important;
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
 }
 
-/* ၅။ Card နောက်ခံကို Mode အလိုက် ညှိခြင်း */
 body.reading-mode .bio-card, 
 body.reading-mode .focus-card {
-    background: rgba(0, 0, 0, 0.05); /* Read mode မှာ ကတ်နောက်ခံ ခပ်မှိန်မှိန် */
+    background: rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(139, 69, 19, 0.2);
 }
 
 body:not(.dark-mode):not(.reading-mode) .bio-card,
 body:not(.dark-mode):not(.reading-mode) .focus-card {
-    background: #f9f9f9; /* Light mode မှာ ကတ်နောက်ခံ အဖြူရောင်နီးပါး */
+    background: #f9f9f9;
     border: 1px solid #ddd;
 }
 
-
-/* 📚 Bottom Navigation (style.css မူရင်းအတိုင်း) */
+/* 📚 Bottom Navigation */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -201,32 +195,30 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: #222; /* နောက်ခံအမည်းရောင် */
+  background-color: #222;
   padding: 0.8rem 0; 
   z-index: 9999;
 }
 
 .bottom-nav a {
-  display: flex;            /* vertical layout */
-  flex-direction: column;   /* emoji အပေါ်၊ စာ အောက် */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  color: #FFD700;           /* စာသား အဝါရောင် */
+  color: #FFD700;
   text-decoration: none;
   font-weight: bold;
   padding: 4px 6px;
   border-radius: 6px;
   transition: background-color 0.3s ease; 
-  font-size: 16px;          /* စာသားအရွယ်အစား */
+  font-size: 16px;
 }
 
-/* Emoji အတွက် style */
 .bottom-nav a .icon {
-  font-size: 18px;          /* emoji အရွယ်အစား */
-  margin-bottom: 4px;       /* emoji နဲ့ စာကြား အကွာအဝေး */
+  font-size: 18px;
+  margin-bottom: 4px;
 }
 
-
-/* 🌟 Active link style (soft gold) */
+/* 🌟 Active link style */
 .bottom-nav a.active {
   background-color: rgba(255, 215, 0, 0.2) !important;
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.3) !important;
@@ -234,44 +226,38 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
   opacity: 1 !important;
 }
 
-
 /* --- ဓာတ်ပုံဘေးဆွဲ Gallery CSS အစ --- */
 
-/* ၁။ ပုံများကို ဘေးတိုက် Scroll ဆွဲနိုင်အောင် လုပ်ဆောင်ခြင်း (Container) */
 .gallery-list {
-    display: flex;             /* ပုံများကို ဘေးချင်းကပ်စီရန် */
-    overflow-x: auto;          /* ပိုနေသောပုံများကို ဘေးသို့ဆွဲကြည့်ရန် */
-    gap: 15px;                 /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး */
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
     padding: 10px 5px;
-    scroll-behavior: smooth;   /* ဆွဲလိုက်လျှင် ချောမွေ့စွာသွားရန် */
-    scrollbar-width: none;     /* Firefox အတွက် Scroll bar ဖျောက်ရန် */
-    -ms-overflow-style: none;  /* IE အတွက် Scroll bar ဖျောက်ရန် */
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* ၂။ Chrome နှင့် Safari ဘရောက်ဇာများအတွက် Scroll bar ဖျောက်ရန် */
 .gallery-list::-webkit-scrollbar {
     display: none;
 }
 
-/* ၃။ ဓာတ်ပုံကတ် တစ်ခုချင်းစီ၏ အရွယ်အစားနှင့် အလှအပ */
 .gallery-item {
-    flex: 0 0 200px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၂၀၀ pixel သို့ ချဲ့ထားရန် */
-    background: var(--card-bg); /* Portfolio နောက်ခံအတိုင်း အသုံးပြုရန် */
-    border-radius: 12px;       /* ထောင့်များကို ဝိုင်းရန် */
-    overflow: hidden;          /* ပုံများ ဘောင်အပြင်မထွက်ရန် */
-    border: 1px solid rgba(212, 175, 55, 0.1); /* အဝါနုရောင် ပါးပါးကွပ်ရန် */
+    flex: 0 0 200px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.1);
     transition: 0.3s ease;
 }
 
-/* ၄။ ဓာတ်ပုံများ အံကိုက်ဖြစ်အောင် ထိန်းခြင်း */
 .gallery-item img {
-    width: 100%;               /* ကတ်အကျယ်အတိုင်း ဖြန့်ရန် */
-    height: 150px;             /* အမြင့်ကို ၁၅၀ pixel သတ်မှတ်ရန် */
-    object-fit: cover;         /* ပုံစံမပျက်ဘဲ အကွက်ထဲ အပြည့်ဖြည့်ရန် */
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
     display: block;
 }
 
-/* ၅။ ပုံအောက်မှ စာသားပုံစံ (Light Mode တွင် အမည်းရောင်ဖြစ်စေရန် ပြင်ဆင်ထားသည်) */
 .gallery-item .text {
     padding: 8px;
     font-size: 13px;
@@ -280,7 +266,7 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
 }
 
 body:not(.dark-mode) .gallery-item .text {
-    color: #111111 !important; /* Light Mode အတွက် စာသားအမည်း */
+    color: #111111 !important;
 }
 
 /* --- ဓာတ်ပုံဘေးဆွဲ Gallery CSS အဆုံး --- */
