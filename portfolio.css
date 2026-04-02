@@ -234,3 +234,50 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
   opacity: 1 !important;
 }
 
+
+/* --- ဓာတ်ပုံဘေးဆွဲ Gallery CSS အစ --- */
+
+/* ၁။ ပုံများကို ဘေးတိုက် Scroll ဆွဲနိုင်အောင် လုပ်ဆောင်ခြင်း (Container) */
+.gallery-list {
+    display: flex;             /* ပုံများကို ဘေးချင်းကပ်စီရန် */
+    overflow-x: auto;          /* ပိုနေသောပုံများကို ဘေးသို့ဆွဲကြည့်ရန် */
+    gap: 15px;                 /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး */
+    padding: 10px 5px;
+    scroll-behavior: smooth;   /* ဆွဲလိုက်လျှင် ချောမွေ့စွာသွားရန် */
+    scrollbar-width: none;     /* Firefox အတွက် Scroll bar ဖျောက်ရန် */
+    -ms-overflow-style: none;  /* IE အတွက် Scroll bar ဖျောက်ရန် */
+}
+
+/* ၂။ Chrome နှင့် Safari ဘရောက်ဇာများအတွက် Scroll bar ဖျောက်ရန် */
+.gallery-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* ၃။ ဓာတ်ပုံကတ် တစ်ခုချင်းစီ၏ အရွယ်အစားနှင့် အလှအပ */
+.gallery-item {
+    flex: 0 0 160px;           /* ပုံတစ်ပုံ၏ အကျယ်ကို ၁၆၀ pixel အသေထားရန် */
+    background: var(--card-bg); /* Portfolio နောက်ခံအတိုင်း အသုံးပြုရန် */
+    border-radius: 12px;       /* ထောင့်များကို ဝိုင်းရန် */
+    overflow: hidden;          /* ပုံများ ဘောင်အပြင်မထွက်ရန် */
+    border: 1px solid rgba(212, 175, 55, 0.1); /* အဝါနုရောင် ပါးပါးကွပ်ရန် */
+    transition: 0.3s ease;
+}
+
+/* ၄။ ဓာတ်ပုံများ အံကိုက်ဖြစ်အောင် ထိန်းခြင်း */
+.gallery-item img {
+    width: 100%;               /* ကတ်အကျယ်အတိုင်း ဖြန့်ရန် */
+    height: 120px;             /* အမြင့်ကို ၁၂၀ pixel သတ်မှတ်ရန် */
+    object-fit: cover;         /* ပုံစံမပျက်ဘဲ အကွက်ထဲ အပြည့်ဖြည့်ရန် */
+    display: block;
+}
+
+/* ၅။ ပုံအောက်မှ စာသားပုံစံ */
+.gallery-item .text {
+    padding: 8px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-main);
+}
+
+/* --- ဓာတ်ပုံဘေးဆွဲ Gallery CSS အဆုံး --- */
+
