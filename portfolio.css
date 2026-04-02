@@ -131,3 +131,64 @@ body {
     font-size: 0.8rem;
     font-style: italic;
 }
+
+/* --- အရောင်မှိန်ခြင်းနှင့် ခလုတ်ပျောက်ခြင်း ပြင်ဆင်ချက် --- */
+
+/* ၁။ Light Mode & Read Mode မှာ စာသားတွေ ပိုကြည်လင်စေရန် */
+body.reading-mode .bio-content,
+body.reading-mode .dharma-list li {
+    color: #5b4636 !important; /* Read mode အတွက် အညိုရင့် */
+}
+
+body:not(.dark-mode):not(.reading-mode) .bio-content,
+body:not(.dark-mode):not(.reading-mode) .dharma-list li,
+body:not(.dark-mode):not(.reading-mode) .profile-name {
+    color: #111111 !important; /* Light mode အတွက် အမည်းရောင် */
+}
+
+/* ၂။ Label (အပေါ်က ခေါင်းစဉ်သေး) အရောင်ကို ညှိခြင်း */
+body:not(.dark-mode) .label {
+    opacity: 1 !important;
+    color: #8b4513 !important; /* Light/Read မှာ ပိုရင့်သော ရွှေညိုရောင် */
+}
+
+/* ၃။ အောက်ဆုံးက ခလုတ် (Navigation Buttons) များကို အသေပြင်ဆင်ခြင်း */
+.nav-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-gold) !important; /* ခလုတ်နောက်ခံကို ရွှေရောင် အသေထားပါ */
+    padding: 18px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #000000 !important; /* စာသားကို အမည်းရောင် အသေထားပါ (ဒါမှ မြင်ရမှာပါ) */
+    margin-bottom: 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* ခလုတ်ထဲက Icon (မြှားလေး) အရောင်ကိုပါ အမည်းပြောင်းခြင်း */
+.nav-button .icon {
+    color: #000000 !important;
+}
+
+/* ၄။ Dark Mode မှာ ခလုတ်ကို ပိုလင်းစေချင်ရင် */
+body.dark-mode .nav-button {
+    background: #FFD700 !important; /* ပိုတောက်သော ရွှေရောင် */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+/* ၅။ Card နောက်ခံကို Mode အလိုက် ညှိခြင်း */
+body.reading-mode .bio-card, 
+body.reading-mode .focus-card {
+    background: rgba(0, 0, 0, 0.05); /* Read mode မှာ ကတ်နောက်ခံ ခပ်မှိန်မှိန် */
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+body:not(.dark-mode):not(.reading-mode) .bio-card,
+body:not(.dark-mode):not(.reading-mode) .focus-card {
+    background: #f9f9f9; /* Light mode မှာ ကတ်နောက်ခံ အဖြူရောင်နီးပါး */
+    border: 1px solid #ddd;
+}
+
