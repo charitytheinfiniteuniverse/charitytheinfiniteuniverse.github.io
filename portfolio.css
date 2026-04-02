@@ -70,7 +70,7 @@ body {
 }
 
 .label {
-    font-size: 0.7rem;
+    font-size: 1rem;
     text-transform: uppercase;
     color: var(--primary-gold);
     letter-spacing: 2.5px;
@@ -97,7 +97,7 @@ body {
 .dharma-list li {
     padding: 8px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #bbb !important; /* ဤနေရာတွင်လည်း အဝါရောင်မဖြစ်စေရန် ပြင်ထားပါသည် */
 }
 
