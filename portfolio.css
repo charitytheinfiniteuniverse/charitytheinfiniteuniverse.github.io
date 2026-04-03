@@ -21,7 +21,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     /* အရှင်ဘုရား အလိုရှိတဲ့ အတိုင်းအတာများ */
-    margin-top: 120px; 
+    margin-top: 120px !important;
     margin-bottom: 400px; 
     padding: 0 1rem; /* ဘေးဘောင်အတွက်ပဲ padding သုံးပါမည် */
     display: block; 
