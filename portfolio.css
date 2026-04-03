@@ -11,7 +11,6 @@ body {
     color: var(--text-main);
     font-family: 'Inter', 'Pyidaungsu', sans-serif;
     margin: 0;
-    display: block;
     justify-content: center;
     -webkit-font-smoothing: antialiased;
 }
@@ -19,9 +18,16 @@ body {
 .main-wrapper {
     width: 100%;
     max-width: 480px;
-    padding: 5rem 1rem 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* အရှင်ဘုရား အလိုရှိတဲ့ အတိုင်းအတာများ */
+    margin-top: 120px; 
+    margin-bottom: 400px; 
+    padding: 0 1rem; /* ဘေးဘောင်အတွက်ပဲ padding သုံးပါမည် */
+    display: block; 
     box-sizing: border-box;
 }
+
 
 /* Profile Section */
 .profile-header {
