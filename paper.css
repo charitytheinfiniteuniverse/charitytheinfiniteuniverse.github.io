@@ -43,47 +43,34 @@ body.sepia-mode {
     font-weight: bold;
 }
 
-/* စာကြောင်း ၄၆ ဝန်းကျင် - gap ကို ၁၅ ကနေ ၁၀ ပြန်လျှော့ထားပါတယ် (ခလုတ်တွေ ကြီးလာမှာမို့လို့ပါ) */
+/* ညာဘက်က ခလုတ်စုစည်းမှု (Layout မှန်စေရန်) */
 .right-controls {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 8px; /* ခလုတ်တွေကြား အကွာအဝေးကို ပုံမှန်ပြန်ထားခြင်း */
 }
 
-/* ⚙️ Setting ခလုတ်ကို ကြီးရန် (အသစ်ထည့်ပါ) */
-.setting-btn {
+
+/* ⚙️ Setting ခလုတ်နှင့် Font ခလုတ်များ (ပထမပုံက ဆိုဒ်အတိုင်း) */
+.font-controls button, .setting-btn {
     background: #f4ecd8;
     color: #1a1a1a;
     border: 1px solid #443300;
-    padding: 8px 12px;    /* ခလုတ်အိမ်ကို ချဲ့ခြင်း */
+    padding: 5px 10px; /* Padding ကို ပုံမှန်ပြန်လျှော့ထားပါသည် */
     cursor: pointer;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 1.5rem;    /* အီမိုဂျီကို ကြီးအောင် လုပ်ခြင်း */
-    display: flex;
-    align-items: center;
+    font-size: 0.9rem; /* စာသားဆိုဒ်ကို ပုံမှန်ပြန်ထားခြင်း */
 }
 
-
-/* A- နှင့် A+ ခလုတ်များအတွက် */
-.font-controls button {
-    background: #f4ecd8;
-    color: #1a1a1a;
-    border: 1px solid #443300;
-    padding: 8px 15px;    /* နှိပ်ရလွယ်အောင် ခလုတ်အိမ် ချဲ့ခြင်း */
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 1.2rem;    /* စာသားကို ကြီးစေရန် */
-}
-
-/* အလယ်က ဂဏန်း (ဥပမာ - 20) ကို ကြီးရန် */
+/* အလယ်က ဂဏန်း (25/30) နေရာမှန်စေရန် */
 #font-size-display {
-    font-size: 1.4rem !important; /* ဆိုဒ်ကို သိသိသာသာ ကြီးလိုက်ခြင်း */
-    margin: 0 10px;
+    margin: 0 8px;
     font-weight: bold;
     color: #443300;
+    font-size: 1rem;
 }
+
 
 
 
