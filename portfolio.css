@@ -309,3 +309,24 @@ body:not(.dark-mode) .gallery-item .text {
   object-fit: cover;
 }
 
+/*စာပို့ခလုပ် အစ*/
+/* 📜 Fixed Manuscript Button Style */
+.fixed-manuscript-btn {
+    position: fixed;
+    bottom: 120px;          /* အောက်ခြေမှ ၁၂၀ pixel အကွာ */
+    left: 50%;              /* ဘယ်ဘက်မှ ၅၀ ရာခိုင်နှုန်း */
+    transform: translateX(-50%); /* အလယ်ဗဟို ကွက်တိဖြစ်အောင် ညှိခြင်း */
+    z-index: 20;            /* အပေါ်ဆုံးမှာ ပေါ်နေစေရန် */
+}
+
+.fixed-manuscript-btn a {
+    font-size: 2.5rem;      /* ခလုတ်အရွယ်အစား */
+    text-decoration: none;  /* မျဉ်းတားဖျောက်ရန် */
+    display: block;
+    transition: transform 0.2s ease; /* နှိပ်လိုက်ရင် တုံ့ပြန်မှု ရှိစေရန် */
+}
+
+.fixed-manuscript-btn a:active {
+    transform: scale(0.9);  /* နှိပ်လိုက်ရင် နည်းနည်းကျုံ့သွားစေရန် */
+}
+/*စာပို့ခလုပ် အဆုံး*/
