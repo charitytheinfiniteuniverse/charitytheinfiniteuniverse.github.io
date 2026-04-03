@@ -243,7 +243,7 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
 }
 
 .gallery-item {
-    flex: 0 0 200px;
+    flex: 0 0 250px;
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
@@ -253,10 +253,12 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
 
 .gallery-item img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: 280px;        /* ၁၅၀ မှ ၂၈၀ သို့ တိုးလိုက်ပါ (ပုံပိုရှည်သွားပါမည်) */
+    object-fit: cover;    /* ဘောင်အတွင်း အချိုးကျဖြည့်ရန် */
+    object-position: top; /* အရေးကြီးသည် - ဦးခေါင်းပိုင်းကို အဓိကထားပြရန် */
     display: block;
 }
+
 
 .gallery-item .text {
     padding: 8px;
