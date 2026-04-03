@@ -46,18 +46,19 @@ body.sepia-mode {
 .right-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px; /* ခလုတ်တွေကြား အကွာအဝေးပဲ ထားပါမည် */
 }
 
-.font-controls button, .setting-btn {
-    background: #f4ecd8;
-    color: #1a1a1a;
-    border: 1px solid #443300;
-    padding: 6px 12px;
+/* ☀️ DarkMode ခလုတ်အတွက် ဘောင်မပါ၊ နောက်ခံမပါဘဲ နေရာပဲ သတ်မှတ်ခြင်း */
+#modeToggle {
+    background: none;
+    border: none;
     cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
+    font-size: 1.5rem; /* အိုင်ကွန်အရွယ်အစား */
+    padding: 0;
+    margin: 0;
 }
+
 
 /* ၃။ Setting Menu Popup */
 .setting-overlay {
