@@ -272,3 +272,19 @@ body:not(.dark-mode) .gallery-item .text {
 }
 
 /* --- ဓာတ်ပုံဘေးဆွဲ Gallery CSS အဆုံး --- */
+
+/* 🔝 Fixed Top-Left Title */
+#fixedTitle {
+  position: fixed;
+  top: 0rem;           /* အပေါ် margin – လိုချင်သလို ပြင်နိုင် */
+  left: 0.5rem;        /* ဘယ်ဘက် margin */
+  font-size: 1rem;   /* စာအရွယ် */
+  font-weight: bold;
+  background-color: black;
+  color: #FFD700;
+  padding: 3px 7px;
+  border-radius: 6px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
