@@ -199,15 +199,25 @@ body.sepia-mode {
     z-index: 1050;
 }
 
+
+
 .toc-content {
     background: #f4ecd8;
-    width: 85%; max-width: 400px;
-    margin: 80px auto;
+    width: 85%; 
+    max-width: 400px;
+    margin: 20px auto; /* အပေါ်အောက် နေရာလွတ် နည်းနည်းချန်ရန် */
     padding: 25px;
     border-radius: 12px;
     border: 2px solid #443300;
     position: relative;
+    
+    /* --- အောက်က ကုဒ် (၃) ကြောင်းကို အသစ်ထည့်ပါ --- */
+    max-height: 85vh;    /* ဖုန်းမျက်နှာပြင် အမြင့်ရဲ့ ၈၅ ရာခိုင်နှုန်းပဲ ယူမည် */
+    overflow-y: auto;    /* စာရင်းများရင် Scroll ဆွဲလို့ရအောင် လုပ်ခြင်း */
+    -webkit-overflow-scrolling: touch; /* iPhone များတွင် Scroll ချောမွေ့စေရန် */
 }
+
+
 
 .toc-list { list-style: none; padding: 0; }
 
