@@ -487,19 +487,21 @@ body.focus-mode .book-header {
     transition: 0.3s;
 }
 
-/* Focus Mode အသက်ဝင်ချိန် */
+/* Focus Mode အသက်ဝင်ချိန် ပြင်ဆင်ချက် */
 body.focus-mode .top-controls .back-link,
 body.focus-mode .top-controls .right-controls,
-body.focus-mode .floating-left-group,
+body.focus-mode .floating-left-group, /* မာတိကာခလုတ်ကို ဖျောက်ထားသည် */
 body.focus-mode .book-header {
     display: none !important;
 }
 
-body.focus-mode .top-controls {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+/* Focus Mode ထဲမှာလည်း Fullscreen ခလုတ်ကို မြင်နေရစေရန် */
+body.focus-mode .fullscreen-round-btn {
+    display: flex !important; /* ဤကုဒ်ကို ထည့်ခြင်းဖြင့် ခလုတ်ပြန်ပေါ်လာပါမည် */
+    opacity: 1;
+    background: rgba(234, 222, 188, 0.8); /* Focus Mode မှာ ပိုလင်းစေရန် */
 }
+
 
 /* မာတိကာတွင် လက်ရှိဖတ်နေသည့် အခန်းကို Highlight ပြရန် */
 .toc-list li a.active-chapter {
