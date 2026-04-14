@@ -201,41 +201,59 @@ body.sepia-mode {
 
 
 
+
+
+
+/* မာတိကာ Box အပြင်ဘောင် */
 .toc-content {
     background: #f4ecd8;
     width: 85%; 
     max-width: 400px;
-    margin: 20px auto; /* အပေါ်အောက် နေရာလွတ် နည်းနည်းချန်ရန် */
-    padding: 25px;
+    margin: 50px auto;
+    padding: 0; /* padding ကို ၀ ထားပြီး အထဲက item တွေမှာပဲ ညှိပါမည် */
     border-radius: 12px;
     border: 2px solid #443300;
     position: relative;
-    
-    /* --- အောက်က ကုဒ် (၃) ကြောင်းကို အသစ်ထည့်ပါ --- */
-    max-height: 85vh;    /* ဖုန်းမျက်နှာပြင် အမြင့်ရဲ့ ၈၅ ရာခိုင်နှုန်းပဲ ယူမည် */
-    overflow-y: auto;    /* စာရင်းများရင် Scroll ဆွဲလို့ရအောင် လုပ်ခြင်း */
-    -webkit-overflow-scrolling: touch; /* iPhone များတွင် Scroll ချောမွေ့စေရန် */
+    max-height: 80vh; 
+    display: flex; /* အပေါ်အောက် တန်းစီရန် */
+    flex-direction: column; 
+    overflow: hidden; /* အပြင်ဘောင်ကို Scroll မဖြစ်စေရန် */
 }
 
-
-
-.toc-list { list-style: none; padding: 0; }
-
-.toc-list li a {
-    color: #1a1a1a;
-    text-decoration: none;
-    display: block;
-    padding: 10px 0;
-    border-bottom: 1px solid #d4c5a0;
+/* အပေါ်က "မာတိကာ" နှင့် "×" ခလုတ် ရှိနေမည့်နေရာ (Fixed ဖြစ်နေမည့်အပိုင်း) */
+.toc-content h1 {
+    margin: 0;
+    padding: 20px 25px;
+    background: #eadebc; /* ခေါင်းစဉ်ကို အရောင်ခွဲထားပါသည် */
+    border-bottom: 2px solid #443300;
+    font-size: 1.5rem;
+    position: sticky;
+    top: 0;
 }
 
+/* "×" ခလုတ်ကို နေရာပြန်ညှိခြင်း */
 .close-btn {
     position: absolute;
-    right: 15px; top: 10px;
+    right: 15px; 
+    top: 15px;
     font-size: 30px;
     color: #443300;
     cursor: pointer;
+    z-index: 10;
 }
+
+/* မာတိကာ စာရင်းများ (Scroll ဆွဲမည့်အပိုင်း) */
+.toc-list {
+    list-style: none;
+    padding: 10px 25px;
+    margin: 0;
+    overflow-y: auto; /* ဤနေရာတွင်သာ Scroll ဆွဲ၍ရမည် */
+    flex-grow: 1; /* ကျန်ရှိသော နေရာအလွတ် အကုန်ယူရန် */
+}
+
+
+
+
 
 /* ၆။ စာဖတ်ခန်း Style */
 .book-header { text-align: center; padding: 40px 20px; }
