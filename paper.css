@@ -4,7 +4,6 @@ body.sepia-mode {
     color: #1a1a1a;
     margin: 0;
     font-family: 'Pyidaungsu', sans-serif;
-    /* Font ကြီးလျှင် ဘေးတိုက် Scroll မဖြစ်အောင် ထိန်းချုပ်ခြင်း */
     overflow-x: hidden; 
     position: relative;
     width: 100%;
@@ -14,7 +13,7 @@ body.sepia-mode {
     max-width: 700px;
     margin: 0 auto;
     padding-bottom: 80px;
-    padding-top: 70px; /* Top Bar နဲ့ မငြိစေရန် အပေါ်မှ နေရာချန်ထားခြင်း */
+    padding-top: 70px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -29,7 +28,6 @@ body.sepia-mode {
     position: fixed; 
     top: 0;
     left: 0;
-    /* ဖုန်းမျက်နှာပြင် အကျယ်အတိအကျယူရန် vw ကိုသုံးသည် */
     width: 100vw; 
     height: 60px; 
     z-index: 1000;
@@ -43,27 +41,23 @@ body.sepia-mode {
     font-weight: bold;
 }
 
-/* ညာဘက်က ခလုတ်စုစည်းမှု (Layout မှန်စေရန်) */
 .right-controls {
     display: flex;
     align-items: center;
-    gap: 8px; /* ခလုတ်တွေကြား အကွာအဝေးကို ပုံမှန်ပြန်ထားခြင်း */
+    gap: 8px;
 }
 
-
-/* ⚙️ Setting ခလုတ်နှင့် Font ခလုတ်များ (ပထမပုံက ဆိုဒ်အတိုင်း) */
 .font-controls button, .setting-btn {
     background: #f4ecd8;
     color: #1a1a1a;
     border: 1px solid #443300;
-    padding: 5px 10px; /* Padding ကို ပုံမှန်ပြန်လျှော့ထားပါသည် */
+    padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 0.9rem; /* စာသားဆိုဒ်ကို ပုံမှန်ပြန်ထားခြင်း */
+    font-size: 0.9rem;
 }
 
-/* အလယ်က ဂဏန်း (25/30) နေရာမှန်စေရန် */
 #font-size-display {
     margin: 0 8px;
     font-weight: bold;
@@ -71,19 +65,14 @@ body.sepia-mode {
     font-size: 1rem;
 }
 
-
-
-
-/* ☀️ DarkMode ခလုတ်အတွက် ဘောင်မပါ၊ နောက်ခံမပါဘဲ နေရာပဲ သတ်မှတ်ခြင်း */
 #modeToggle {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem; /* အိုင်ကွန်အရွယ်အစား */
+    font-size: 1.5rem;
     padding: 0;
     margin: 0;
 }
-
 
 /* ၃။ Setting Menu Popup */
 .setting-overlay {
@@ -93,7 +82,6 @@ body.sepia-mode {
     display: none;
     z-index: 1100;
 }
-
 
 .setting-content {
     background: #f4ecd8;
@@ -109,6 +97,178 @@ body.sepia-mode {
 .setting-item {
     display: block;
     width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background: #eadebc;
+    border: 1px solid #443300;
+    border-radius: 6px;
+    color: #443300;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* ၄။ Floating Buttons */
+.floating-left-group {
+    position: fixed;
+    bottom: 25px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 12px; 
+    z-index: 999;
+}
+
+.toc-toggle-btn {
+    background: #443300;
+    color: #f4ecd8;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px; 
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.top-btn {
+    background: #443300;
+    color: #f4ecd8;
+    width: 35px;  
+    height: 35px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0.8; 
+    transition: 0.3s;
+}
+
+.top-btn:hover {
+    opacity: 1;
+    transform: scale(1.1); 
+}
+
+/* ၅။ မာတိကာ (Fixed Header & Scrollable List) */
+.toc-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    z-index: 1050;
+}
+
+.toc-content {
+    background: #f4ecd8;
+    width: 85%; 
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 0; 
+    border-radius: 12px;
+    border: 2px solid #443300;
+    position: relative;
+    max-height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+}
+
+.toc-content h1 {
+    margin: 0;
+    padding: 20px 25px;
+    background: #eadebc; 
+    border-bottom: 2px solid #443300;
+    font-size: 1.5rem;
+    color: #443300;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px; 
+    top: 15px; 
+    font-size: 30px;
+    color: #443300;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.toc-list { 
+    list-style: none; 
+    padding: 10px 25px; 
+    margin: 0; 
+    overflow-y: auto; 
+    flex-grow: 1; 
+}
+
+/* Link Style ပြင်ဆင်ချက် - စာလုံးပြာနှင့် မျဉ်းပြာ ဖြုတ်ခြင်း */
+.toc-list li a {
+    color: #443300 !important;
+    text-decoration: none !important;
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #d4c5a0;
+    font-weight: bold;
+}
+
+.toc-list li a:visited {
+    color: #443300 !important;
+}
+
+/* ၆။ စာကိုယ်ပိုင်း Style */
+.book-header { text-align: center; padding: 40px 20px; }
+
+.book-header h1, .book-header h2 { 
+    color: #443300; 
+    inline-size: 100%;
+    overflow-wrap: break-word; 
+    word-break: break-word;
+}
+
+.content-area { 
+    padding: 20px; 
+    line-height: 2.0; 
+    font-size: 19px; 
+    white-space: pre-line;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+/* ၇။ အထွေထွေ (Fullscreen & Active State) */
+.fullscreen-round-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #443300;
+    background: rgba(234, 222, 188, 0.4);
+    color: #443300;
+    cursor: pointer;
+    position: fixed; 
+    top: 80px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; 
+    transition: 0.3s;
+}
+
+body.focus-mode .top-controls,
+body.focus-mode .floating-left-group,
+body.focus-mode .book-header {
+    display: none !important;
+}
+
+.toc-list li a.active-chapter {
+    color: #b38b00 !important; 
+    border-left: 3px solid #443300;
+    padding-left: 10px;
+}
     padding: 12px;
     margin: 8px 0;
     background: #eadebc;
