@@ -204,51 +204,59 @@ body.sepia-mode {
 
 
 
-/* မာတိကာ Box အပြင်ဘောင် */
+/* ၁။ မာတိကာ Box အပြင်ဘောင် (Header နဲ့ List ကို ခွဲထုတ်ထားပါသည်) */
 .toc-content {
     background: #f4ecd8;
     width: 85%; 
     max-width: 400px;
     margin: 50px auto;
-    padding: 0; /* padding ကို ၀ ထားပြီး အထဲက item တွေမှာပဲ ညှိပါမည် */
+    padding: 0; /* အရေးကြီးသည်- Padding ကို ဖြုတ်ပြီး အထဲက Item များတွင် ညှိပါမည် */
     border-radius: 12px;
     border: 2px solid #443300;
     position: relative;
     max-height: 80vh; 
-    display: flex; /* အပေါ်အောက် တန်းစီရန် */
+    display: flex; 
     flex-direction: column; 
-    overflow: hidden; /* အပြင်ဘောင်ကို Scroll မဖြစ်စေရန် */
+    overflow: hidden; /* အပြင်ဘောင်ကြီး တစ်ခုလုံး မရွေ့စေရန် */
 }
 
-/* အပေါ်က "မာတိကာ" နှင့် "×" ခလုတ် ရှိနေမည့်နေရာ (Fixed ဖြစ်နေမည့်အပိုင်း) */
+/* ၂။ "မာတိကာ" ခေါင်းစဉ် (မရွေ့ဘဲ Fixed ဖြစ်နေမည့်အပိုင်း) */
 .toc-content h1 {
     margin: 0;
     padding: 20px 25px;
-    background: #eadebc; /* ခေါင်းစဉ်ကို အရောင်ခွဲထားပါသည် */
+    background: #eadebc; /* ခေါင်းစဉ်ကို အရောင်ခွဲထားခြင်း */
     border-bottom: 2px solid #443300;
     font-size: 1.5rem;
-    position: sticky;
-    top: 0;
+    color: #443300;
 }
 
-/* "×" ခလုတ်ကို နေရာပြန်ညှိခြင်း */
+/* ၃။ "×" ပိတ်သည့်ခလုတ် (မရွေ့ဘဲ Fixed ဖြစ်နေမည့်အပိုင်း) */
 .close-btn {
     position: absolute;
     right: 15px; 
-    top: 15px;
+    top: 15px; /* ခေါင်းစဉ်နဲ့ တစ်တန်းတည်း ဖြစ်အောင် ညှိထားပါသည် */
     font-size: 30px;
     color: #443300;
     cursor: pointer;
     z-index: 10;
 }
 
-/* မာတိကာ စာရင်းများ (Scroll ဆွဲမည့်အပိုင်း) */
-.toc-list {
-    list-style: none;
-    padding: 10px 25px;
-    margin: 0;
-    overflow-y: auto; /* ဤနေရာတွင်သာ Scroll ဆွဲ၍ရမည် */
-    flex-grow: 1; /* ကျန်ရှိသော နေရာအလွတ် အကုန်ယူရန် */
+/* ၄။ မာတိကာ စာရင်းများ (Scroll ဆွဲ၍ရမည့်အပိုင်း) */
+.toc-list { 
+    list-style: none; 
+    padding: 10px 25px; /* အထဲရောက်မှ ဘေး Padding ပြန်ပေးပါသည် */
+    margin: 0; 
+    overflow-y: auto; /* စာရင်းများရင် ဤနေရာ၌သာ Scroll ဆွဲနိုင်ပါသည် */
+    flex-grow: 1; 
+}
+
+/* ၅။ မာတိကာထဲက Link များ Style */
+.toc-list li a {
+    color: #1a1a1a;
+    text-decoration: none;
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #d4c5a0;
 }
 
 
