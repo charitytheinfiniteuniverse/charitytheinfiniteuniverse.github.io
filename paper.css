@@ -367,7 +367,7 @@ body.focus-mode .top-controls {
 
 /* ခေါင်းစဉ်ငယ်အတွက် CSS */
 .sub-title {
-    font-size: 16px !important;    /* စာလုံးဆိုဒ်ကို ၁၆ သို့ လျှော့ထားပါသည် */
+    font-size: 18px !important;    /* စာလုံးဆိုဒ်ကို ၁၆ သို့ လျှော့ထားပါသည် */
     font-weight: normal !important; /* စာလုံးကို ပုံမှန်အတိုင်းထားပါသည် */
     padding-left: 20px !important;  /* ဘေးကို နည်းနည်းတိုးပြီး ခေါင်းစဉ်ငယ်ပုံစံသွင်းသည် */
     color: #443300 !important;
@@ -375,7 +375,7 @@ body.focus-mode .top-controls {
 }
 /*သုတ္တန်အတွက် css*/
 .title  {
-    font-size: 12px !important;    /* စာလုံးဆိုဒ်ကို ၁၆ သို့ လျှော့ထားပါသည် */
+    font-size: 16px !important;    /* စာလုံးဆိုဒ်ကို ၁၆ သို့ လျှော့ထားပါသည် */
     font-weight: normal !important; /* စာလုံးကို ပုံမှန်အတိုင်းထားပါသည် */
     padding-left: 20px !important;  /* ဘေးကို နည်းနည်းတိုးပြီး ခေါင်းစဉ်ငယ်ပုံစံသွင်းသည် */
     color: #443300 !important;
