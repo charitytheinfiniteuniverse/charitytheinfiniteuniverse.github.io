@@ -356,3 +356,33 @@ body.focus-mode .top-controls {
     padding-left: 10px;
 }
 
+/*မာတိကာ အတွင်းမှ စာလုံးဆိုဒ် အစ*/
+/* ခေါင်းစဉ်ကြီးအတွက် CSS */
+.main-title {
+    font-size: 18px !important;    /* စာလုံးဆိုဒ်ကို ၂၂ ပေးထားပါသည် */
+    font-weight: bold !important;  /* စာလုံးကို အထူးပြု (Bold) လုပ်ထားပါသည် */
+    color: #443300 !important;     /* အညိုရောင် */
+    text-decoration: none;
+}
+
+/* ခေါင်းစဉ်ငယ်အတွက် CSS */
+.sub-title {
+    font-size: 16px !important;    /* စာလုံးဆိုဒ်ကို ၁၆ သို့ လျှော့ထားပါသည် */
+    font-weight: normal !important; /* စာလုံးကို ပုံမှန်အတိုင်းထားပါသည် */
+    padding-left: 20px !important;  /* ဘေးကို နည်းနည်းတိုးပြီး ခေါင်းစဉ်ငယ်ပုံစံသွင်းသည် */
+    color: #443300 !important;
+    text-decoration: none;
+}
+/*သုတ္တန်အတွက် css*/
+.title  {
+    font-size: 12px !important;    /* စာလုံးဆိုဒ်ကို ၁၆ သို့ လျှော့ထားပါသည် */
+    font-weight: normal !important; /* စာလုံးကို ပုံမှန်အတိုင်းထားပါသည် */
+    padding-left: 20px !important;  /* ဘေးကို နည်းနည်းတိုးပြီး ခေါင်းစဉ်ငယ်ပုံစံသွင်းသည် */
+    color: #443300 !important;
+    text-decoration: none;
+}
+
+/*မာတိကာ အတွင်းမှ စာလုံးဆိုဒ် အဆုံး*/
+
+
+
