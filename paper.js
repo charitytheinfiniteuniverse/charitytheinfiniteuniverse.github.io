@@ -1,11 +1,32 @@
-// ၁။ မာတိကာ (Table of Contents) အဖွင့်အပိတ်
+// ၁။ မာတိကာ (Table of Contents) အဖွင့်အပိတ် (Auto-scroll အသစ်ပါဝင်သည်)
 function toggleTOC() {
     const tocOverlay = document.getElementById('toc-overlay');
     if (tocOverlay) {
-        const isVisible = tocOverlay.style.display === 'block';
-        tocOverlay.style.display = isVisible ? 'none' : 'block';
+        const isOpening = tocOverlay.style.display !== 'block';
+        
+        if (isOpening) {
+            tocOverlay.style.display = 'block';
+            
+            // မာတိကာပွင့်ပြီးနောက် Active ဖြစ်နေသော အခန်းဆီသို့ အလိုအလျောက် Scroll ဆွဲခြင်း
+            setTimeout(() => {
+                // လက်ရှိ Active ဖြစ်နေသော link ကို ရှာခြင်း
+                const activeItem = document.querySelector('.active-chapter');
+                // Scroll ဆွဲမည့် မာတိကာစာရင်း Box ကို ရှာခြင်း
+                const tocList = document.querySelector('.toc-list');
+                
+                if (activeItem && tocList) {
+                    activeItem.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }
+            }, 100); // Box ပွင့်ချိန်နှင့် ကိုက်အောင် ၀.၁ စက္ကန့် စောင့်ခိုင်းခြင်း
+        } else {
+            tocOverlay.style.display = 'none';
+        }
     }
 }
+
 
 // ၂။ Setting Menu အဖွင့်အပိတ်
 function toggleSetting() {
