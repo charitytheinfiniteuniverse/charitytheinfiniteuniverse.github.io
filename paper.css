@@ -397,23 +397,72 @@ body.focus-mode .top-controls {
 }
 /* စာသားကို Select လုပ်လိုက်တဲ့အခါ ပေါ်မယ့်အရောင် အဆုံး */
 
-/* စာလုံးအထူ Slider အတွက် Style အစ */
-.setting-item-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    margin: 8px 0;
+/* စာလုံးအထူအပါး အတွက် Style အစ */
+.setting-item-group {
+    padding: 15px;
     background: #eadebc;
     border: 1px solid #443300;
-    border-radius: 6px;
+    border-radius: 8px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.setting-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
     color: #443300;
+}
+
+.weight-presets {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.weight-presets button {
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: bold;
 }
 
-#weight-slider {
-    width: 60%;
-    cursor: pointer;
-    accent-color: #443300; /* Slider အရောင်ကို အညိုရောင်ထားခြင်း */
+.weight-presets button.active-preset {
+    background: #443300;
+    color: #f4ecd8;
 }
-/* စာလုံးအထူ Slider အတွက် Style အဆုံး */
+
+.weight-spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.spinner-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    border-radius: 4px;
+    width: 40px;
+}
+
+.spinner-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+}
+
+.spinner-box span {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+/* စာလုံးအထူအပါး အတွက် Style အဆုံး */
