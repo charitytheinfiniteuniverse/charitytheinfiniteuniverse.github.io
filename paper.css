@@ -384,5 +384,17 @@ body.focus-mode .top-controls {
 
 /*မာတိကာ အတွင်းမှ စာလုံးဆိုဒ် အဆုံး*/
 
+/* စာသားကို Select လုပ်လိုက်တဲ့အခါ ပေါ်မယ့်အရောင် အစ */
+::selection {
+    background-color: #ffcc00 !important; /* အရှင်ဘုရား ကြိုက်နှစ်သက်သော အဝါရောင် */
+    color: #000000 !important;           /* စာလုံးအရောင်ကို အမည်းရောင်ပြောင်းခြင်း */
+}
+
+/* Safari browser အတွက်ပါ ထည့်သွင်းခြင်း */
+::-moz-selection {
+    background-color: #ffcc00 !important;
+    color: #000000 !important;
+}
+/* စာသားကို Select လုပ်လိုက်တဲ့အခါ ပေါ်မယ့်အရောင် အဆုံး */
 
 
