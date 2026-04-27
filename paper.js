@@ -158,7 +158,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     sections.forEach(section => observer.observe(section));
-
+initFontWeight(); 
+    
+    
     // အထူးပြင်ဆင်ချက် - စာမျက်နှာ အပေါ်ဆုံးရောက်နေရင် "နိဒါန်း" ကို Highlight ပြရန်
     window.addEventListener('scroll', () => {
         if (window.scrollY < 100) {
@@ -183,3 +185,26 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+// စာလုံးအထူအပါး အစ
+function initFontWeight() {
+    const weightSlider = document.getElementById('weight-slider');
+    const contentArea = document.querySelector('article'); 
+
+    if (weightSlider && contentArea) {
+        weightSlider.min = "100";
+        weightSlider.max = "900";
+        weightSlider.step = "100";
+
+        const savedWeight = localStorage.getItem('userFontWeight') || "400";
+        weightSlider.value = savedWeight;
+        contentArea.style.fontWeight = savedWeight;
+
+        weightSlider.addEventListener('input', function() {
+            contentArea.style.fontWeight = this.value;
+            localStorage.setItem('userFontWeight', this.value);
+        });
+    }
+}
+// စာလုံးအထူအပါး အဆုံး
+                        
