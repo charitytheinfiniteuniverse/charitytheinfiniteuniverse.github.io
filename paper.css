@@ -466,3 +466,29 @@ body.focus-mode .top-controls {
 }
 
 /* စာလုံးအထူအပါး အတွက် Style အဆုံး */
+
+/* နှိပ်လိုက်ရင် အဝါရောင် ပေါ်ရန် အစ*/
+/* ၁။ ခလုတ်ကို နှိပ်ထားစဉ် (သို့) Focus ရောက်နေစဉ် အပြာရောင် ဖျောက်ပြီး အဝါရောင်ပြောင်းခြင်း */
+.weight-presets button:focus, 
+.spinner-box button:focus,
+.font-controls button:focus,
+.setting-btn:focus {
+    outline: 2px solid #ffcc00 !important; /* အပြာရောင်အစား အဝါရောင်ပြောင်းခြင်း */
+    outline-offset: 1px;
+}
+
+/* ၂။ ခလုတ်ကို နှိပ်လိုက်တဲ့ ခဏ (Active ဖြစ်စဉ်) အဝါရောင်တောက်သွားစေရန် */
+.weight-presets button:active, 
+.spinner-box button:active,
+.font-controls button:active {
+    background-color: #ffcc00 !important;
+    color: #000000 !important;
+}
+
+/* ၃။ အရှင်ဘုရား အလိုရှိတဲ့အတိုင်း Preset ခလုတ် ရွေးထားရင် အမြဲအဝါရောင် ဖြစ်နေစေရန် */
+.weight-presets button.active-preset {
+    background-color: #ffcc00 !important; /* အညိုအစား အဝါပြောင်းလိုက်ပါသည် */
+    color: #000000 !important;
+    border-color: #443300;
+}
+/* နှိပ်လိုက်ရင် အဝါရောင် ပေါ်ရန် အဆုံး*/
