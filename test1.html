@@ -2850,10 +2850,34 @@
         <div class="setting-content" onclick="event.stopPropagation()">
             <h3 style="margin-top:0; color:#443300;">ချိန်ညှိချက်များ</h3>
             <button class="setting-item" onclick="downloadPDF()">📄 PDF အဖြစ်သိမ်းရန်</button>
-            <div class="setting-item-container">
-    <label for="weight-slider">စာလုံးအထူ:</label>
-    <input type="range" id="weight-slider">
+            <div class="setting-item-group">
+    <span class="setting-title">စာလုံးအထူ ချိန်ညှိရန်</span>
+    
+    <div class="weight-presets">
+        <button onclick="setWeightPreset(300)">အပါး</button>
+        <button onclick="setWeightPreset(500)">အလတ်</button>
+        <button onclick="setWeightPreset(900)">အထူ</button>
+    </div>
+
+    <div class="weight-spinner-wrapper">
+        <div class="spinner-box">
+            <button onclick="spinWeight(100)">▲</button>
+            <span id="digit-hundreds">4</span>
+            <button onclick="spinWeight(-100)">▼</button>
+        </div>
+        <div class="spinner-box">
+            <button onclick="spinWeight(10)">▲</button>
+            <span id="digit-tens">0</span>
+            <button onclick="spinWeight(-10)">▼</button>
+        </div>
+        <div class="spinner-box">
+            <button onclick="spinWeight(1)">▲</button>
+            <span id="digit-ones">0</span>
+            <button onclick="spinWeight(-1)">▼</button>
+        </div>
+    </div>
 </div>
+
       <button class="setting-item" onclick="location.reload()">🔄 Refresh လုပ်ရန်</button>
             <button class="setting-item" onclick="toggleSetting()" style="background:#d4c5a0;">ပိတ်ရန်</button>
         </div>
