@@ -397,4 +397,23 @@ body.focus-mode .top-controls {
 }
 /* စာသားကို Select လုပ်လိုက်တဲ့အခါ ပေါ်မယ့်အရောင် အဆုံး */
 
+/* စာလုံးအထူ Slider အတွက် Style အစ */
+.setting-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 8px 0;
+    background: #eadebc;
+    border: 1px solid #443300;
+    border-radius: 6px;
+    color: #443300;
+    font-weight: bold;
+}
 
+#weight-slider {
+    width: 60%;
+    cursor: pointer;
+    accent-color: #443300; /* Slider အရောင်ကို အညိုရောင်ထားခြင်း */
+}
+/* စာလုံးအထူ Slider အတွက် Style အဆုံး */
