@@ -158,7 +158,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     sections.forEach(section => observer.observe(section));
-initFontWeight(); 
+
     
     
     // အထူးပြင်ဆင်ချက် - စာမျက်နှာ အပေါ်ဆုံးရောက်နေရင် "နိဒါန်း" ကို Highlight ပြရန်
@@ -187,24 +187,57 @@ initFontWeight();
 
 
 // စာလုံးအထူအပါး အစ
-function initFontWeight() {
-    const weightSlider = document.getElementById('weight-slider');
-    const contentArea = document.querySelector('article'); 
+let currentWeight = 400;
 
-    if (weightSlider && contentArea) {
-        weightSlider.min = "100";
-        weightSlider.max = "900";
-        weightSlider.step = "100";
+// ၁။ အမြန်ရွေးချယ်သည့်စနစ်
+function setWeightPreset(weight) {
+    currentWeight = weight;
+    applyWeightUpdate();
+}
 
-        const savedWeight = localStorage.getItem('userFontWeight') || "400";
-        weightSlider.value = savedWeight;
-        contentArea.style.fontWeight = savedWeight;
-
-        weightSlider.addEventListener('input', function() {
-            contentArea.style.fontWeight = this.value;
-            localStorage.setItem('userFontWeight', this.value);
-        });
+// ၂။ ဂဏန်းတစ်ခုချင်း လှည့်သည့်စနစ်
+function spinWeight(amount) {
+    let nextWeight = currentWeight + amount;
+    if (nextWeight >= 100 && nextWeight <= 900) {
+        currentWeight = nextWeight;
+        applyWeightUpdate();
     }
 }
+
+// ၃။ အပြောင်းအလဲများကို အသက်ဝင်စေခြင်း
+function applyWeightUpdate() {
+    const contentArea = document.querySelector('article');
+    if (contentArea) {
+        contentArea.style.fontWeight = currentWeight;
+    }
+
+    // Spinner ဂဏန်းများကို Update လုပ်ခြင်း
+    const hundreds = Math.floor(currentWeight / 100);
+    const tens = Math.floor((currentWeight % 100) / 10);
+    const ones = currentWeight % 10;
+
+    document.getElementById('digit-hundreds').innerText = hundreds;
+    document.getElementById('digit-tens').innerText = tens;
+    document.getElementById('digit-ones').innerText = ones;
+
+    // Preset ခလုတ်များ Highlight ပြခြင်း
+    document.querySelectorAll('.weight-presets button').forEach(btn => {
+        btn.classList.remove('active-preset');
+        if (btn.getAttribute('onclick') === `setWeightPreset(${currentWeight})`) {
+            btn.classList.add('active-preset');
+        }
+    });
+
+    localStorage.setItem('userFontWeight', currentWeight);
+}
+
+// ၄။ စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ခြင်း
+window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('userFontWeight');
+    if (saved) {
+        currentWeight = parseInt(saved);
+    }
+    applyWeightUpdate();
+});
 // စာလုံးအထူအပါး အဆုံး
                         
