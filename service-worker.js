@@ -17,6 +17,12 @@ const urlsToCache = [
   '/bookphoto1.jpg',
   '/bookphoto2.jpg',
   '/bookphoto3.jpg',
+  '/portfolio.html',
+'/portfolio.css',
+'/portfolio.js',
+  '/portfoliophoto1.jpg',
+'/portfoliophoto2.jpg',
+  '/portfoliophoto3.jpg',
   '/thaychinthabawlogo1.png',
   '/manifest.json'
 ];
