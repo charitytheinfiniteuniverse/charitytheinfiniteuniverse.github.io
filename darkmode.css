@@ -77,10 +77,14 @@ body {
 /* ၂။ paper.html အတွက် (Bar ထဲမှာ ပုံမှန်အတိုင်း ရှိနေစေခြင်း) */
 /* ခလုတ်က .right-controls ဆိုတဲ့ class ထဲမှာ ရှိနေရင် fixed ပုံစံကို ဖျက်ချလိုက်တာပါ */
 .right-controls #modeToggle {
-  position: static !important; /* နေရာကို Bar ထဲမှာပဲ ပုံမှန်ပြန်ဖြစ်စေသည် */
-  font-size: 1.2rem;
-  margin-right: 8px;
-  padding: 6px 10px;
+  position: fixed; /* နေရာကို Bar ထဲမှာပဲ ပုံမှန်ပြန်ဖြစ်စေသည် */
+ top: 10px;
+  right: 10px;
+  z-index: 9999;
+font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s ease;
   /* Bar ထဲမှာ လှပအောင် border လေး ထည့်ပေးနိုင်ပါတယ် */
   border: none;
 }
