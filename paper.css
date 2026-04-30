@@ -1,7 +1,5 @@
 /* ၁။ Layout အခြေခံ (Sepia Theme) */
 body.sepia-mode {
-    background-color: #f4ecd8;
-    color: #1a1a1a;
     margin: 0;
     font-family: 'Pyidaungsu', sans-serif;
     /* Font ကြီးလျှင် ဘေးတိုက် Scroll မဖြစ်အောင် ထိန်းချုပ်ခြင်း */
