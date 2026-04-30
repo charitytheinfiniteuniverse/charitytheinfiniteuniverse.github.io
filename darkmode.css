@@ -3,7 +3,7 @@
 :root {
   /* White Mode (မူလလက်ရှိအရောင်) */
   --bg-color: #ffffff;
-  --text-color:  #000000;
+  --text-color:  #FFD700;
   --bottom-nav-bg: #ffffff;
   --nav-text: #000000;
   --accent-gold: #FFD700;
@@ -103,6 +103,13 @@ body.dark-mode .book-header p {
 body:not(.dark-mode):not(.reading-mode) .content-area,
 body:not(.dark-mode):not(.reading-mode) .book-header h1 {
   color: #000000 !important;
+}
+
+/* Reading Mode မှာ စာသားကို အညိုရောင် သို့မဟုတ် အရှင်ဘုရား ကြိုက်တဲ့အရောင် ထားချင်ရင် */
+body.reading-mode .content-area,
+body.reading-mode .book-header h1,
+body.reading-mode .book-header p {
+  color: #5b4636 !important; /* ဒီနေရာမှာ အရှင်ဘုရား ကြိုက်တဲ့အရောင်ကုဒ်ကို ပြောင်းရေးပါ */
 }
 
 
