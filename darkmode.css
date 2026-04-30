@@ -79,7 +79,7 @@ body {
 .right-controls #modeToggle {
   position: static !important; /* နေရာကို Bar ထဲမှာပဲ ပုံမှန်ပြန်ဖြစ်စေသည်။ */
   font-size: 1.2rem;
-  margin-right: 10px;
+  margin-right: 8px;
   padding: 6px 10px;
   /* Bar ထဲမှာ လှပအောင် border လေး ထည့်ပေးနိုင်ပါတယ် */
   border: none;
