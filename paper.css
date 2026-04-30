@@ -72,19 +72,6 @@ body.sepia-mode {
 }
 
 
-
-
-/* ☀️ DarkMode ခလုတ်အတွက် ဘောင်မပါ၊ နောက်ခံမပါဘဲ နေရာပဲ သတ်မှတ်ခြင်း */
-#modeToggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem; /* အိုင်ကွန်အရွယ်အစား */
-    padding: 0;
-    margin: 0;
-}
-
-
 /* ၃။ Setting Menu Popup */
 .setting-overlay {
     position: fixed;
