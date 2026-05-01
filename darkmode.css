@@ -95,13 +95,11 @@ body:not(.dark-mode):not(.reading-mode) .book-header h1 {
   color: #000000 !important;
 }
 
-/* ၁။ Reading Mode အတွက် အခြေခံအရောင် (Index နှင့် အခြားစာမျက်နှာများအတွက်) */
-/* ဒီမှာ သတ်မှတ်ထားတာက အဝါရောင် ဖြစ်ပါမယ် */
-body.reading-mode .content-area,
-body.reading-mode .book-header h1,
-body.reading-mode .book-header p {
-  color: #FFD700 !important; /* အဝါရောင် (ရွှေရောင်) */
+/* ၁။ Reading Mode ဖွင့်ထားရင် Body ထဲက စာသားအားလုံးကို အဝါရောင်ပြမည် */
+body.reading-mode {
+  color: #FFD700 !important;
 }
+
 
 /* ၂။ paper.html အတွက်သာ သီးသန့် (အညိုရောင် ပြန်ပြောင်းခြင်း) */
 /* .is-paper class ပါသည့် စာမျက်နှာများတွင်သာ အလုပ်လုပ်ပါမည် */
