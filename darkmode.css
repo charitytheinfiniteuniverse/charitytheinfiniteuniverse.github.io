@@ -95,12 +95,23 @@ body:not(.dark-mode):not(.reading-mode) .book-header h1 {
   color: #000000 !important;
 }
 
-/* Reading Mode မှာ စာသားကို အညိုရောင် သို့မဟုတ် အရှင်ဘုရား ကြိုက်တဲ့အရောင် ထားချင်ရင် */
+/* ၁။ Reading Mode အတွက် အခြေခံအရောင် (Index နှင့် အခြားစာမျက်နှာများအတွက်) */
+/* ဒီမှာ သတ်မှတ်ထားတာက အဝါရောင် ဖြစ်ပါမယ် */
 body.reading-mode .content-area,
 body.reading-mode .book-header h1,
 body.reading-mode .book-header p {
-  color: #5b4636 !important; /* ဒီနေရာမှာ အရှင်ဘုရား ကြိုက်တဲ့အရောင်ကုဒ်ကို ပြောင်းရေးပါ */
+  color: #FFD700 !important; /* အဝါရောင် (ရွှေရောင်) */
 }
+
+/* ၂။ paper.html အတွက်သာ သီးသန့် (အညိုရောင် ပြန်ပြောင်းခြင်း) */
+/* .is-paper class ပါသည့် စာမျက်နှာများတွင်သာ အလုပ်လုပ်ပါမည် */
+body.reading-mode.is-paper .content-area,
+body.reading-mode.is-paper .book-header h1,
+body.reading-mode.is-paper .book-header p {
+  color: #5b4636 !important; /* အညိုရင့်ရောင် */
+}
+
+
 
 
 /* --- darkmode.css အဆုံး --- */
