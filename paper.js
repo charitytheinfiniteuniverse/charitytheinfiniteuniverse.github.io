@@ -244,26 +244,58 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အစ
 document.addEventListener("DOMContentLoaded", function() {
-    const content = document.querySelector('article'); // အရှင်ဘုရား၏ paper.html မှာ article ကို သုံးထားသည်
+    const content = document.querySelector('article'); 
     let timer;
+    let isLongPressed = false;
+    let startX, startY; 
 
     if (content) {
-        content.addEventListener('touchstart', function() {
-            // ၅၀၀ မီလီစက္ကန့် ဖိထားမှ စာရွေးလို့ရအောင် ပြန်ဖွင့်ပေးမယ်
+        content.addEventListener('touchstart', function(e) {
+            isLongPressed = false;
+            // လက်စတင်ထိသည့်နေရာကို မှတ်ထားခြင်း
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            
+            // ၅၀၀ မီလီစက္ကန့် ဖိထားမှ Select ခွင့်ပြုမည်
             timer = setTimeout(function() {
+                isLongPressed = true;
                 content.style.webkitUserSelect = 'text';
                 content.style.userSelect = 'text';
             }, 500);
         });
 
-        content.addEventListener('touchend', function() {
+        // လက်ကို ရွှေ့လိုက်ပါက (Scroll လုပ်နေခြင်းဖြစ်၍) timer ကို ပိတ်ခြင်း
+        content.addEventListener('touchmove', function(e) {
+            let moveX = e.touches[0].clientX;
+            let moveY = e.touches[0].clientY;
+            
+            // လက်ကို ၁၀ pixel ထက်ပိုရွှေ့လျှင် Scroll လုပ်သည်ဟု သတ်မှတ်၍ timer ပိတ်မည်
+            if (Math.abs(moveX - startX) > 10 || Math.abs(moveY - startY) > 10) {
+                clearTimeout(timer);
+            }
+        });
+
+        content.addEventListener('touchend', function(e) {
             clearTimeout(timer);
-            // စာရွေးထားတာ မရှိရင် (သို့မဟုတ်) ရွေးထားတာကို ပယ်ဖျက်ရင် ပြန်ပိတ်မယ်
-            if (window.getSelection().toString() === "") {
+            
+            // ဖိထားခြင်း မဟုတ်လျှင် Selection ပြန်ပိတ်ခြင်း
+            if (!isLongPressed) {
+                if (window.getSelection().toString() === "") {
+                    content.style.webkitUserSelect = 'none';
+                    content.style.userSelect = 'none';
+                }
+            }
+        });
+
+        // နေရာလွတ်ကို နှိပ်လျှင် Selection ဖျောက်ခြင်း
+        document.addEventListener('click', function(e) {
+            if (!content.contains(e.target)) {
                 content.style.webkitUserSelect = 'none';
                 content.style.userSelect = 'none';
+                window.getSelection().removeAllRanges();
             }
         });
     }
-});
+})
+
          // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး               
