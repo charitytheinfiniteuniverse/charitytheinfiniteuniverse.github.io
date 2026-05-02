@@ -155,7 +155,7 @@ body {
     gap: 15px;                 /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး */
     padding: 10px 5px;
     scroll-behavior: smooth;   /* ဆွဲလိုက်ရင် ချောမွေ့စွာသွားရန် */
-    
+      margin-top: 50px; /* အပေါ်က ပုံနဲ့ အကွာအဝေး */
     /* Scroll bar အစင်းကြောင်းကို ဖျောက်ရန် */
     scrollbar-width: none;     /* Firefox အတွက် */
     -ms-overflow-style: none;  /* IE အတွက် */
