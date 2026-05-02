@@ -240,4 +240,30 @@ window.addEventListener('DOMContentLoaded', () => {
     applyWeightUpdate();
 });
 // စာလုံးအထူအပါး အဆုံး
-                        
+
+
+// paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အစ
+document.addEventListener("DOMContentLoaded", function() {
+    const content = document.querySelector('article'); // အရှင်ဘုရား၏ paper.html မှာ article ကို သုံးထားသည်
+    let timer;
+
+    if (content) {
+        content.addEventListener('touchstart', function() {
+            // ၅၀၀ မီလီစက္ကန့် ဖိထားမှ စာရွေးလို့ရအောင် ပြန်ဖွင့်ပေးမယ်
+            timer = setTimeout(function() {
+                content.style.webkitUserSelect = 'text';
+                content.style.userSelect = 'text';
+            }, 500);
+        });
+
+        content.addEventListener('touchend', function() {
+            clearTimeout(timer);
+            // စာရွေးထားတာ မရှိရင် (သို့မဟုတ်) ရွေးထားတာကို ပယ်ဖျက်ရင် ပြန်ပိတ်မယ်
+            if (window.getSelection().toString() === "") {
+                content.style.webkitUserSelect = 'none';
+                content.style.userSelect = 'none';
+            }
+        });
+    }
+});
+         // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး               
