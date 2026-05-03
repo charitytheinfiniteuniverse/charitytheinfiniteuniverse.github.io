@@ -53,12 +53,7 @@ body {
     filter: grayscale(20%);
 }
 
-.profile-name {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: 1px;
-}
+
 
 .profile-tagline {
     color: var(--primary-gold);
