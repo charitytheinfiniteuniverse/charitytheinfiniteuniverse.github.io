@@ -69,7 +69,7 @@ body.sepia-mode {
 
 
 /* ⚙️ Setting ခလုတ်နှင့် Font ခလုတ်များ (ပထမပုံက ဆိုဒ်အတိုင်း) */
-.font-controls button, .setting-btn {
+.font-controls button {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -83,6 +83,24 @@ body.sepia-mode {
     cursor: pointer;
     font-weight: bold;
 }
+
+
+.setting-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 45px;            /* +,- ခလုတ်နဲ့ အတူတူ ဖြစ်စေရန် */
+    height: 45px;
+    font-size: 24px !important; /* ဂီယာသင်္ကေတကို ကြီးစေရန် */
+    padding: 0 !important;
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
 /* အလယ်က ဂဏန်း (25/30) နေရာမှန်စေရန် */
 #font-size-display {
     margin: 0 8px;
