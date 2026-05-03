@@ -172,6 +172,7 @@ body.sepia-mode {
     margin: 8px 0;
     background: #eadebc;
     border: 1px solid #443300;
+    color: #443300;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
@@ -195,7 +196,8 @@ body.sepia-mode {
     width: 100%;
     padding: 12px;
     margin: 8px 0;
-    background: #d4c5a0; /* အရှင်ဘုရား လိုချင်တဲ့ အရောင် */
+    background: #eadebc; /* အရှင်ဘုရား လိုချင်တဲ့ အရောင် */
+color: #443300;
     border: 1px solid #443300;
     border-radius: 6px;
     cursor: pointer;
