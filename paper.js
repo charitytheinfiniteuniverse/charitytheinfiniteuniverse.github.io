@@ -318,25 +318,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
          // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး             
 
-
-// App ထဲ ပြန်ဝင်လာတိုင်း Fullscreen ပြန်စစ်ရန် အစ
-Document.addEventListener("visibilitychange", () => {
-    // အကယ်၍ Focus Mode အသက်ဝင်နေပြီး (အသုံးပြုသူက ဖွင့်ထားတယ်)
-    // ပြီးတော့ Browser က Background ကနေ ပြန်ရောက်လာရင်
-    if (document.body.classList.contains('focus-mode') && document.visibilityState === 'visible') {
-        const elem = document.documentElement;
-        
-        // Fullscreen ပြန်လုပ်ပေးခြင်း
-        setTimeout(() => {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) {
-                    elem.webkitRequestFullscreen();
-                }
-            }
-        }, 500); // ဝင်လာပြီး ၀.၅ စက္ကန့်အတွင်း အလိုလို Fullscreen ပြန်ဖြစ်စေမည်
-    }
-});
-// App ထဲ ပြန်ဝင်လာတိုင်း Fullscreen ပြန်စစ်ရန် အဆုံး
-
