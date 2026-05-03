@@ -227,7 +227,10 @@ color: #443300;
 }
 
 .toc-toggle-btn {
-    background: #443300;
+    /* အညိုအကြည်ရောင် နောက်ခံ */
+    background: rgba(68, 51, 0, 0.8) !important; 
+    
+    /* မူလ အရောင်နှင့် ပုံစံများ */
     color: #f4ecd8;
     border: none;
     padding: 12px 20px;
@@ -236,7 +239,14 @@ color: #443300;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
+    
+    /* အကြည်ရောင်အတွက် ထပ်ဖြည့်ထားခြင်း */
+    backdrop-filter: blur(4px); 
+    -webkit-backdrop-filter: blur(4px);
+    
+    transition: 0.3s;
 }
+
 
 .top-btn {
     background: #443300;
