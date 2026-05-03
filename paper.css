@@ -48,12 +48,12 @@ body.sepia-mode {
     /* +,- ခလုတ်တွေရဲ့ ပုံစံအတိုင်း border ထည့်ခြင်း */
     background: #f4ecd8;                /* ခလုတ်နောက်ခံအရောင် */
     border: 1px solid #443300 !important; /* အညိုရောင် ဘောင် */
-    width: 60px;              /* အကျယ် 60px */
+    width: 70px;              /* အကျယ် 60px */
     height: 30px;             /* အမြင့် 30px */                  /* အတွင်းနေရာလွတ် */
     border-radius: 8px;                 /* ထောင့်ဝိုင်း */
     cursor: pointer;                    /* လက်ညှိုးပုံစံ */
     font-weight: bold;                  /* စာသားအထူ */
-margin-left: 10px;
+margin-left: 30px;
 }
 
 .nav-icon {
