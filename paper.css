@@ -36,11 +36,25 @@ body.sepia-mode {
 }
 
 .back-link {
-    color: #443300;
+    display: flex;
+    align-items: center; /* စာသားနဲ့ icon တစ်တန်းတည်းဖြစ်စေရန် */
+    gap: 5px;            /* အကွာအဝေး */
     text-decoration: none;
-    font-weight: bold;
-    font-size: 18px !important;
+    color: #443300;
 }
+
+/* Icon (⌂) အတွက် သီးသန့် ဆိုဒ် */
+.nav-icon {
+    font-size: 28px !important; /* Icon ကို ပိုကြီးအောင် လုပ်ထားပါသည် */
+    line-height: 1; font-weight: 900 !important;  
+}
+
+/* စာသား (ပင်မ) အတွက် သီးသန့် ဆိုဒ် */
+.nav-text {
+    font-size: 18px !important; /* စာသားဆိုဒ်ကို သတ်မှတ်ပါသည် */
+    font-weight: bold;
+}
+
 
 /* ညာဘက်က ခလုတ်စုစည်းမှု (Layout မှန်စေရန်) */
 .right-controls {
