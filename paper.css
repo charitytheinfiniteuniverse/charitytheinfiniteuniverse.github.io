@@ -35,6 +35,8 @@ body.sepia-mode {
     box-sizing: border-box;
 }
 
+
+
 .back-link {
     display: flex;
     align-items: center;    /* ဒေါင်လိုက် အလယ်ချရန် */
@@ -42,6 +44,14 @@ body.sepia-mode {
     text-decoration: none;
     color: #443300;
     gap: 4px;               /* icon နဲ့ စာကြား အကွာအဝေး */
+
+    /* +,- ခလုတ်တွေရဲ့ ပုံစံအတိုင်း border ထည့်ခြင်း */
+    background: #f4ecd8;                /* ခလုတ်နောက်ခံအရောင် */
+    border: 1px solid #443300 !important; /* အညိုရောင် ဘောင် */
+    padding: 4px 10px;                  /* အတွင်းနေရာလွတ် */
+    border-radius: 8px;                 /* ထောင့်ဝိုင်း */
+    cursor: pointer;                    /* လက်ညှိုးပုံစံ */
+    font-weight: bold;                  /* စာသားအထူ */
 }
 
 .nav-icon {
