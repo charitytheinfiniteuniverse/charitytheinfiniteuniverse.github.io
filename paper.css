@@ -227,10 +227,9 @@ color: #443300;
 }
 
 .toc-toggle-btn {
-    /* အညိုအကြည်ရောင် နောက်ခံ */
+    /* အညိုအကြည်ရောင် (နောက်ဆုံးက 0.8 သည် အရောင်စူးမှု) */
     background: rgba(68, 51, 0, 0.8) !important; 
     
-    /* မူလ အရောင်နှင့် ပုံစံများ */
     color: #f4ecd8;
     border: none;
     padding: 12px 20px;
@@ -240,12 +239,10 @@ color: #443300;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
     
-    /* အကြည်ရောင်အတွက် ထပ်ဖြည့်ထားခြင်း */
-    backdrop-filter: blur(4px); 
-    -webkit-backdrop-filter: blur(4px);
-    
-    transition: 0.3s;
+    /* Blur (ဝါးခြင်း) ကို လုံးဝဖြုတ်လိုက်ပါပြီ */
 }
+
+
 
 
 .top-btn {
