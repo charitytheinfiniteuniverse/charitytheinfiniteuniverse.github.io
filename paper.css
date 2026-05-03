@@ -88,8 +88,8 @@ body.sepia-mode {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    width: 25px;            /* ခလုတ်ကို စတုဂံပုံစံ ဖြစ်စေရန် အကျယ်သတ်မှတ်ခြင်း */
-    height: 25px;           /* ခလုတ်ကို အမြင့်သတ်မှတ်ခြင်း */
+    width: 30px;            /* ခလုတ်ကို စတုဂံပုံစံ ဖြစ်စေရန် အကျယ်သတ်မှတ်ခြင်း */
+    height: 30px;           /* ခလုတ်ကို အမြင့်သတ်မှတ်ခြင်း */
     font-size: 24px !important; /* သင်္ကေတကို ကြီးစေရန် */
     padding: 0 !important;  /* Padding ကို 0 ထားပြီး width/height နဲ့ ထိန်းပါ */
     background: #f4ecd8;
@@ -104,8 +104,8 @@ body.sepia-mode {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    width: 25px;            /* +,- ခလုတ်နဲ့ အတူတူ ဖြစ်စေရန် */
-    height: 25px;
+    width: 30px;            /* +,- ခလုတ်နဲ့ အတူတူ ဖြစ်စေရန် */
+    height: 30px;
     font-size: 24px !important; /* ဂီယာသင်္ကေတကို ကြီးစေရန် */
     padding: 0 !important;
     background: #f4ecd8;
