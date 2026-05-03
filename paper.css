@@ -39,6 +39,7 @@ body.sepia-mode {
     display: flex;
     align-items: center; /* စာသားနဲ့ icon တစ်တန်းတည်းဖြစ်စေရန် */
     gap: 5px;            /* အကွာအဝေး */
+    justify-content: center;
     text-decoration: none;
     color: #443300;
 }
@@ -69,16 +70,19 @@ body.sepia-mode {
 
 /* ⚙️ Setting ခလုတ်နှင့် Font ခလုတ်များ (ပထမပုံက ဆိုဒ်အတိုင်း) */
 .font-controls button, .setting-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 45px;            /* ခလုတ်ကို စတုဂံပုံစံ ဖြစ်စေရန် အကျယ်သတ်မှတ်ခြင်း */
+    height: 45px;           /* ခလုတ်ကို အမြင့်သတ်မှတ်ခြင်း */
+    font-size: 24px !important; /* သင်္ကေတကို ကြီးစေရန် */
+    padding: 0 !important;  /* Padding ကို 0 ထားပြီး width/height နဲ့ ထိန်းပါ */
     background: #f4ecd8;
-    color: #1a1a1a;
     border: 1px solid #443300;
-    padding: 8px 14px; /* Padding ကို ပုံမှန်ပြန်လျှော့ထားပါသည် */
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 6px;
     font-weight: bold;
-    font-size: 16px !important; /* စာသားဆိုဒ်ကို ပုံမှန်ပြန်ထားခြင်း */
 }
-
 /* အလယ်က ဂဏန်း (25/30) နေရာမှန်စေရန် */
 #font-size-display {
     margin: 0 8px;
