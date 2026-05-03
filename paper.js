@@ -114,36 +114,34 @@ window.addEventListener('load', function() {
 
 
 function toggleReadingMode() {
-    // ၁။ Focus Mode (CSS class) ကို အဖွင့်အပိတ်လုပ်ခြင်း
     document.body.classList.toggle('focus-mode');
     
     const fsBtn = document.getElementById('fs-btn');
-    const elem = document.documentElement; // Webpage တစ်ခုလုံးကို ရွေးလိုက်ခြင်း
+    const elem = document.documentElement;
 
     if (document.body.classList.contains('focus-mode')) {
-        // Focus Mode ရောက်သွားလျှင်
         fsBtn.innerHTML = '✖'; 
         fsBtn.style.background = 'rgba(234, 222, 188, 0.2)';
         
-        // Browser ကို အတင်း Fullscreen ပြောင်းခြင်း (Search bar ပျောက်သွားရန်)
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari, Opera အတွက် */
-            elem.webkitRequestFullscreen();
+        // Fullscreen ဝင်ခြင်း
+        const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen;
+        if (requestFS) {
+            requestFS.call(elem).catch(err => {
+                console.log("Fullscreen request failed: ", err);
+            });
         }
     } else {
-        // Focus Mode မှ ပြန်ထွက်လျှင်
         fsBtn.innerHTML = '⛶';
         fsBtn.style.background = 'rgba(234, 222, 188, 0.4)';
         
-        // Fullscreen မှ ပြန်ထွက်ခြင်း
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Chrome, Safari, Opera အတွက် */
-            document.webkitExitFullscreen();
+        // Fullscreen ထွက်ခြင်း
+        const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+        if (exitFS) {
+            exitFS.call(document);
         }
     }
 }
+
 
 // စာမျက်နှာ စဖွင့်တာနဲ့ အလုပ်လုပ်မည့်အပိုင်း
 window.addEventListener('DOMContentLoaded', () => {
@@ -318,21 +316,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // App ထဲ ပြန်ဝင်လာတိုင်း Fullscreen ပြန်စစ်ရန် အစ
 document.addEventListener("visibilitychange", () => {
-    // အကယ်၍ Focus Mode အသက်ဝင်နေပြီး (အသုံးပြုသူက ဖွင့်ထားတယ်)
-    // ပြီးတော့ Browser က Background ကနေ ပြန်ရောက်လာရင်
     if (document.body.classList.contains('focus-mode') && document.visibilityState === 'visible') {
-        const elem = document.documentElement;
         
-        // Fullscreen ပြန်လုပ်ပေးခြင်း
-        setTimeout(() => {
+        const attemptFullscreen = () => {
+            const elem = document.documentElement;
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) {
-                    elem.webkitRequestFullscreen();
-                }
+                const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen;
+                if (requestFS) requestFS.call(elem);
             }
-        }, 500); // ဝင်လာပြီး ၀.၅ စက္ကန့်အတွင်း အလိုလို Fullscreen ပြန်ဖြစ်စေမည်
+            document.removeEventListener("click", attemptFullscreen);
+        };
+
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+             // Already fullscreen
+        } else {
+             const elem = document.documentElement;
+             const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen;
+             if (requestFS) requestFS.call(elem).catch(() => {
+                 document.addEventListener("click", attemptFullscreen);
+             });
+        }
     }
 });
 
