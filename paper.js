@@ -113,40 +113,22 @@ window.addEventListener('load', function() {
 });
 
 
-
 function toggleReadingMode() {
-    // ၁။ Focus Mode (CSS class) ကို အဖွင့်အပိတ်လုပ်ခြင်း
+    // Body မှာ focus-mode ဆိုတဲ့ class ကို အဖွင့်အပိတ် လုပ်ခြင်း
     document.body.classList.toggle('focus-mode');
     
     const fsBtn = document.getElementById('fs-btn');
-    const elem = document.documentElement; // Webpage တစ်ခုလုံးကို ရွေးလိုက်ခြင်း
-
+    
     if (document.body.classList.contains('focus-mode')) {
-        // Focus Mode ရောက်သွားလျှင်
+        // Focus Mode ထဲရောက်ရင် ခလုတ်ပုံစံ ပြောင်းရန် (ဥပမာ - ပြန်ထွက်ဖို့ သင်္ကေတ)
         fsBtn.innerHTML = '✖'; 
-        fsBtn.style.background = 'rgba(234, 222, 188, 0.2)';
-        
-        // Browser ကို အတင်း Fullscreen ပြောင်းခြင်း (Search bar ပျောက်သွားရန်)
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari, Opera အတွက် */
-            elem.webkitRequestFullscreen();
-        }
+        fsBtn.style.background = 'rgba(234, 222, 188, 0.2)'; // ပိုမှိန်သွားစေရန်
     } else {
-        // Focus Mode မှ ပြန်ထွက်လျှင်
+        // ပုံမှန် Mode ပြန်ရောက်ရင်
         fsBtn.innerHTML = '⛶';
         fsBtn.style.background = 'rgba(234, 222, 188, 0.4)';
-        
-        // Fullscreen မှ ပြန်ထွက်ခြင်း
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Chrome, Safari, Opera အတွက် */
-            document.webkitExitFullscreen();
-        }
     }
 }
-
-
 
 // စာမျက်နှာ စဖွင့်တာနဲ့ အလုပ်လုပ်မည့်အပိုင်း
 window.addEventListener('DOMContentLoaded', () => {
@@ -316,5 +298,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })
 
-         // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး             
+         // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး               
+
+
+
 
