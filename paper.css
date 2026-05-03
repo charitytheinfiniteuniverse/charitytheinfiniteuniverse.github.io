@@ -410,9 +410,16 @@ color: #443300;
         padding: 0 !important;
     }
 
+     /* ၃။ စာသားအမည်း၊ နောက်ခံအဖြူ ဖြစ်စေရန် */
     body {
-        background: white !important; 
-        color: black !important;
+        background: #ffffff !important; 
+        color: #000000 !important;
+    }
+
+    /* ၄။ စာသားအားလုံးကို အမည်းရောင်ဖြစ်စေရန် */
+    * {
+        color: #000000 !important;
+        background: transparent !important;
     }
 }
 
