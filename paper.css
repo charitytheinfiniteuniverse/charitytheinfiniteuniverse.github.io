@@ -619,63 +619,19 @@ article {
 
 
 /* အသံဖိုင်အတွက် ကုဒ် အစ */
-.audio-container {
-    display: flex;
-    align-items: center;
-    background: #f4ecd8;
-    border: 1px solid #443300;
-    padding: 8px;
-    border-radius: 8px;
-    margin: 10px 0;
-    gap: 10px;
-}
+.mini-trigger { margin: 10px 0; }
+.play-btn { background: #443300; color: #f4ecd8; border-radius: 50%; width: 40px; height: 40px; border: none; cursor: pointer; }
 
-.custom-play-btn {
-    background: #443300;
-    color: #f4ecd8;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
+.fixed-player {
+    position: fixed; top: 120px; left: 20px; right: 20px;
+    background: #f4ecd8; border: 2px solid #443300;
+    padding: 15px; border-radius: 12px; z-index: 2000;
 }
-
-.progress-bar-container {
-    flex-grow: 1;
-    height: 8px;
-    background: #dcd0b0;
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative; /* အဖုလေးရွေ့ဖို့ အရေးကြီးသည် */
-    pointer-events: auto;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%; /* ဒီ Width က JS ကနေ ပြောင်းသွားပါမယ် */
-    background: #443300;
-    border-radius: 4px;
-    position: relative;
-    pointer-events: none;
-}
-
-/* အဖုလေး (Thumb) */
-.progress-thumb {
-    width: 16px;
-    height: 16px;
-    background: #443300;
-    border-radius: 50%;
-    position: absolute;
-    left: 100%; /* အဖုလေးက Progress bar ရဲ့ width ရဲ့အဆုံးမှာ ရှိနေစေရန် */
-    margin-left: -8px; /* ကိုယ့်ရဲ့ အလယ်ဗဟိုတည့်အောင် ပြန်ညှိခြင်း */
-    top: -4px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-
-.speed-controls { display: flex; align-items: center; gap: 5px; }
-.speed-btn { background: #f4ecd8; border: 1px solid #443300; color: #443300; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-.speed-text { font-weight: bold; color: #443300; font-size: 14px; width: 35px; text-align: center; }
+.close-btn { position: absolute; top: 5px; right: 10px; font-size: 20px; cursor: pointer; border: none; background: none; color: #443300; }
+.progress-container { height: 10px; background: #dcd0b0; border-radius: 5px; margin: 15px 0; cursor: pointer; position: relative; }
+.progress-bar { height: 100%; width: 0%; background: #443300; border-radius: 5px; }
+.thumb { width: 14px; height: 14px; background: #443300; border-radius: 50%; position: absolute; right: -7px; top: -2px; }
+.controls-row { display: flex; align-items: center; gap: 8px; color: #443300; }
+.btn-main, .btn-sub { background: #eadebc; border: 1px solid #443300; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 /* အသံဖိုင်အတွက် ကုဒ် အဆုံး */
 
