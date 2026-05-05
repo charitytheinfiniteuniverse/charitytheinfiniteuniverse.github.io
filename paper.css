@@ -662,4 +662,37 @@ article {
 .speed-btn { background: #f4ecd8; border: 1px solid #443300; color: #443300; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
 .speed-text { font-weight: bold; color: #443300; font-size: 14px; width: 35px; text-align: center; }
 
+
+.progress-bar-container {
+    flex-grow: 1;
+    height: 8px;
+    background: #dcd0b0;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative; /* Thumb လေး တည်နေရာအတွက် */
+    pointer-events: auto;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #443300;
+    border-radius: 4px;
+    position: relative;
+    pointer-events: none;
+}
+
+/* အဖုလေး (Thumb) */
+.progress-thumb {
+    width: 16px;
+    height: 16px;
+    background: #443300;
+    border-radius: 50%;
+    position: absolute;
+    right: -8px; /* မျဉ်းရဲ့အဆုံးမှာ ကပ်နေအောင် */
+    top: -4px;   /* မျဉ်းနဲ့ ဗဟိုတည့်အောင် */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+
 /*အသံဖိုင်အတွက် ကုဒ် အဆုံး*/
