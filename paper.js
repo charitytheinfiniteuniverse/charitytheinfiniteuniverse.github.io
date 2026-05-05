@@ -302,4 +302,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+//အသံဖိုင် အတွက်ကုဒ် အစ
+// အရှိန်အတိုးအလျော့ ပြုလုပ်ပေးသည့် Function 
+function adjustSpeed(audioId, amount) {
+    const audio = document.getElementById(audioId);
+    const display = document.getElementById('speed-display-' + audioId);
+    
+    if (audio) {
+        let newSpeed = audio.playbackRate + amount;
+        
+        // 0.5x မှ 2.0x ကြားတွင်သာ ရှိစေရန် ကန့်သတ်ထားသည်
+        if (newSpeed >= 0.5 && newSpeed <= 2.0) {
+            audio.playbackRate = newSpeed;
+            display.innerText = newSpeed.toFixed(2).replace('.00', '') + 'x';
+        }
+    }
+}
 
+// တစ်ခုဖွင့်လျှင် ကျန်သည့် အသံဖိုင်များ အလိုလို ပိတ်သွားစေရန်
+document.addEventListener('play', function(e) {
+    const audios = document.getElementsByTagName('audio');
+    for (let i = 0; i < audios.length; i++) {
+        if (audios[i] !== e.target) {
+            audios[i].pause();
+        }
+    }
+}, true);
+//အသံဖိုင်အတွက် ကုဒ်အဆုံး
