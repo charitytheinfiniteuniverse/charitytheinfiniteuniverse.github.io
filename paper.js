@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // --- အသံဖိုင်အတွက် ကုဒ် အစ ---
 
-// ၁။ Play/Pause စနစ်
+//အသံဖိုင်အတွက် ကုဒ် အစ
 function toggleAudio(audioId, btn) {
     const audio = document.getElementById(audioId);
     const allAudios = document.getElementsByTagName('audio');
@@ -326,34 +326,28 @@ function toggleAudio(audioId, btn) {
     }
 }
 
-// ၂။ Progress Bar နှင့် အချိန်တွက်ချက်ခြင်း (ပြင်ဆင်ထားသည်)
 document.addEventListener('timeupdate', function(e) {
     if (e.target.tagName === 'AUDIO') {
         const idNum = e.target.id.replace('audio', '');
         const progress = document.getElementById('progress' + idNum);
-        
-        // duration ရှိမှသာ အလုပ်လုပ်မည် (ဒါမှ အချိန်အတန်း ပေါ်လာမည်)
         if (progress && e.target.duration > 0) {
-            const percent = (e.target.currentTime / e.target.duration) * 100;
-            progress.style.width = percent + "%";
+            progress.style.width = (e.target.currentTime / e.target.duration) * 100 + "%";
         }
     }
 }, true);
 
-// ၃။ Progress Bar ကို နှိပ်လျှင် ရွှေ့ပေးခြင်း (အရေးကြီးသည် - အလုပ်လုပ်အောင် ပြင်ထားသည်)
 function seekAudio(audioId, event) {
     const audio = document.getElementById(audioId);
-    if (!audio.duration) return; // အသံဖိုင် အဆင်သင့်မဖြစ်သေးရင် မလုပ်ပါ
+    if (!audio.duration) return;
     
-    // Progress Bar container ရဲ့ နေရာကို ရှာခြင်း
-    const rect = event.currentTarget.getBoundingClientRect();
+    const container = event.currentTarget;
+    const rect = container.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const width = rect.width;
     
     audio.currentTime = (clickX / width) * audio.duration;
 }
 
-// ၄။ အရှိန်ပြောင်းခြင်း (x မပါဘဲ 1.00 ပုံစံပြရန် ပြင်ထားသည်)
 function adjustSpeed(audioId, amount) {
     const audio = document.getElementById(audioId);
     const display = document.getElementById('speed-display-' + audioId);
@@ -361,10 +355,11 @@ function adjustSpeed(audioId, amount) {
         let newSpeed = Math.round((audio.playbackRate + amount) * 100) / 100;
         if (newSpeed >= 0.5 && newSpeed <= 2.0) {
             audio.playbackRate = newSpeed;
-            // x ကိုဖြုတ်ပြီး 2 နေရာ (decimal place) ပြသရန် toFixed(2) ကိုသုံးသည်
             display.innerText = newSpeed.toFixed(2);
         }
     }
 }
+//အသံဖိုင်အတွက် ကုဒ် အဆုံး
+
 
 // --- အသံဖိုင်အတွက် ကုဒ် အဆုံး ---
