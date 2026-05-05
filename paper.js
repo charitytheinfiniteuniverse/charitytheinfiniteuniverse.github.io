@@ -303,15 +303,57 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //အသံဖိုင် အတွက်ကုဒ် အစ
-// အရှိန်အတိုးအလျော့ ပြုလုပ်ပေးသည့် Function 
+function toggleAudio(audioId, btn) {
+    const audio = document.getElementById(audioId);
+    
+    // တခြားအသံဖိုင်အားလုံးကို ပိတ်ခြင်း
+    const allAudios = document.getElementsByTagName('audio');
+    const allBtns = document.getElementsByClassName('custom-play-btn');
+    
+    for (let i = 0; i < allAudios.length; i++) {
+        if (allAudios[i].id !== audioId) {
+            allAudios[i].pause();
+            allBtns[i].innerText = ">"; 
+        }
+    }
+
+    // လက်ရှိရွေးထားတဲ့အသံကို အလုပ်လုပ်စေခြင်း
+    if (audio.paused) {
+        audio.play();
+        btn.innerText = "||";
+    } else {
+        audio.pause();
+        btn.innerText = ">";
+    }
+}
+
+// Progress Bar အပ်ဒိတ်လုပ်ခြင်း
+document.addEventListener('timeupdate', function(e) {
+    if (e.target.tagName === 'AUDIO') {
+        const idNum = e.target.id.replace('audio', '');
+        const progress = document.getElementById('progress' + idNum);
+        if (progress) {
+            const percent = (e.target.currentTime / e.target.duration) * 100;
+            progress.style.width = percent + "%";
+        }
+    }
+}, true);
+
+// Progress Bar နှိပ်လျှင် ရွှေ့ပေးခြင်း
+function seekAudio(audioId, event) {
+    const audio = document.getElementById(audioId);
+    const container = event.currentTarget;
+    const clickX = event.offsetX;
+    const width = container.offsetWidth;
+    audio.currentTime = (clickX / width) * audio.duration;
+}
+
+// အရှိန်ပြောင်းခြင်း
 function adjustSpeed(audioId, amount) {
     const audio = document.getElementById(audioId);
     const display = document.getElementById('speed-display-' + audioId);
-    
     if (audio) {
-        let newSpeed = audio.playbackRate + amount;
-        
-        // 0.5x မှ 2.0x ကြားတွင်သာ ရှိစေရန် ကန့်သတ်ထားသည်
+        let newSpeed = Math.round((audio.playbackRate + amount) * 100) / 100;
         if (newSpeed >= 0.5 && newSpeed <= 2.0) {
             audio.playbackRate = newSpeed;
             display.innerText = newSpeed.toFixed(2).replace('.00', '') + 'x';
@@ -319,13 +361,4 @@ function adjustSpeed(audioId, amount) {
     }
 }
 
-// တစ်ခုဖွင့်လျှင် ကျန်သည့် အသံဖိုင်များ အလိုလို ပိတ်သွားစေရန်
-document.addEventListener('play', function(e) {
-    const audios = document.getElementsByTagName('audio');
-    for (let i = 0; i < audios.length; i++) {
-        if (audios[i] !== e.target) {
-            audios[i].pause();
-        }
-    }
-}, true);
 //အသံဖိုင်အတွက် ကုဒ်အဆုံး
