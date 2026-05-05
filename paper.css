@@ -617,7 +617,8 @@ article {
 /* paper.html ထဲတွင် ဖိထားမှ စာရွေးလိုတဲ့ ကုဒ် အဆုံး*/
 
 
-/*အသံဖိုင်အတွက် ကုဒ်အစ */
+
+/* အသံဖိုင်အတွက် ကုဒ် အစ */
 .audio-container {
     display: flex;
     align-items: center;
@@ -647,35 +648,13 @@ article {
     background: #dcd0b0;
     border-radius: 4px;
     cursor: pointer;
-    overflow: hidden;
-    pointer-events: auto; /* အလယ်အတန်းကို နှိပ်လို့ရအောင် */
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #443300;
-    pointer-events: none;
-}
-
-.speed-controls { display: flex; align-items: center; gap: 5px; }
-.speed-btn { background: #f4ecd8; border: 1px solid #443300; color: #443300; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-.speed-text { font-weight: bold; color: #443300; font-size: 14px; width: 35px; text-align: center; }
-
-
-.progress-bar-container {
-    flex-grow: 1;
-    height: 8px;
-    background: #dcd0b0;
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative; /* Thumb လေး တည်နေရာအတွက် */
+    position: relative; /* အဖုလေးရွေ့ဖို့ အရေးကြီးသည် */
     pointer-events: auto;
 }
 
 .progress-bar {
     height: 100%;
-    width: 0%;
+    width: 0%; /* ဒီ Width က JS ကနေ ပြောင်းသွားပါမယ် */
     background: #443300;
     border-radius: 4px;
     position: relative;
@@ -689,10 +668,14 @@ article {
     background: #443300;
     border-radius: 50%;
     position: absolute;
-    right: -8px; /* မျဉ်းရဲ့အဆုံးမှာ ကပ်နေအောင် */
-    top: -4px;   /* မျဉ်းနဲ့ ဗဟိုတည့်အောင် */
+    left: 100%; /* အဖုလေးက Progress bar ရဲ့ width ရဲ့အဆုံးမှာ ရှိနေစေရန် */
+    margin-left: -8px; /* ကိုယ့်ရဲ့ အလယ်ဗဟိုတည့်အောင် ပြန်ညှိခြင်း */
+    top: -4px;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
+.speed-controls { display: flex; align-items: center; gap: 5px; }
+.speed-btn { background: #f4ecd8; border: 1px solid #443300; color: #443300; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+.speed-text { font-weight: bold; color: #443300; font-size: 14px; width: 35px; text-align: center; }
+/* အသံဖိုင်အတွက် ကုဒ် အဆုံး */
 
-/*အသံဖိုင်အတွက် ကုဒ် အဆုံး*/
