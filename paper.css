@@ -619,19 +619,25 @@ article {
 
 
 /* အသံဖိုင်အတွက် ကုဒ် အစ */
+/* အသံဖိုင်အတွက် ကုဒ် အပြည့်အစုံ */
 .mini-trigger { margin: 10px 0; }
 .play-btn { background: #443300; color: #f4ecd8; border-radius: 50%; width: 40px; height: 40px; border: none; cursor: pointer; }
 
 .fixed-player {
-    position: fixed; top: 120px; left: 20px; right: 20px;
+    position: fixed; bottom: 80px; left: 20px; right: 20px;
     background: #f4ecd8; border: 2px solid #443300;
     padding: 15px; border-radius: 12px; z-index: 2000;
 }
-.close-btn { position: absolute; top: 5px; right: 10px; font-size: 20px; cursor: pointer; border: none; background: none; color: #443300; }
-.progress-container { height: 10px; background: #dcd0b0; border-radius: 5px; margin: 15px 0; cursor: pointer; position: relative; }
+.close-btn { 
+    position: absolute; bottom: 10px; left: 10px; 
+    font-size: 24px; font-weight: bold; cursor: pointer; 
+    border: 1px solid #443300; background: #eadebc; 
+    width: 30px; height: 30px; border-radius: 50%; color: #443300;
+}
+.progress-container { height: 10px; background: #dcd0b0; border-radius: 5px; margin: 10px 0 20px 0; cursor: pointer; position: relative; }
 .progress-bar { height: 100%; width: 0%; background: #443300; border-radius: 5px; }
 .thumb { width: 14px; height: 14px; background: #443300; border-radius: 50%; position: absolute; right: -7px; top: -2px; }
-.controls-row { display: flex; align-items: center; gap: 8px; color: #443300; }
+.controls-row { display: flex; align-items: center; gap: 8px; margin-left: 45px; color: #443300; }
 .btn-main, .btn-sub { background: #eadebc; border: 1px solid #443300; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 /* အသံဖိုင်အတွက် ကုဒ် အဆုံး */
 
