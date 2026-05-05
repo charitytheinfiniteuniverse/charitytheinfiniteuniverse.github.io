@@ -619,43 +619,46 @@ article {
 
 /*အသံဖိုင်အတွက် ကုဒ်အစ */
 .audio-container {
-    margin: 15px 0;
-    padding: 10px;
-    background: #f4ecd8;
-    border: 1px solid #443300;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.custom-audio {
-    width: 100%;
-    margin-bottom: 10px;
-    display: block;
-}
-
-.speed-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 10px 0;
     gap: 10px;
 }
 
-.speed-btn {
-    background: #f4ecd8;
-    border: 1px solid #443300;
-    color: #443300;
-    padding: 5px 12px;
+.custom-play-btn {
+    background: #443300;
+    color: #f4ecd8;
+    border: none;
+    width: 30px;
+    height: 30px;
     border-radius: 4px;
-    font-weight: bold;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.speed-text {
-    font-weight: bold;
-    color: #443300;
-    min-width: 40px;
-    text-align: center;
+.progress-bar-container {
+    flex-grow: 1;
+    height: 8px;
+    background: #dcd0b0;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
 }
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #443300;
+}
+
+.speed-controls { display: flex; align-items: center; gap: 5px; }
+.speed-btn { background: #f4ecd8; border: 1px solid #443300; color: #443300; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+.speed-text { font-weight: bold; color: #443300; font-size: 14px; width: 35px; text-align: center; }
+
 /*အသံဖိုင်အတွက် ကုဒ် အဆုံး*/
 
