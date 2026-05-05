@@ -305,6 +305,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // --- အသံဖိုင်အတွက် ကုဒ် အစ ---
 
 //အသံဖိုင်အတွက် ကုဒ် အစ
+//အသံဖိုင်အတွက် ကုဒ် အစ
 function toggleAudio(audioId, btn) {
     const audio = document.getElementById(audioId);
     const allAudios = document.getElementsByTagName('audio');
@@ -326,16 +327,20 @@ function toggleAudio(audioId, btn) {
     }
 }
 
+// Progress Bar အပ်ဒိတ်လုပ်ခြင်း
 document.addEventListener('timeupdate', function(e) {
     if (e.target.tagName === 'AUDIO') {
         const idNum = e.target.id.replace('audio', '');
         const progress = document.getElementById('progress' + idNum);
         if (progress && e.target.duration > 0) {
-            progress.style.width = (e.target.currentTime / e.target.duration) * 100 + "%";
+            const percent = (e.target.currentTime / e.target.duration) * 100;
+            // ဤ width ပြောင်းလဲမှုသည် CSS ရှိ progress-thumb ကို အဆုံးသို့ ရောက်စေပါသည်
+            progress.style.width = percent + "%";
         }
     }
 }, true);
 
+// Progress Bar နှိပ်လျှင် ရွှေ့ပေးခြင်း
 function seekAudio(audioId, event) {
     const audio = document.getElementById(audioId);
     if (!audio.duration) return;
@@ -348,6 +353,7 @@ function seekAudio(audioId, event) {
     audio.currentTime = (clickX / width) * audio.duration;
 }
 
+// အရှိန်ပြောင်းခြင်း
 function adjustSpeed(audioId, amount) {
     const audio = document.getElementById(audioId);
     const display = document.getElementById('speed-display-' + audioId);
@@ -361,5 +367,3 @@ function adjustSpeed(audioId, amount) {
 }
 //အသံဖိုင်အတွက် ကုဒ် အဆုံး
 
-
-// --- အသံဖိုင်အတွက် ကုဒ် အဆုံး ---
