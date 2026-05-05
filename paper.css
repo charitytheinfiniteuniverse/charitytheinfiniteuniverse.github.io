@@ -620,23 +620,20 @@ article {
 
 /* အသံဖိုင်အတွက် ကုဒ် အစ */
 /* အသံဖိုင် Player အသစ် */
+.play-btn { background: #443300; color: #f4ecd8; border-radius: 50%; width: 35px; height: 35px; border: none; cursor: pointer; }
 .fixed-player {
     position: fixed; 
-    top: 80px; left: 65px; /* Fullscreen ခလုတ်ဘေးသို့ ရွှေ့ထားသည် */
+    top: 80px; left: 65px; 
     background: #f4ecd8; border: 2px solid #443300;
-    padding: 10px; border-radius: 12px; z-index: 2000;
+    padding: 10px; border-radius: 12px; z-index: 9999;
+    width: 250px; /* ဖုန်းမျက်နှာပြင်အတွက် နေရာမယူအောင် သတ်မှတ်ခြင်း */
 }
-
-/* Close ခလုတ်နှင့် Controls များ */
-.controls-row { display: flex; align-items: center; gap: 8px; color: #443300; }
-.close-btn { 
-    font-size: 20px; font-weight: bold; cursor: pointer; 
-    border: 1px solid #443300; background: #eadebc; 
-    padding: 2px 8px; border-radius: 4px; color: #443300;
+.controls-row { display: flex; align-items: center; gap: 5px; color: #443300; margin-top: 8px; }
+.btn-main, .btn-sub, .close-btn { 
+    background: #eadebc; border: 1px solid #443300; 
+    padding: 3px 7px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;
 }
-.progress-container { height: 8px; background: #dcd0b0; border-radius: 4px; margin: 8px 0; cursor: pointer; position: relative; }
+.progress-container { height: 8px; background: #dcd0b0; border-radius: 4px; cursor: pointer; position: relative; }
 .progress-bar { height: 100%; width: 0%; background: #443300; border-radius: 4px; }
-.thumb { width: 12px; height: 12px; background: #443300; border-radius: 50%; position: absolute; right: -6px; top: -2px; }
-.btn-main, .btn-sub { background: #eadebc; border: 1px solid #443300; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 /* အသံဖိုင်အတွက် ကုဒ် အဆုံး */
 
