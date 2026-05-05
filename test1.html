@@ -46,9 +46,13 @@
 
   <section id="chapter1"><h1>နိဒါန်း</h1> 
     <div class="audio-container">
-    <audio id="audio1" class="custom-audio" controls>
-        <source src="audio/chapter1.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="audio1" src="audio/chapter1.mp3"></audio>
+    
+    <button class="custom-play-btn" onclick="toggleAudio('audio1', this)">></button>
+    
+    <div class="progress-bar-container" onclick="seekAudio('audio1', event)">
+        <div id="progress1" class="progress-bar"></div>
+    </div>
     
     <div class="speed-controls">
         <button class="speed-btn" onclick="adjustSpeed('audio1', -0.25)">A-</button>
@@ -56,6 +60,7 @@
         <button class="speed-btn" onclick="adjustSpeed('audio1', 0.25)">A+</button>
     </div>
 </div>
+
     
   <p>• နိဒါန်း။
 
