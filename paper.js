@@ -309,8 +309,8 @@ const audio = document.getElementById('main-audio');
 const player = document.getElementById('full-player-wrapper');
 
 document.querySelectorAll('.mini-trigger').forEach(item => {
-    item.onclick = () => {
-        audio.src = item.getAttribute('data-src');
+    item.onclick = function() {
+        audio.src = this.getAttribute('data-src');
         player.style.display = 'block';
         audio.play();
         document.querySelector('.btn-main').innerText = "||";
@@ -325,8 +325,7 @@ function closePlayer() {
 
 audio.ontimeupdate = () => {
     if (audio.duration > 0) {
-        let p = (audio.currentTime / audio.duration) * 100;
-        document.getElementById('pb').style.width = p + "%";
+        document.getElementById('pb').style.width = (audio.currentTime / audio.duration) * 100 + "%";
     }
 };
 
