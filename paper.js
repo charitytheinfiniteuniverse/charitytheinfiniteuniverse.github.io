@@ -305,65 +305,50 @@ document.addEventListener("DOMContentLoaded", function() {
 // --- အသံဖိုင်အတွက် ကုဒ် အစ ---
 
 //အသံဖိုင်အတွက် ကုဒ် အစ
-//အသံဖိုင်အတွက် ကုဒ် အစ
-function toggleAudio(audioId, btn) {
-    const audio = document.getElementById(audioId);
-    const allAudios = document.getElementsByTagName('audio');
-    const allBtns = document.getElementsByClassName('custom-play-btn');
-    
-    for (let i = 0; i < allAudios.length; i++) {
-        if (allAudios[i].id !== audioId) {
-            allAudios[i].pause();
-            allBtns[i].innerText = ">"; 
-        }
-    }
+const audio = document.getElementById('main-audio');
+const player = document.getElementById('full-player-wrapper');
 
-    if (audio.paused) {
+// Mini-trigger နှိပ်လျှင် Player ပေါ်လာပြီး အသံစဖွင့်ပါ
+document.querySelectorAll('.mini-trigger').forEach(item => {
+    item.onclick = () => {
+        audio.src = item.getAttribute('data-src');
+        player.style.display = 'block';
         audio.play();
-        btn.innerText = "||";
-    } else {
-        audio.pause();
-        btn.innerText = ">";
-    }
+        document.querySelector('.btn-main').innerText = "||";
+    };
+});
+
+// ပိတ်ခလုတ် (x) နှိပ်လျှင်
+function closePlayer() {
+    audio.pause();
+    audio.currentTime = 0;
+    player.style.display = 'none';
 }
 
-// Progress Bar အပ်ဒိတ်လုပ်ခြင်း
-document.addEventListener('timeupdate', function(e) {
-    if (e.target.tagName === 'AUDIO') {
-        const idNum = e.target.id.replace('audio', '');
-        const progress = document.getElementById('progress' + idNum);
-        if (progress && e.target.duration > 0) {
-            const percent = (e.target.currentTime / e.target.duration) * 100;
-            // ဤ width ပြောင်းလဲမှုသည် CSS ရှိ progress-thumb ကို အဆုံးသို့ ရောက်စေပါသည်
-            progress.style.width = percent + "%";
-        }
-    }
-}, true);
+// Progress update
+audio.ontimeupdate = () => {
+    let p = (audio.currentTime / audio.duration) * 100;
+    document.getElementById('pb').style.width = p + "%";
+};
 
-// Progress Bar နှိပ်လျှင် ရွှေ့ပေးခြင်း
-function seekAudio(audioId, event) {
-    const audio = document.getElementById(audioId);
-    if (!audio.duration) return;
-    
-    const container = event.currentTarget;
-    const rect = container.getBoundingClientRect();
-    const clickX = event.clientX - rect.left;
-    const width = rect.width;
-    
-    audio.currentTime = (clickX / width) * audio.duration;
+// Seek function
+function seek(e) {
+    let rect = e.currentTarget.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
 
-// အရှိန်ပြောင်းခြင်း
-function adjustSpeed(audioId, amount) {
-    const audio = document.getElementById(audioId);
-    const display = document.getElementById('speed-display-' + audioId);
-    if (audio) {
-        let newSpeed = Math.round((audio.playbackRate + amount) * 100) / 100;
-        if (newSpeed >= 0.5 && newSpeed <= 2.0) {
-            audio.playbackRate = newSpeed;
-            display.innerText = newSpeed.toFixed(2);
-        }
-    }
+// Controls
+function toggleMain() {
+    if(audio.paused) { audio.play(); document.querySelector('.btn-main').innerText = "||"; }
+    else { audio.pause(); document.querySelector('.btn-main').innerText = "▶"; }
 }
+
+function setSpeed(amt) {
+    audio.playbackRate = Math.min(Math.max(audio.playbackRate + amt, 0.5), 2.0);
+    document.querySelector('.speed-text').innerText = audio.playbackRate.toFixed(2);
+}
+
+function jump(s) { audio.currentTime += s; }
+
 //အသံဖိုင်အတွက် ကုဒ် အဆုံး
 
