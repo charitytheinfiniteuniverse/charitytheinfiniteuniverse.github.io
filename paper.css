@@ -648,12 +648,14 @@ article {
     border-radius: 4px;
     cursor: pointer;
     overflow: hidden;
+    pointer-events: auto; /* အလယ်အတန်းကို နှိပ်လို့ရအောင် */
 }
 
 .progress-bar {
     height: 100%;
     width: 0%;
     background: #443300;
+    pointer-events: none;
 }
 
 .speed-controls { display: flex; align-items: center; gap: 5px; }
@@ -661,4 +663,3 @@ article {
 .speed-text { font-weight: bold; color: #443300; font-size: 14px; width: 35px; text-align: center; }
 
 /*အသံဖိုင်အတွက် ကုဒ် အဆုံး*/
-
