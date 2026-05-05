@@ -617,3 +617,45 @@ article {
 /* paper.html ထဲတွင် ဖိထားမှ စာရွေးလိုတဲ့ ကုဒ် အဆုံး*/
 
 
+/*အသံဖိုင်အတွက် ကုဒ်အစ */
+.audio-container {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-audio {
+    width: 100%;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.speed-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.speed-btn {
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    color: #443300;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.speed-text {
+    font-weight: bold;
+    color: #443300;
+    min-width: 40px;
+    text-align: center;
+}
+/*အသံဖိုင်အတွက် ကုဒ် အဆုံး*/
+
