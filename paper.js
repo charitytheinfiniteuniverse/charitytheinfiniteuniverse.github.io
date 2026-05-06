@@ -340,9 +340,13 @@ function toggleMain() {
 }
 
 function setSpeed(amt) {
+    const audio = document.getElementById('main-audio'); // 🔑 ဒီလိုပြောင်း
+
     let newSpeed = Math.round((audio.playbackRate + amt) * 100) / 100;
+
     if (newSpeed >= 0.5 && newSpeed <= 2.0) {
         audio.playbackRate = newSpeed;
+
         document.querySelector('.speed-text').innerText = newSpeed.toFixed(2);
     }
 }
