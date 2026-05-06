@@ -305,57 +305,102 @@ document.addEventListener("DOMContentLoaded", function() {
 // --- အသံဖိုင်အတွက် ကုဒ် အစ ---
 
 // အသံဖိုင်အတွက် ကုဒ် အပြည့်အစုံ
-const audio = document.getElementById('main-audio');
-const player = document.getElementById('full-player-wrapper');
+// --- AUDIO SYSTEM (FULL FIXED) ---
 
-document.querySelectorAll('.mini-trigger').forEach(item => {
-    item.onclick = function() {
-        audio.src = this.getAttribute('data-src');
-        player.style.display = 'block';
-        audio.play();
-        document.querySelector('.btn-main').innerText = "||";
+document.addEventListener("DOMContentLoaded", function () {
+
+    const audio = document.getElementById('main-audio');
+    const player = document.getElementById('full-player-wrapper');
+
+    let speedStep = 0.25;
+
+    // ▶ open audio
+    document.querySelectorAll('.mini-trigger').forEach(item => {
+        item.addEventListener("click", function () {
+            audio.src = this.getAttribute("data-src");
+
+            player.style.display = "block";
+
+            audio.play();
+            audio.playbackRate = 1.0;
+
+            document.querySelector(".speed-text").innerText = "1.00";
+            document.querySelector(".btn-main").innerText = "||";
+        });
+    });
+
+    // ❌ close
+    window.closePlayer = function () {
+        audio.pause();
+        audio.currentTime = 0;
+        player.style.display = "none";
     };
-});
 
-function closePlayer() {
-    audio.pause();
-    audio.currentTime = 0;
-    player.style.display = 'none';
-}
+    // ⏯ play pause
+    window.toggleMain = function () {
+        if (audio.paused) {
+            audio.play();
+            document.querySelector(".btn-main").innerText = "||";
+        } else {
+            audio.pause();
+            document.querySelector(".btn-main").innerText = "▶";
+        }
+    };
 
-audio.ontimeupdate = () => {
-    if (audio.duration > 0) {
-        document.getElementById('pb').style.width = (audio.currentTime / audio.duration) * 100 + "%";
-    }
-};
+window.setSpeed = function (amt) {
 
-function seek(e) {
-    let rect = e.currentTarget.getBoundingClientRect();
-    audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-}
-
-function toggleMain() {
-    if(audio.paused) { audio.play(); document.querySelector('.btn-main').innerText = "||"; }
-    else { audio.pause(); document.querySelector('.btn-main').innerText = "▶"; }
-}
-
-function setSpeed(amt) {
     const audio = document.getElementById('main-audio');
 
     let newSpeed = Math.round((audio.playbackRate + amt) * 100) / 100;
 
-    if (newSpeed >= 0.5 && newSpeed <= 2.0) {
-        audio.playbackRate = newSpeed;
+    if (newSpeed < 0.5 || newSpeed > 2.0) return;
 
-        const speedText = document.querySelector('.speed-text');
+    audio.playbackRate = newSpeed;
 
-        if (speedText) {
-            speedText.innerText = newSpeed.toFixed(2);
-        }
+    // 🎯 REAL → LEVEL MAPPING
+    let levelMap = {
+        0.50: -2,
+        0.75: -1,
+        1.00: 1,
+        1.25: 2,
+        1.50: 3,
+        1.75: 4,
+        2.00: 5
+    };
+
+    // floating error fix (important)
+    let fixed = parseFloat(newSpeed.toFixed(2));
+
+    let displayValue = levelMap[fixed];
+
+    const speedText = document.querySelector('.speed-text');
+
+    if (speedText) {
+        speedText.innerText = displayValue !== undefined ? displayValue : "1";
     }
-}
+};
 
-function jump(s) { audio.currentTime += s; }
+    // ⏭ jump
+    window.jump = function (sec) {
+        audio.currentTime += sec;
+    };
+
+    // 📊 progress
+    audio.ontimeupdate = function () {
+        if (audio.duration) {
+            document.getElementById("pb").style.width =
+                (audio.currentTime / audio.duration) * 100 + "%";
+        }
+    };
+
+    // 🎯 seek
+    window.seek = function (e) {
+        let rect = e.currentTarget.getBoundingClientRect();
+        audio.currentTime =
+            ((e.clientX - rect.left) / rect.width) * audio.duration;
+    };
+
+});
 
 //အသံဖိုင်အတွက် ကုဒ် အဆုံး
 
