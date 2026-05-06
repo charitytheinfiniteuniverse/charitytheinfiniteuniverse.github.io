@@ -2400,12 +2400,7 @@
     <div id="setting-overlay" class="setting-overlay" onclick="toggleSetting()">
         <div class="setting-content" onclick="event.stopPropagation()">
             <h3 style="margin-top:0; color:#443300;">ချိန်ညှိချက်များ</h3>
-
-
-<button class="setting-menu-close" onclick="toggleSetting()">
-    <span class="nav-icon">×</span>
-    <span class="nav-text">ပိတ်ရန်</span>
-</button>
+<span class="close-btn" onclick="toggleTOC()">×</span>
    
             <button class="setting-menu-refresh" onclick="location.reload()">
     <span class="nav-icon">⟳</span>
@@ -2458,10 +2453,13 @@
            </div>
     </div>
 
-    <div id="toc-overlay" class="toc-overlay">
-        <div class="toc-content">
-            <span class="close-btn" onclick="toggleTOC()">&times;</span>
-            <h1 style="color:#443300;">မာတိကာ</h1>
+
+
+    <div id="toc-overlay" class="toc-overlay" onclick="toggleTOC()" style="display: none;">
+    <div class="toc-content" onclick="event.stopPropagation()">
+        <h1 style="color:#443300;">မာတိကာ</h1>
+        <span class="close-btn" onclick="toggleTOC()">×</span>
+        
             <ul class="toc-list" id="toc-list">
                 
                
