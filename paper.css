@@ -161,11 +161,8 @@ body.sepia-mode {
 }
 
 .setting-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     width: 100%;
-    gap: 8px;
     padding: 12px;
     margin: 8px 0;
     background: #eadebc;
