@@ -301,42 +301,39 @@ document.addEventListener("DOMContentLoaded", function() {
          // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး               
 
 // စာကြောင်း ကြား အကွာအဝေး အစ
-// ... (အရင်ရှိပြီးသား toggleTOC, changeFontSize စသည်တို့ ထားခဲ့ပါ) ...
 
-// စာကြောင်းကြားအကွာအဝေး ချိန်ညှိခြင်း (အသစ်)
-let currentLineHeight = 2.0;
+function setLineHeight(height) {
+    currentLineHeight = height;
+    applyLineHeight();
+}
 
-function changeLineHeight(amt) {
-    const contentArea = document.querySelector('article');
-    const display = document.getElementById('lh-display');
-    
-    // 1.0 မှ 3.0 ကြား ချိန်ညှိသည်
-    let newLineHeight = Math.round((currentLineHeight + amt) * 10) / 10;
-    
-    if (newLineHeight >= 1.0 && newLineHeight <= 3.0) {
-        currentLineHeight = newLineHeight;
-        contentArea.style.lineHeight = currentLineHeight;
-        
-        if (display) {
-            display.innerText = currentLineHeight.toFixed(1);
-        }
-        localStorage.setItem('userLineHeight', currentLineHeight);
+function spinLineHeight(amt) {
+    let nextLH = Math.round((currentLineHeight + amt) * 10) / 10;
+    if (nextLH >= 1.0 && nextLH <= 3.0) {
+        currentLineHeight = nextLH;
+        applyLineHeight();
     }
 }
 
-// စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ခြင်း
-window.addEventListener('DOMContentLoaded', () => {
-    // Line Height ပြန်ခေါ်ရန်
-    const savedLH = localStorage.getItem('userLineHeight');
-    const contentArea = document.querySelector('article');
-    if (savedLH && contentArea) {
-        currentLineHeight = parseFloat(savedLH);
+function applyLineHeight() {
+    const contentArea = document.getElementById('reading-content');
+    if (contentArea) {
         contentArea.style.lineHeight = currentLineHeight;
-        const display = document.getElementById('lh-display');
-        if (display) display.innerText = currentLineHeight.toFixed(1);
     }
-    
-    // (ကျန်တဲ့ event listener များလည်း ပုံမှန်အတိုင်း ထားပါ)
+    const display = document.getElementById('lh-display');
+    if (display) {
+        display.innerText = currentLineHeight.toFixed(1);
+    }
+    localStorage.setItem('userLineHeight', currentLineHeight);
+}
+
+// စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLH = localStorage.getItem('userLineHeight');
+    if (savedLH) {
+        currentLineHeight = parseFloat(savedLH);
+        applyLineHeight();
+    }
 });
 
 // စာကြောင်း ကြား အကွာအဝေး အဆုံး
