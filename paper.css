@@ -201,32 +201,34 @@ body.sepia-mode {
     font-size: 16px !important;
 }
 
-/* ၂။ ပိတ်ရန် ခလုတ် (Close) */
-.setting-menu-close {
+
+/* Setting Header နှင့် ပိတ်ရန်ခလုတ် */
+.setting-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    background: #eadebc; /* အရှင်ဘုရား လိုချင်တဲ့ အရောင် */
-color: #443300;
-    border: 1px solid #443300;
-    border-radius: 6px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d4c5a0;
+}
+
+.setting-title {
+    margin: 0;
+    color: #443300;
+}
+
+.setting-close-btn {
+    font-size: 32px;
+    color: #443300;
     cursor: pointer;
+    line-height: 1;
     font-weight: bold;
 }
 
-.setting-menu-close .nav-icon {
-    font-size: 20px !important;
-    line-height: 1;
+.setting-close-btn:hover {
+    color: #b38b00;
 }
-
-.setting-menu-close .nav-text {
-    font-size: 16px !important;
-}
-
+/*စက်တင် ထွက် ခလုပ်အဆုံး*/
 
 /* ၄။ Floating Buttons (Left Side) */
 .floating-left-group {
