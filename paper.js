@@ -320,12 +320,29 @@ function applyLineHeight() {
     if (contentArea) {
         contentArea.style.lineHeight = currentLineHeight;
     }
+    
+    // ဂဏန်းပြသောနေရာ Update လုပ်ခြင်း
     const display = document.getElementById('lh-display');
     if (display) {
         display.innerText = currentLineHeight.toFixed(1);
     }
+    
+    // Active Button ဖြစ်အောင် အရောင်ပြောင်းခြင်း (အသစ်ထည့်ရန်)
+    const buttons = document.querySelectorAll('.weight-presets button');
+    buttons.forEach(btn => {
+        // ခလုတ်ထဲက စာသားကို စစ်ဆေးပြီး အရောင်ပြောင်းခြင်း
+        if ((currentLineHeight == 1.5 && btn.innerText === 'ကျဉ်း') ||
+            (currentLineHeight == 2.0 && btn.innerText === 'သင့်') ||
+            (currentLineHeight == 2.5 && btn.innerText === 'ကျဲ')) {
+            btn.classList.add('active-preset'); // CSS ရှိပြီးသား Class ကို သုံးပေးခြင်း
+        } else if (btn.innerText === 'ကျဉ်း' || btn.innerText === 'သင့်' || btn.innerText === 'ကျဲ') {
+            btn.classList.remove('active-preset');
+        }
+    });
+
     localStorage.setItem('userLineHeight', currentLineHeight);
 }
+
 
 // စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
 window.addEventListener('DOMContentLoaded', () => {
