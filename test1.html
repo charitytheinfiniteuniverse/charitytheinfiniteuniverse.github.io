@@ -2458,10 +2458,13 @@
            </div>
     </div>
 
-    <div id="toc-overlay" class="toc-overlay">
-        <div class="toc-content">
-            <span class="close-btn" onclick="toggleTOC()">&times;</span>
-            <h1 style="color:#443300;">မာတိကာ</h1>
+
+
+    <div id="toc-overlay" class="toc-overlay" onclick="toggleTOC()" style="display: none;">
+    <div class="toc-content" onclick="event.stopPropagation()">
+        <h1 style="color:#443300;">မာတိကာ</h1>
+        <span class="close-btn" onclick="toggleTOC()">×</span>
+        
             <ul class="toc-list" id="toc-list">
                 
                
