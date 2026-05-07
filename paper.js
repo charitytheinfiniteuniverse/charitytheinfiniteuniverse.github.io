@@ -211,7 +211,6 @@ function applyWeightUpdate() {
         contentArea.style.fontWeight = currentWeight;
     }
 
-    // Spinner Update
     const hundreds = Math.floor(currentWeight / 100);
     const tens = Math.floor((currentWeight % 100) / 10);
     const ones = currentWeight % 10;
@@ -220,7 +219,6 @@ function applyWeightUpdate() {
     document.getElementById('digit-tens').innerText = tens;
     document.getElementById('digit-ones').innerText = ones;
 
-    // Weight အုပ်စု (၁) ထဲက ခလုတ်များကိုပဲ အရောင်ပြောင်းရန်
     const weightButtons = document.querySelectorAll('.setting-item-group:nth-of-type(1) .weight-presets button');
     weightButtons.forEach(btn => {
         btn.classList.remove('active-preset');
@@ -231,6 +229,7 @@ function applyWeightUpdate() {
 
     localStorage.setItem('userFontWeight', currentWeight);
 }
+
 
 
 // ၄။ စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ခြင်း
@@ -328,7 +327,6 @@ function applyLineHeight() {
         display.innerText = currentLineHeight.toFixed(1);
     }
     
-    // Line Height အုပ်စု (၂) ထဲက ခလုတ်များကိုပဲ အရောင်ပြောင်းရန်
     const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(2) .weight-presets button');
     lhButtons.forEach(btn => {
         btn.classList.remove('active-preset');
@@ -336,23 +334,6 @@ function applyLineHeight() {
             (currentLineHeight == 2.0 && btn.innerText === 'သင့်') ||
             (currentLineHeight == 2.5 && btn.innerText === 'ကျဲ')) {
             btn.classList.add('active-preset');
-        }
-    });
-
-    localStorage.setItem('userLineHeight', currentLineHeight);
-}
-
-    
-    // Active Button ဖြစ်အောင် အရောင်ပြောင်းခြင်း (အသစ်ထည့်ရန်)
-    const buttons = document.querySelectorAll('.weight-presets button');
-    buttons.forEach(btn => {
-        // ခလုတ်ထဲက စာသားကို စစ်ဆေးပြီး အရောင်ပြောင်းခြင်း
-        if ((currentLineHeight == 1.5 && btn.innerText === 'ကျဉ်း') ||
-            (currentLineHeight == 2.0 && btn.innerText === 'သင့်') ||
-            (currentLineHeight == 2.5 && btn.innerText === 'ကျဲ')) {
-            btn.classList.add('active-preset'); // CSS ရှိပြီးသား Class ကို သုံးပေးခြင်း
-        } else if (btn.innerText === 'ကျဉ်း' || btn.innerText === 'သင့်' || btn.innerText === 'ကျဲ') {
-            btn.classList.remove('active-preset');
         }
     });
 
