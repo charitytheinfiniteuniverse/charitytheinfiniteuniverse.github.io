@@ -1,4 +1,3 @@
-
 // ၁။ မာတိကာ (Table of Contents) အဖွင့်အပိတ် (Auto-scroll အသစ်ပါဝင်သည်)
 function toggleTOC() {
     const tocOverlay = document.getElementById('toc-overlay');
@@ -211,25 +210,26 @@ function applyWeightUpdate() {
     if (contentArea) {
         contentArea.style.fontWeight = currentWeight;
     }
-    // Spinner Update
-    document.getElementById('digit-hundreds').innerText = Math.floor(currentWeight / 100);
-    document.getElementById('digit-tens').innerText = Math.floor((currentWeight % 100) / 10);
-    document.getElementById('digit-ones').innerText = currentWeight % 10;
 
-    // စာလုံးအထူ အကွက်ထဲက ခလုတ်တွေကိုပဲ သီးသန့်ရှာပြီး အရောင်ပြောင်းခြင်း
-    const weightButtons = document.querySelectorAll('.setting-item-group:nth-of-type(3) .weight-presets button');
-    weightButtons.forEach(btn => {
+    // Spinner ဂဏန်းများကို Update လုပ်ခြင်း
+    const hundreds = Math.floor(currentWeight / 100);
+    const tens = Math.floor((currentWeight % 100) / 10);
+    const ones = currentWeight % 10;
+
+    document.getElementById('digit-hundreds').innerText = hundreds;
+    document.getElementById('digit-tens').innerText = tens;
+    document.getElementById('digit-ones').innerText = ones;
+
+    // Preset ခလုတ်များ Highlight ပြခြင်း
+    document.querySelectorAll('.weight-presets button').forEach(btn => {
         btn.classList.remove('active-preset');
-        // onclick ထဲမှာ လက်ရှိ Weight နံပါတ် ပါ၊ မပါ စစ်ဆေးခြင်း
-        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(currentWeight)) {
+        if (btn.getAttribute('onclick') === `setWeightPreset(${currentWeight})`) {
             btn.classList.add('active-preset');
         }
     });
+
     localStorage.setItem('userFontWeight', currentWeight);
 }
-
-
-
 
 // ၄။ စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ခြင်း
 window.addEventListener('DOMContentLoaded', () => {
@@ -320,26 +320,28 @@ function applyLineHeight() {
     if (contentArea) {
         contentArea.style.lineHeight = currentLineHeight;
     }
+    
+    // ဂဏန်းပြသောနေရာ Update လုပ်ခြင်း
     const display = document.getElementById('lh-display');
     if (display) {
         display.innerText = currentLineHeight.toFixed(1);
     }
     
-    // စာကြောင်းကြား အကွက်ထဲက ခလုတ်တွေကိုပဲ သီးသန့်ရှာပြီး အရောင်ပြောင်းခြင်း
-    const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(4) .weight-presets button');
-    lhButtons.forEach(btn => {
-        btn.classList.remove('active-preset');
-        const txt = btn.innerText;
-        if ((currentLineHeight == 1.5 && txt === 'ကျဉ်း') ||
-            (currentLineHeight == 2.0 && txt === 'သင့်') ||
-            (currentLineHeight == 2.5 && txt === 'ကျဲ')) {
-            btn.classList.add('active-preset');
+    // Active Button ဖြစ်အောင် အရောင်ပြောင်းခြင်း (အသစ်ထည့်ရန်)
+    const buttons = document.querySelectorAll('.weight-presets button');
+    buttons.forEach(btn => {
+        // ခလုတ်ထဲက စာသားကို စစ်ဆေးပြီး အရောင်ပြောင်းခြင်း
+        if ((currentLineHeight == 1.5 && btn.innerText === 'ကျဉ်း') ||
+            (currentLineHeight == 2.0 && btn.innerText === 'သင့်') ||
+            (currentLineHeight == 2.5 && btn.innerText === 'ကျဲ')) {
+            btn.classList.add('active-preset'); // CSS ရှိပြီးသား Class ကို သုံးပေးခြင်း
+        } else if (btn.innerText === 'ကျဉ်း' || btn.innerText === 'သင့်' || btn.innerText === 'ကျဲ') {
+            btn.classList.remove('active-preset');
         }
     });
+
     localStorage.setItem('userLineHeight', currentLineHeight);
 }
-
-
 
 
 // စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
@@ -352,5 +354,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // စာကြောင်း ကြား အကွာအဝေး အဆုံး
+
 
 
