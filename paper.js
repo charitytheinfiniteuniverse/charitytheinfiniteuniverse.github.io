@@ -1,3 +1,4 @@
+
 // ၁။ မာတိကာ (Table of Contents) အဖွင့်အပိတ် (Auto-scroll အသစ်ပါဝင်သည်)
 function toggleTOC() {
     const tocOverlay = document.getElementById('toc-overlay');
@@ -301,9 +302,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // စာကြောင်း ကြား အကွာအဝေး အစ
 
-// Variable ကြေညာခြင်း (ဒါလေးရှိမှ စဖွင့်ချိန်မှာ အလိုအလျောက် အရောင်ပြမှာပါ)
-let currentLineHeight = 2.0;
-
 function setLineHeight(height) {
     currentLineHeight = height;
     applyLineHeight();
@@ -331,7 +329,7 @@ function applyLineHeight() {
     const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(4) .weight-presets button');
     lhButtons.forEach(btn => {
         btn.classList.remove('active-preset');
-        const txt = btn.innerText.trim();
+        const txt = btn.innerText;
         if ((currentLineHeight == 1.5 && txt === 'ကျဉ်း') ||
             (currentLineHeight == 2.0 && txt === 'သင့်') ||
             (currentLineHeight == 2.5 && txt === 'ကျဲ')) {
@@ -342,13 +340,17 @@ function applyLineHeight() {
 }
 
 
+
+
 // စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
 window.addEventListener('DOMContentLoaded', () => {
     const savedLH = localStorage.getItem('userLineHeight');
     if (savedLH) {
         currentLineHeight = parseFloat(savedLH);
+        applyLineHeight();
     }
-    applyLineHeight(); // စာမျက်နှာစဖွင့်ကတည်းက အရောင်တွက်ခိုင်းလိုက်ခြင်း
 });
 
 // စာကြောင်း ကြား အကွာအဝေး အဆုံး
+
+
