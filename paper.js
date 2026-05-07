@@ -301,6 +301,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // စာကြောင်း ကြား အကွာအဝေး အစ
 
+// Variable ကြေညာခြင်း (ဒါလေးရှိမှ စဖွင့်ချိန်မှာ အလိုအလျောက် အရောင်ပြမှာပါ)
 let currentLineHeight = 2.0;
 
 function setLineHeight(height) {
@@ -347,7 +348,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (savedLH) {
         currentLineHeight = parseFloat(savedLH);
     }
-    applyLineHeight();
+    applyLineHeight(); // စာမျက်နှာစဖွင့်ကတည်းက အရောင်တွက်ခိုင်းလိုက်ခြင်း
 });
 
 // စာကြောင်း ကြား အကွာအဝေး အဆုံး
