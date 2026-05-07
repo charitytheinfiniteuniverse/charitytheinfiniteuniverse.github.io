@@ -211,14 +211,12 @@ function applyWeightUpdate() {
         contentArea.style.fontWeight = currentWeight;
     }
 
-    const hundreds = Math.floor(currentWeight / 100);
-    const tens = Math.floor((currentWeight % 100) / 10);
-    const ones = currentWeight % 10;
+    // Spinner Update
+    document.getElementById('digit-hundreds').innerText = Math.floor(currentWeight / 100);
+    document.getElementById('digit-tens').innerText = Math.floor((currentWeight % 100) / 10);
+    document.getElementById('digit-ones').innerText = currentWeight % 10;
 
-    document.getElementById('digit-hundreds').innerText = hundreds;
-    document.getElementById('digit-tens').innerText = tens;
-    document.getElementById('digit-ones').innerText = ones;
-
+    // Weight အုပ်စုထဲက ခလုတ်များကိုပဲ အရောင်ပြောင်းရန် (CSS က .active-preset နာမည်အတိုင်း)
     const weightButtons = document.querySelectorAll('.setting-item-group:nth-of-type(1) .weight-presets button');
     weightButtons.forEach(btn => {
         btn.classList.remove('active-preset');
@@ -229,6 +227,7 @@ function applyWeightUpdate() {
 
     localStorage.setItem('userFontWeight', currentWeight);
 }
+
 
 
 
@@ -327,18 +326,20 @@ function applyLineHeight() {
         display.innerText = currentLineHeight.toFixed(1);
     }
     
+    // Line Height အုပ်စုထဲက ခလုတ်များကိုပဲ အရောင်ပြောင်းရန်
     const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(2) .weight-presets button');
     lhButtons.forEach(btn => {
         btn.classList.remove('active-preset');
-        if ((currentLineHeight == 1.5 && btn.innerText === 'ကျဉ်း') ||
-            (currentLineHeight == 2.0 && btn.innerText === 'သင့်') ||
-            (currentLineHeight == 2.5 && btn.innerText === 'ကျဲ')) {
+        if ((currentLineHeight == 1.5 && btn.innerText.includes('ကျဉ်း')) ||
+            (currentLineHeight == 2.0 && btn.innerText.includes('သင့်')) ||
+            (currentLineHeight == 2.5 && btn.innerText.includes('ကျဲ'))) {
             btn.classList.add('active-preset');
         }
     });
 
     localStorage.setItem('userLineHeight', currentLineHeight);
 }
+
 
 
 // စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
