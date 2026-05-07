@@ -210,21 +210,20 @@ function applyWeightUpdate() {
     if (contentArea) {
         contentArea.style.fontWeight = currentWeight;
     }
-
     // Spinner Update
     document.getElementById('digit-hundreds').innerText = Math.floor(currentWeight / 100);
     document.getElementById('digit-tens').innerText = Math.floor((currentWeight % 100) / 10);
     document.getElementById('digit-ones').innerText = currentWeight % 10;
 
-    // Weight အုပ်စုထဲက ခလုတ်များကိုပဲ အရောင်ပြောင်းရန် (CSS က .active-preset နာမည်အတိုင်း)
-    const weightButtons = document.querySelectorAll('.setting-item-group:nth-of-type(1) .weight-presets button');
+    // စာလုံးအထူ အကွက်ထဲက ခလုတ်တွေကိုပဲ သီးသန့်ရှာပြီး အရောင်ပြောင်းခြင်း
+    const weightButtons = document.querySelectorAll('.setting-item-group:nth-of-type(3) .weight-presets button');
     weightButtons.forEach(btn => {
         btn.classList.remove('active-preset');
-        if (btn.getAttribute('onclick') === `setWeightPreset(${currentWeight})`) {
+        // onclick ထဲမှာ လက်ရှိ Weight နံပါတ် ပါ၊ မပါ စစ်ဆေးခြင်း
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(currentWeight)) {
             btn.classList.add('active-preset');
         }
     });
-
     localStorage.setItem('userFontWeight', currentWeight);
 }
 
@@ -320,25 +319,25 @@ function applyLineHeight() {
     if (contentArea) {
         contentArea.style.lineHeight = currentLineHeight;
     }
-    
     const display = document.getElementById('lh-display');
     if (display) {
         display.innerText = currentLineHeight.toFixed(1);
     }
     
-    // Line Height အုပ်စုထဲက ခလုတ်များကိုပဲ အရောင်ပြောင်းရန်
-    const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(2) .weight-presets button');
+    // စာကြောင်းကြား အကွက်ထဲက ခလုတ်တွေကိုပဲ သီးသန့်ရှာပြီး အရောင်ပြောင်းခြင်း
+    const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(4) .weight-presets button');
     lhButtons.forEach(btn => {
         btn.classList.remove('active-preset');
-        if ((currentLineHeight == 1.5 && btn.innerText.includes('ကျဉ်း')) ||
-            (currentLineHeight == 2.0 && btn.innerText.includes('သင့်')) ||
-            (currentLineHeight == 2.5 && btn.innerText.includes('ကျဲ'))) {
+        const txt = btn.innerText;
+        if ((currentLineHeight == 1.5 && txt === 'ကျဉ်း') ||
+            (currentLineHeight == 2.0 && txt === 'သင့်') ||
+            (currentLineHeight == 2.5 && txt === 'ကျဲ')) {
             btn.classList.add('active-preset');
         }
     });
-
     localStorage.setItem('userLineHeight', currentLineHeight);
 }
+
 
 
 
