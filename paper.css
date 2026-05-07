@@ -517,13 +517,15 @@ body.focus-mode .top-controls {
 
 /* စာလုံးအထူအပါး အတွက် Style အစ */
 .setting-item-group {
-    padding: 15px;
+    padding: 12px;
     background: #eadebc;
     border: 1px solid #443300;
-    border-radius: 8px;
-    margin: 10px 0;
+    border-radius: 6px;
+    margin: 8px 0;
     text-align: center;
 }
+
+
 
 .setting-title {
     display: block;
