@@ -301,6 +301,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // စာကြောင်း ကြား အကွာအဝေး အစ
 
+let currentLineHeight = 2.0;
+
 function setLineHeight(height) {
     currentLineHeight = height;
     applyLineHeight();
@@ -328,7 +330,7 @@ function applyLineHeight() {
     const lhButtons = document.querySelectorAll('.setting-item-group:nth-of-type(4) .weight-presets button');
     lhButtons.forEach(btn => {
         btn.classList.remove('active-preset');
-        const txt = btn.innerText;
+        const txt = btn.innerText.trim();
         if ((currentLineHeight == 1.5 && txt === 'ကျဉ်း') ||
             (currentLineHeight == 2.0 && txt === 'သင့်') ||
             (currentLineHeight == 2.5 && txt === 'ကျဲ')) {
@@ -339,15 +341,13 @@ function applyLineHeight() {
 }
 
 
-
-
 // စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
 window.addEventListener('DOMContentLoaded', () => {
     const savedLH = localStorage.getItem('userLineHeight');
     if (savedLH) {
         currentLineHeight = parseFloat(savedLH);
-        applyLineHeight();
     }
+    applyLineHeight();
 });
 
 // စာကြောင်း ကြား အကွာအဝေး အဆုံး
