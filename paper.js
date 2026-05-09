@@ -354,6 +354,3 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // စာကြောင်း ကြား အကွာအဝေး အဆုံး
-
-
-
