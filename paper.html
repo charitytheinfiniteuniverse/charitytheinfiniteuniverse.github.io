@@ -24,12 +24,6 @@
             <div class="right-controls">
     <button class="setting-btn" onclick="toggleSetting()">​⚙</button>
 
-    <div class="font-controls">
-        
-        <button onclick="changeFontSize('small')">-</button>
-        <span id="font-size-display" style="margin: 0 2px; font-weight: bold; color: #443300;">20</span>
-        <button onclick="changeFontSize('large')">+</button>
-    </div>
 
    <button id="modeToggle">☀️</button>    
 
@@ -2659,51 +2653,220 @@
             
             <button class="setting-item" onclick="downloadPDF()">📄 စာအုပ်အဖြစ်သိမ်းရန်   </button>
           
+
+<!-- Font Size -->
+<div class="setting-item-group">
+
+    <span class="setting-title">
+        စာလုံးအရွယ်အစား
+    </span>
+
+    <div class="font-size-control">
+
+        <button id="font-decrease">
+            −
+        </button>
+
+        <span id="font-size-display">
+            19
+        </span>
+
+        <button id="font-increase">
+            +
+        </button>
+
+    </div>
+
+</div>
         
-        <div class="setting-item-group">
-    <span class="setting-title">စာလုံးအထူ ချိန်ညှိရန်</span>
-    
-    <div class="weight-presets">
-        <button onclick="setWeightPreset(300)">အပါး</button>
-        <button onclick="setWeightPreset(500)">အလတ်</button>
-        <button onclick="setWeightPreset(900)">အထူ</button>
+        <!-- Font Weight -->
+<div class="setting-item-group">
+
+    <span class="setting-title">
+        စာလုံးအထူ
+    </span>
+
+    <div class="preset-group" id="weight-buttons">
+
+        <button
+            class="preset-btn"
+            data-weight="300">
+            အပါး
+        </button>
+
+        <button
+            class="preset-btn active-preset"
+            data-weight="500">
+            အလတ်
+        </button>
+
+        <button
+            class="preset-btn"
+            data-weight="900">
+            အထူ
+        </button>
+
     </div>
 
-    <div class="weight-spinner-wrapper">
+    <div class="spinner-wrapper">
+
         <div class="spinner-box">
-            <button onclick="spinWeight(100)">▲</button>
-            <span id="digit-hundreds">4</span>
-            <button onclick="spinWeight(-100)">▼</button>
+
+            <button id="weight-plus-100">
+                ▲
+            </button>
+
+            <span id="digit-hundreds">
+                5
+            </span>
+
+            <button id="weight-minus-100">
+                ▼
+            </button>
+
         </div>
+
         <div class="spinner-box">
-            <button onclick="spinWeight(10)">▲</button>
-            <span id="digit-tens">0</span>
-            <button onclick="spinWeight(-10)">▼</button>
+
+            <button id="weight-plus-10">
+                ▲
+            </button>
+
+            <span id="digit-tens">
+                0
+            </span>
+
+            <button id="weight-minus-10">
+                ▼
+            </button>
+
         </div>
+
         <div class="spinner-box">
-            <button onclick="spinWeight(1)">▲</button>
-            <span id="digit-ones">0</span>
-            <button onclick="spinWeight(-1)">▼</button>
+
+            <button id="weight-plus-1">
+                ▲
+            </button>
+
+            <span id="digit-ones">
+                0
+            </span>
+
+            <button id="weight-minus-1">
+                ▼
+            </button>
+
         </div>
+
     </div>
+
 </div>
 
-                    <div class="setting-item-group">
-    <span class="setting-title">စာကြောင်းကြား အကွာအဝေး</span>
-    <div class="weight-presets">
-        <button onclick="setLineHeight(1.5)">ကျဉ်း</button>
-        <button onclick="setLineHeight(2.0)">သင့်</button>
-        <button onclick="setLineHeight(2.5)">ကျဲ</button>
+
+
+
+                    <!-- စာကြောင်းကြား -->
+<div class="setting-item-group">
+
+    <span class="setting-title">
+        စာကြောင်းကြား အကွာအဝေး
+    </span>
+
+    <div class="preset-group">
+
+        <button
+            class="preset-btn line-btn"
+            data-value="1.5">
+            ကျဉ်း
+        </button>
+
+        <button
+            class="preset-btn line-btn"
+            data-value="2.0">
+            အလတ်
+        </button>
+
+        <button
+            class="preset-btn line-btn"
+            data-value="2.5">
+            ကျယ်
+        </button>
+
     </div>
-    <div class="weight-presets">
-        <button onclick="spinLineHeight(-0.1)">-</button>
-        <span id="lh-display" style="padding: 5px 15px; font-weight: bold; color: #443300;">2.0</span>
-        <button onclick="spinLineHeight(0.1)">+</button>
+
+    <div class="adjust-group">
+
+        <button onclick="adjustLineHeight(-0.1)">
+            −
+        </button>
+
+        <span id="lh-display">
+            2.0
+        </span>
+
+        <button onclick="adjustLineHeight(0.1)">
+            +
+        </button>
+
     </div>
+
 </div>
+
+
+
+<!-- စာလုံးကြား -->
+<div class="setting-item-group">
+
+    <span class="setting-title">
+        စာလုံးကြား အကွာအဝေး
+    </span>
+
+    <div class="preset-group">
+
+        <button
+            class="preset-btn letter-btn"
+            data-value="0">
+            ကျဉ်း
+        </button>
+
+        <button
+            class="preset-btn letter-btn"
+            data-value="1">
+            အလတ်
+        </button>
+
+        <button
+            class="preset-btn letter-btn"
+            data-value="2">
+            ကျယ်
+        </button>
+
+    </div>
+
+    <div class="adjust-group">
+
+        <button onclick="adjustLetterSpacing(-0.5)">
+            −
+        </button>
+
+        <span id="ls-display">
+            0
+        </span>
+
+        <button onclick="adjustLetterSpacing(0.5)">
+            +
+        </button>
+
+    </div>
+
+</div>
+
+
+        
            </div>
     </div>
 
+    
 
 
     <div id="toc-overlay" class="toc-overlay" onclick="toggleTOC()" style="display: none;">
