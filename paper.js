@@ -45,30 +45,7 @@ function downloadPDF() {
     }, 500);
 }
 
-// ၄။ စာလုံးအကြီးအသေး ချိန်ညှိရန် (နံပါတ်ပြသခြင်းအပါအဝင်)
-let currentFontSize = 19;
 
-function changeFontSize(action) {
-    const display = document.getElementById('font-size-display');
-    const contentArea = document.getElementById('reading-content');
-    if (!contentArea) return;
-
-    if (action === 'large' && currentFontSize < 70) {
-        currentFontSize += 1;
-    } else if (action === 'small' && currentFontSize > 4) {
-        currentFontSize -= 1;
-    }
-    
-    // စာလုံးဆိုဒ်ကို ပြောင်းလဲခြင်း
-    contentArea.style.fontSize = currentFontSize + 'px';
-    
-    // နံပါတ်ပြသသည့်နေရာရှိလျှင် Update လုပ်ခြင်း
-    if (display) {
-        display.innerText = currentFontSize;
-    }
-    
-    localStorage.setItem('userFontSize', currentFontSize);
-}
 
 // ၅။ ဖတ်လက်စစာမျက်နှာကို မှတ်ထားပေးရန်
 function saveCurrentPage() {
@@ -186,60 +163,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// စာလုံးအထူအပါး အစ
-let currentWeight = 400;
 
-// ၁။ အမြန်ရွေးချယ်သည့်စနစ်
-function setWeightPreset(weight) {
-    currentWeight = weight;
-    applyWeightUpdate();
-}
-
-// ၂။ ဂဏန်းတစ်ခုချင်း လှည့်သည့်စနစ်
-function spinWeight(amount) {
-    let nextWeight = currentWeight + amount;
-    if (nextWeight >= 100 && nextWeight <= 900) {
-        currentWeight = nextWeight;
-        applyWeightUpdate();
-    }
-}
-
-// ၃။ အပြောင်းအလဲများကို အသက်ဝင်စေခြင်း
-function applyWeightUpdate() {
-    const contentArea = document.querySelector('article');
-    if (contentArea) {
-        contentArea.style.fontWeight = currentWeight;
-    }
-
-    // Spinner ဂဏန်းများကို Update လုပ်ခြင်း
-    const hundreds = Math.floor(currentWeight / 100);
-    const tens = Math.floor((currentWeight % 100) / 10);
-    const ones = currentWeight % 10;
-
-    document.getElementById('digit-hundreds').innerText = hundreds;
-    document.getElementById('digit-tens').innerText = tens;
-    document.getElementById('digit-ones').innerText = ones;
-
-    // Preset ခလုတ်များ Highlight ပြခြင်း
-    document.querySelectorAll('.weight-presets button').forEach(btn => {
-        btn.classList.remove('active-preset');
-        if (btn.getAttribute('onclick') === `setWeightPreset(${currentWeight})`) {
-            btn.classList.add('active-preset');
-        }
-    });
-
-    localStorage.setItem('userFontWeight', currentWeight);
-}
-
-// ၄။ စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ခြင်း
-window.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem('userFontWeight');
-    if (saved) {
-        currentWeight = parseInt(saved);
-    }
-    applyWeightUpdate();
-});
-// စာလုံးအထူအပါး အဆုံး
 
 
 // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အစ
@@ -300,57 +224,361 @@ document.addEventListener("DOMContentLoaded", function() {
 
          // paper.html ထဲတွင် ဖိထားမှ စာရွေးလို့ ရမဲ့ကုဒ် အဆုံး               
 
-// စာကြောင်း ကြား အကွာအဝေး အစ
 
-function setLineHeight(height) {
-    currentLineHeight = height;
-    applyLineHeight();
-}
 
-function spinLineHeight(amt) {
-    let nextLH = Math.round((currentLineHeight + amt) * 10) / 10;
-    if (nextLH >= 1.0 && nextLH <= 3.0) {
-        currentLineHeight = nextLH;
-        applyLineHeight();
-    }
-}
+
+
+/* =========================
+   LINE HEIGHT SYSTEM
+========================= */
+
+let currentLineHeight = 2.0;
+
+const lineButtons =
+document.querySelectorAll('.line-btn');
 
 function applyLineHeight() {
-    const contentArea = document.getElementById('reading-content');
-    if (contentArea) {
-        contentArea.style.lineHeight = currentLineHeight;
+
+    const content =
+    document.getElementById('reading-content');
+
+    if (content) {
+
+        content.style.lineHeight =
+            currentLineHeight;
     }
-    
-    // ဂဏန်းပြသောနေရာ Update လုပ်ခြင်း
-    const display = document.getElementById('lh-display');
-    if (display) {
-        display.innerText = currentLineHeight.toFixed(1);
-    }
-    
-    // Active Button ဖြစ်အောင် အရောင်ပြောင်းခြင်း (အသစ်ထည့်ရန်)
-    const buttons = document.querySelectorAll('.weight-presets button');
-    buttons.forEach(btn => {
-        // ခလုတ်ထဲက စာသားကို စစ်ဆေးပြီး အရောင်ပြောင်းခြင်း
-        if ((currentLineHeight == 1.5 && btn.innerText === 'ကျဉ်း') ||
-            (currentLineHeight == 2.0 && btn.innerText === 'သင့်') ||
-            (currentLineHeight == 2.5 && btn.innerText === 'ကျဲ')) {
-            btn.classList.add('active-preset'); // CSS ရှိပြီးသား Class ကို သုံးပေးခြင်း
-        } else if (btn.innerText === 'ကျဉ်း' || btn.innerText === 'သင့်' || btn.innerText === 'ကျဲ') {
-            btn.classList.remove('active-preset');
+
+    document.getElementById('lh-display')
+        .innerText =
+        currentLineHeight.toFixed(1);
+
+    lineButtons.forEach(btn => {
+
+        btn.classList.remove('active-preset');
+
+        if (
+            parseFloat(btn.dataset.value)
+            === currentLineHeight
+        ) {
+
+            btn.classList.add('active-preset');
         }
     });
 
-    localStorage.setItem('userLineHeight', currentLineHeight);
+    localStorage.setItem(
+        'userLineHeight',
+        currentLineHeight
+    );
 }
 
+function adjustLineHeight(amount) {
 
-// စာမျက်နှာပွင့်လျှင် ပြန်ခေါ်ရန်
-window.addEventListener('DOMContentLoaded', () => {
-    const savedLH = localStorage.getItem('userLineHeight');
-    if (savedLH) {
-        currentLineHeight = parseFloat(savedLH);
+    let next =
+        Math.round(
+            (currentLineHeight + amount) * 10
+        ) / 10;
+
+    if (next >= 1.0 && next <= 3.0) {
+
+        currentLineHeight = next;
+
         applyLineHeight();
     }
+}
+
+lineButtons.forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+        currentLineHeight =
+            parseFloat(btn.dataset.value);
+
+        applyLineHeight();
+    });
 });
 
-// စာကြောင်း ကြား အကွာအဝေး အဆုံး
+
+
+/* =========================
+   LETTER SPACING SYSTEM
+========================= */
+
+let currentLetterSpacing = 0;
+
+const letterButtons =
+document.querySelectorAll('.letter-btn');
+
+function applyLetterSpacing() {
+
+    const content =
+    document.getElementById('reading-content');
+
+    if (content) {
+
+        content.style.letterSpacing =
+            currentLetterSpacing + 'px';
+    }
+
+    document.getElementById('ls-display')
+        .innerText =
+        currentLetterSpacing;
+
+    letterButtons.forEach(btn => {
+
+        btn.classList.remove('active-preset');
+
+        if (
+            parseFloat(btn.dataset.value)
+            === currentLetterSpacing
+        ) {
+
+            btn.classList.add('active-preset');
+        }
+    });
+
+    localStorage.setItem(
+        'userLetterSpacing',
+        currentLetterSpacing
+    );
+}
+
+function adjustLetterSpacing(amount) {
+
+    let next =
+        Math.round(
+            (currentLetterSpacing + amount) * 10
+        ) / 10;
+
+    if (next >= 0 && next <= 10) {
+
+        currentLetterSpacing = next;
+
+        applyLetterSpacing();
+    }
+}
+
+letterButtons.forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+        currentLetterSpacing =
+            parseFloat(btn.dataset.value);
+
+        applyLetterSpacing();
+    });
+});
+
+
+
+/* =========================
+   LOAD SAVED SETTINGS
+========================= */
+
+window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const savedLH =
+            localStorage.getItem(
+                'userLineHeight'
+            );
+
+        if (savedLH !== null) {
+
+            currentLineHeight =
+                parseFloat(savedLH);
+        }
+
+        applyLineHeight();
+
+
+
+        const savedLS =
+            localStorage.getItem(
+                'userLetterSpacing'
+            );
+
+        if (savedLS !== null) {
+
+            currentLetterSpacing =
+                parseFloat(savedLS);
+        }
+
+        applyLetterSpacing();
+    }
+);
+
+
+// ===== Optimized Font System =====
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const article =
+        document.querySelector('article');
+
+    // ===== FONT SIZE =====
+
+    const fontDisplay =
+        document.getElementById(
+            'font-size-display'
+        );
+
+    let fontSize =
+        parseInt(
+            localStorage.getItem('userFontSize')
+        ) || 19;
+
+    function renderFontSize() {
+
+        article.style.fontSize =
+            fontSize + 'px';
+
+        fontDisplay.textContent =
+            fontSize;
+
+        localStorage.setItem(
+            'userFontSize',
+            fontSize
+        );
+    }
+
+    document
+        .getElementById('font-increase')
+        .addEventListener('click', () => {
+
+            if (fontSize < 70) {
+
+                fontSize++;
+
+                renderFontSize();
+            }
+        });
+
+    document
+        .getElementById('font-decrease')
+        .addEventListener('click', () => {
+
+            if (fontSize > 10) {
+
+                fontSize--;
+
+                renderFontSize();
+            }
+        });
+
+    renderFontSize();
+
+
+    // ===== FONT WEIGHT =====
+
+    let currentWeight =
+        parseInt(
+            localStorage.getItem(
+                'userFontWeight'
+            )
+        ) || 500;
+
+    const weightButtons =
+        document.querySelectorAll(
+            '#weight-buttons .preset-btn'
+        );
+
+    const hundreds =
+        document.getElementById(
+            'digit-hundreds'
+        );
+
+    const tens =
+        document.getElementById(
+            'digit-tens'
+        );
+
+    const ones =
+        document.getElementById(
+            'digit-ones'
+        );
+
+    function renderWeight() {
+
+        article.style.fontWeight =
+            currentWeight;
+
+        hundreds.textContent =
+            Math.floor(currentWeight / 100);
+
+        tens.textContent =
+            Math.floor(
+                (currentWeight % 100) / 10
+            );
+
+        ones.textContent =
+            currentWeight % 10;
+
+        weightButtons.forEach(btn => {
+
+            btn.classList.toggle(
+                'active-preset',
+
+                parseInt(
+                    btn.dataset.weight
+                ) === currentWeight
+            );
+        });
+
+        localStorage.setItem(
+            'userFontWeight',
+            currentWeight
+        );
+    }
+
+    function changeWeight(amount) {
+
+        const next =
+            currentWeight + amount;
+
+        if (next >= 100 && next <= 900) {
+
+            currentWeight = next;
+
+            renderWeight();
+        }
+    }
+
+    weightButtons.forEach(btn => {
+
+        btn.addEventListener('click', () => {
+
+            currentWeight =
+                parseInt(btn.dataset.weight);
+
+            renderWeight();
+        });
+    });
+
+    document
+        .getElementById('weight-plus-100')
+        .onclick = () => changeWeight(100);
+
+    document
+        .getElementById('weight-minus-100')
+        .onclick = () => changeWeight(-100);
+
+    document
+        .getElementById('weight-plus-10')
+        .onclick = () => changeWeight(10);
+
+    document
+        .getElementById('weight-minus-10')
+        .onclick = () => changeWeight(-10);
+
+    document
+        .getElementById('weight-plus-1')
+        .onclick = () => changeWeight(1);
+
+    document
+        .getElementById('weight-minus-1')
+        .onclick = () => changeWeight(-1);
+
+    renderWeight();
+
+});
