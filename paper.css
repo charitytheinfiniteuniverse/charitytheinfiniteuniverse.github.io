@@ -91,7 +91,7 @@ body.sepia-mode {
     gap: 8px; /* ခလုတ်တွေကြား အကွာအဝေး */
     font-size: 20px !important;
     /* အရှင်ဘုရား လိုချင်သည့်အတိုင်း ဘယ်ဘက်သို့ တိုးရန် */
-    margin-right: 30px; /* ညာဘက်အစွန်းမှ ခပ်ခွာခွာဖြစ်အောင် နေရာချခြင်း */
+    margin-right: 35px; /* ညာဘက်အစွန်းမှ ခပ်ခွာခွာဖြစ်အောင် နေရာချခြင်း */
 }
 
 
@@ -155,6 +155,8 @@ body.sepia-mode {
     position: absolute;
     top: 65px; right: 20px;
     padding: 20px;
+    max-height: 80vh;
+overflow-y: auto;
     border-radius: 12px;
     border: 2px solid #443300;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -622,13 +624,125 @@ article {
 
 
 
-/* စာကြောင်းကြားအကွာအဝေး ချိန်ညှိရန် အစ*/
-#lh-display {
-    min-width: 40px; 
-    text-align: center;
-    border: 1px solid #443300;
-    border-radius: 4px;
+/* ===== Modern Preset System ===== */
+
+.preset-group,
+.adjust-group {
+
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.preset-btn,
+.adjust-group button {
+
     background: #f4ecd8;
+    border: 1px solid #443300;
+    color: #443300;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.preset-btn:hover,
+.adjust-group button:hover {
+
+    transform: translateY(-1px);
+}
+
+.preset-btn.active-preset {
+
+    background: #443300;
+    color: #f4ecd8;
+}
+
+#lh-display,
+#ls-display {
+
+    min-width: 55px;
+
+    text-align: center;
+
+    background: #f4ecd8;
+
+    border: 1px solid #443300;
+
+    border-radius: 6px;
+
+    padding: 8px 10px;
+
+    font-weight: bold;
+
     color: #443300;
 }
-/* စာကြောင်းကြားအကွာအဝေး ချိန်ညှိရန် အဆုံး*/
+
+
+/* ===== Optimized Setting UI ===== */
+
+.preset-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.preset-btn {
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    color: #443300;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.15s ease;
+}
+
+.preset-btn.active-preset {
+    background: #443300;
+    color: #f4ecd8;
+}
+
+.spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.font-size-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.font-size-control button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #443300;
+    background: #f4ecd8;
+    color: #443300;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#font-size-display {
+    min-width: 50px;
+    text-align: center;
+    padding: 6px 10px;
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #443300;
+}
