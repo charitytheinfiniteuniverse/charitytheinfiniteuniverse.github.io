@@ -136,6 +136,7 @@ body.sepia-mode {
     font-weight: bold;
     color: #443300;
     font-size: 1.2rem;
+    
 }
 
 
@@ -206,11 +207,15 @@ overflow-y: auto;
 
 /* Setting Header နှင့် ပိတ်ရန်ခလုတ် */
 .setting-header {
+    position: sticky;
+    top: -20px;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    padding-bottom: 10px;
+    padding: 10px 0 10px 0;
+    background: #f4ecd8;
     border-bottom: 1px solid #d4c5a0;
 }
 
@@ -261,31 +266,6 @@ overflow-y: auto;
 }
 
 
-
-
-.top-btn {
-    background: #443300;
-    color: #f4ecd8;
-    width: 35px;  
-    height: 35px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%; 
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    opacity: 0.8; 
-    transition: 0.3s;
-}    border: none;
-    padding: 12px 20px;
-    border-radius: 25px; 
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    text-align: center;
-}
 
 .top-btn {
     background: #443300;
@@ -537,27 +517,7 @@ body.focus-mode .top-controls {
     font-size: 16px !important;
 }
 
-.weight-presets {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 15px;
-}
 
-.weight-presets button {
-    background: #f4ecd8;
-    border: 1px solid #443300;
-   color: #443300; 
-    padding: 5px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.weight-presets button.active-preset {
-    background: #443300;
-    color: #f4ecd8;
-}
 
 .weight-spinner-wrapper {
     display: flex;
@@ -722,6 +682,7 @@ article {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    margin-bottom: 15px;
 }
 
 .font-size-control button {
