@@ -330,7 +330,7 @@ body.sepia-mode {
 /* ၂။ "မာတိကာ" ခေါင်းစဉ် (မရွေ့ဘဲ Fixed ဖြစ်နေမည့်အပိုင်း) */
 .toc-content h1 {
     margin: 0;
-    padding: 20px 25px;
+    padding: 10px 15px;
     background: #eadebc; /* ခေါင်းစဉ်ကို အရောင်ခွဲထားခြင်း */
     border-bottom: 2px solid #443300;
     font-size: 1.5rem;
@@ -371,11 +371,6 @@ body.sepia-mode {
 .toc-list li a:visited {
     color: #443300 !important; 
 }
-
-
-
-
-
 
 
 /* ခေါင်းစဉ်ကြီးလျှင် အောက်ကြောင်းဆင်းပေးရန် ပြင်ဆင်ချက် */
@@ -715,3 +710,89 @@ article {
     font-weight: bold;
     color: #443300;
 }
+
+/* =========================
+   TOC HEADER
+========================= */
+
+.toc-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   TOC SEARCH BAR
+========================= */
+
+#toc-search {
+
+    flex: 1;
+
+    padding: 10px 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+/* =========================
+   TOC JUMP BUTTONS
+========================= */
+
+.toc-jump-buttons {
+
+    position: absolute;
+
+    right: 16px;
+
+    bottom: 16px;
+
+    display: flex;
+
+    gap: 10px;
+
+    z-index: 50;
+
+    width: fit-content;
+}
+
+
+/* Jump Buttons */
+
+.toc-jump-buttons button {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+
+/* Hover */
+
+.toc-jump-buttons button:hover {
+
+    transform: scale(1.08);
+}
+/* TOC JUMP BUTTONS အဆုံး*/
