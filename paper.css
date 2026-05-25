@@ -306,11 +306,6 @@ body.sepia-mode {
     z-index: 1050;
 }
 
-
-
-
-
-
 /* ၁။ မာတိကာ Box အပြင်ဘောင် (Header နဲ့ List ကို ခွဲထုတ်ထားပါသည်) */
 .toc-content {
     background: #f4ecd8;
@@ -920,10 +915,12 @@ border: none;
 
 border-radius: 8px;
 
-background: #443300;
+background: #f4ecd8;
 
-color: #f4ecd8;
+color: #443300;
 
+    border: 1px solid #443300;
+    
 font-size: 18px;
 
 cursor: pointer;
@@ -963,9 +960,11 @@ border: none;
 
 border-radius: 8px;
 
-background: #443300;
+background: #f4ecd8;
 
-color: #f4ecd8;
+color: #443300;
+
+ border: 1px solid #443300;   
 
 font-weight: bold;
 
@@ -1089,4 +1088,17 @@ left: 65px;
 
 }
 
-}/*အသံ ဘားတန်းအတွက် ကုဒ် အဆုံး*/
+}
+/* =========================
+ACTIVE AUDIO MODE
+========================= */
+
+.paper-mode-active {
+
+background: #443300 !important;
+
+color: #f4ecd8 !important;
+
+}
+
+/*အသံ။rgba(234, 222, 188, 0.9) #eadebc  #b38b00 #ffffff ဘားတန်းအတွက် ကုဒ် အဆုံး*/
