@@ -935,6 +935,126 @@ BODY
 margin-top: 12px;
 }
 
+
+
+/*  SLEEP TIMER  */
+
+.paper-sleep-timer {
+
+    margin-top: 14px;
+
+    padding: 12px;
+
+    background: #f4ecd8;
+
+    border: 1px solid #443300;
+
+    border-radius: 10px;
+
+}
+
+.paper-sleep-title {
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #443300;
+
+    margin-bottom: 10px;
+
+}
+
+.paper-sleep-controls {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+}
+
+#paper-sleep-input {
+
+    flex: 1;
+
+    padding: 8px;
+
+    border-radius: 8px;
+
+    border: 1px solid #443300;
+
+    background: #fffdf8;
+
+    color: #443300;
+
+    font-size: 14px;
+
+    outline: none;
+
+}
+
+#paper-sleep-unit {
+
+    width: 100px;
+
+    border-radius: 8px;
+
+    border: 1px solid #443300;
+
+    background: #fffdf8;
+
+    color: #443300;
+
+    padding: 8px;
+
+    font-size: 14px;
+
+}
+
+.paper-sleep-buttons {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+.paper-sleep-buttons button {
+
+    flex: 1;
+
+    padding: 8px;
+
+    border-radius: 8px;
+
+    border: 1px solid #443300;
+
+    background: #eadebc;
+
+    color: #443300;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+#paper-sleep-status {
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #443300;
+
+    text-align: center;
+
+}/*  SLEEP TIMERအဆုံး*/
+
 /* =========================
 CONTROLS
 ========================= */
