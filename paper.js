@@ -7,22 +7,41 @@ let currentLineHeight = 1.7;
 let currentLetterSpacing = 0;
 /* ========================= SEMANTIC SYSTEM ========================= */
 function buildSemanticParagraphs() {
-    const containers = document.querySelectorAll('.raw-text');
-    let globalIndex = 1;
-    containers.forEach((container) => {
-        const rawText = container.innerText.trim();
-        const paragraphs = rawText
-            .split(/\n\s*\n/)
-            .filter(p => p.trim() !== '');
-        container.innerHTML = '';
-        paragraphs.forEach((text) => {
-            const p = document.createElement('p');
-            p.setAttribute('data-p', globalIndex);
-            p.textContent = text.trim();
-            container.appendChild(p);
-            globalIndex++;
-        });
-    });
+    const containers = document.querySelectorAll('.raw-text');
+    let globalIndex = 1;
+
+    containers.forEach((container) => {
+
+        // 🔥 IMPORTANT FIX: textContent
+        const rawText = container.textContent.trim();
+
+        const paragraphs = rawText
+            .split(/\n\s*\n/)
+            .filter(p => p.trim() !== '');
+
+        container.innerHTML = '';
+
+        paragraphs.forEach((text) => {
+
+            const cleanText = text.trim();
+
+            // ===== GAP SYSTEM =====
+            if (cleanText === '@@gap') {
+                const gap = document.createElement('div');
+                gap.className = 'big-gap';
+                container.appendChild(gap);
+                return;
+            }
+
+            // ===== PARAGRAPH =====
+            const p = document.createElement('p');
+            p.setAttribute('data-p', globalIndex);
+            p.textContent = cleanText;
+
+            container.appendChild(p);
+            globalIndex++;
+        });
+    });
 }
 function saveReadingPosition() {
     const paragraphs =
@@ -691,6 +710,10 @@ function init() {
             }
         });
     }
+
+
+
+    
     /* ===== EXPORT FUNCTIONS ===== */
     window.toggleTOC = toggleTOC;
     window.toggleSetting = toggleSetting;
@@ -706,4 +729,450 @@ document.addEventListener(
     'DOMContentLoaded',
     init
 );
-})();
+})();/*SINGLE DOMCONTENTLOADED* အဆုံး/
+
+
+
+/* =========================
+PAPER AUDIO SYSTEM
+========================= */
+
+const paperAudio =
+document.getElementById(
+'paper-audio'
+);
+
+const paperAudioBar =
+document.getElementById(
+'paper-audio-bar'
+);
+
+const paperPlayBtn =
+document.getElementById(
+'paper-play-btn'
+);
+
+const paperSeekbar =
+document.getElementById(
+'paper-seekbar'
+);
+
+const paperNowPlaying =
+document.getElementById(
+'paper-now-playing'
+);
+
+const paperTimeDisplay =
+document.getElementById(
+'paper-time-display'
+);
+
+const paperCloseBtn =
+document.getElementById(
+'paper-close-btn'
+);
+
+const paperMinimizeBtn =
+document.getElementById(
+'paper-minimize-btn'
+);
+
+const paperHideBtn =
+document.getElementById(
+'paper-hide-btn'
+);
+
+const paperShowBarBtn =
+document.getElementById(
+'paper-show-bar-btn'
+);
+
+const paperFasterBtn =
+document.getElementById(
+'paper-faster-btn'
+);
+
+const paperSlowerBtn =
+document.getElementById(
+'paper-slower-btn'
+);
+
+const paperSpeedDisplay =
+document.getElementById(
+'paper-speed-display'
+);
+
+/* =========================
+STATE
+========================= */
+
+let currentSpeakerButton = null;
+
+let currentSpeed = 1;
+
+/* =========================
+TOGGLE AUDIO
+========================= */
+
+window.togglePaperAudio =
+function(
+button,
+src,
+title
+) {
+
+/* same audio + playing */
+
+if (
+paperAudio.src.includes(src)
+&&
+!paperAudio.paused
+) {
+
+paperAudio.pause();
+
+paperAudioBar.style.display =
+'none';
+
+button.innerHTML = '🔊';
+
+return;
+}
+
+/* old button reset */
+
+if (
+currentSpeakerButton &&
+currentSpeakerButton !== button
+) {
+
+currentSpeakerButton.innerHTML =
+'🔊';
+
+}
+
+currentSpeakerButton = button;
+
+/* show bar */
+
+paperAudioBar.style.display =
+'block';
+paperAudioBar.classList.remove(
+'hidden-bar'
+);
+/* reset minimize */
+
+paperAudioBar.classList.remove(
+'minimized'
+);
+
+/* play */
+
+paperAudio.src = src;
+
+paperAudio.play();
+
+paperNowPlaying.innerHTML =
+title;
+
+button.innerHTML = '⏸';
+
+paperPlayBtn.innerHTML = '⏸';
+
+};
+
+/* =========================
+PLAY / PAUSE
+========================= */
+
+paperPlayBtn.addEventListener(
+'click',
+() => {
+
+if (paperAudio.paused) {
+
+paperAudio.play();
+
+paperPlayBtn.innerHTML = '⏸';
+
+if (currentSpeakerButton) {
+
+currentSpeakerButton.innerHTML =
+'⏸';
+
+}
+
+} else {
+
+paperAudio.pause();
+
+paperPlayBtn.innerHTML = '▶';
+
+if (currentSpeakerButton) {
+
+currentSpeakerButton.innerHTML =
+'🔊';
+
+}
+
+}
+
+}
+);
+
+/* =========================
+ENDED
+========================= */
+
+paperAudio.addEventListener(
+'ended',
+() => {
+
+paperAudioBar.style.display =
+'none';
+
+if (currentSpeakerButton) {
+
+currentSpeakerButton.innerHTML =
+'🔊';
+
+}
+
+}
+);
+
+/* =========================
+TIME UPDATE
+========================= */
+
+paperAudio.addEventListener(
+'timeupdate',
+() => {
+
+if (!paperAudio.duration) return;
+
+paperSeekbar.value =
+
+(
+paperAudio.currentTime
+/
+paperAudio.duration
+)
+* 100;
+
+updatePaperTime();
+
+}
+);
+
+/* =========================
+SEEK
+========================= */
+
+paperSeekbar.addEventListener(
+'input',
+() => {
+
+if (!paperAudio.duration) return;
+
+paperAudio.currentTime =
+
+(
+paperSeekbar.value / 100
+)
+*
+paperAudio.duration;
+
+}
+);
+
+/* =========================
+SPEED
+========================= */
+
+paperFasterBtn.addEventListener(
+'click',
+() => {
+
+if (currentSpeed < 3) {
+
+currentSpeed += 0.25;
+
+currentSpeed =
+parseFloat(
+currentSpeed.toFixed(2)
+);
+
+paperAudio.playbackRate =
+currentSpeed;
+
+updateSpeedDisplay();
+
+}
+
+}
+);
+
+paperSlowerBtn.addEventListener(
+'click',
+() => {
+
+if (currentSpeed > 0.25) {
+
+currentSpeed -= 0.25;
+
+currentSpeed =
+parseFloat(
+currentSpeed.toFixed(2)
+);
+
+paperAudio.playbackRate =
+currentSpeed;
+
+updateSpeedDisplay();
+
+}
+
+}
+);
+
+function updateSpeedDisplay() {
+
+paperSpeedDisplay.innerHTML =
+
+currentSpeed + 'x';
+
+}
+
+/* =========================
+TIME FORMAT
+========================= */
+
+function formatPaperTime(
+seconds
+) {
+
+const min =
+Math.floor(seconds / 60);
+
+const sec =
+Math.floor(seconds % 60);
+
+return `${min}:${
+sec
+.toString()
+.padStart(2,'0')
+}`;
+
+}
+
+function updatePaperTime() {
+
+paperTimeDisplay.innerHTML =
+
+`${formatPaperTime(
+paperAudio.currentTime
+)}
+/
+${formatPaperTime(
+paperAudio.duration || 0
+)}`;
+
+}
+
+
+/* =========================
+HIDE BAR
+========================= */
+
+paperHideBtn
+.addEventListener(
+'click',
+() => {
+
+/* bar hide */
+
+paperAudioBar.classList.add(
+'hidden-bar'
+);
+
+/* floating eye show */
+
+paperShowBarBtn.style.display =
+'flex';
+
+}
+);
+
+/* =========================
+MINIMIZE
+========================= */
+
+paperMinimizeBtn
+.addEventListener(
+'click',
+() => {
+
+paperAudioBar.classList.toggle(
+'minimized'
+);
+
+}
+);
+
+/* =========================
+SHOW HIDDEN BAR
+========================= */
+
+paperShowBarBtn
+.addEventListener(
+'click',
+() => {
+
+/* show bar again */
+
+paperAudioBar.classList.remove(
+'hidden-bar'
+);
+
+/* floating eye hide */
+
+paperShowBarBtn.style.display =
+'none';
+
+}
+);
+
+
+/* =========================
+CLOSE
+========================= */
+
+paperCloseBtn
+.addEventListener(
+'click',
+() => {
+
+paperAudio.pause();
+
+paperAudio.currentTime = 0;
+
+paperAudioBar.style.display =
+'none';
+
+  paperShowBarBtn.style.display =
+'none';  
+
+paperAudioBar.classList.remove(
+'minimized'
+);
+
+if (currentSpeakerButton) {
+
+currentSpeakerButton.innerHTML =
+'🔊';
+
+}
+
+}
+);/*အဆုံး*/
