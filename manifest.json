@@ -1,1 +1,22 @@
 
+{
+  "name": "သေခြင်းသဘော",
+  "short_name": "သေခြင်း",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4ecd8",
+  "theme_color": "#443300",
+
+  "icons": [
+    {
+      "src": "https://thaychinthabaw.github.io/thaychinthabawlogo1.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "https://thaychinthabaw.github.io/thaychinthabawlogo1.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
