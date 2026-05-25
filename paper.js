@@ -822,6 +822,37 @@ document.getElementById(
 'paper-next-btn'
 );
 
+
+
+/* ========================= SLEEP TIMER ========================= */
+
+const paperSleepInput =
+document.getElementById(
+    'paper-sleep-input'
+);
+
+const paperSleepUnit =
+document.getElementById(
+    'paper-sleep-unit'
+);
+
+const paperSleepStartBtn =
+document.getElementById(
+    'paper-sleep-start-btn'
+);
+
+const paperSleepCancelBtn =
+document.getElementById(
+    'paper-sleep-cancel-btn'
+);
+
+const paperSleepStatus =
+document.getElementById(
+    'paper-sleep-status'
+);/*sleep timerအဆုံး*/
+
+
+
 /* =========================
 STATE
 ========================= */
@@ -835,6 +866,17 @@ let repeatOne = false;
 
 /* auto next mode */
 let autoNextEnabled = false;
+
+/* sleep timer */
+let sleepTimer = null;
+
+let sleepEndTime = null;
+
+let sleepInterval = null;/* sleep timer */
+
+
+
+
 /* =========================
 TOGGLE AUDIO
 ========================= */
@@ -1440,5 +1482,176 @@ paperPrevBtn.addEventListener(
 playPreviousAudio();
 
 }
+);/*PREVIOUS BUTTONအဆုံး*/
+
+
+
+/* ========================= SLEEP TIMER START ========================= */
+
+paperSleepStartBtn.addEventListener(
+    'click',
+    () => {
+
+        const value =
+            parseInt(
+                paperSleepInput.value
+            );
+
+        const unit =
+            paperSleepUnit.value;
+
+        /* validation */
+
+        if (
+            isNaN(value)
+        ) {
+
+            alert(
+                'အချိန်ရိုက်ထည့်ပါ'
+            );
+
+            return;
+
+        }
+
+        let totalMinutes = value;
+
+        if (unit === 'hour') {
+
+            totalMinutes =
+                value * 60;
+
+        }
+
+        /* 1 minute → 8 hour */
+
+        if (
+            totalMinutes < 1 ||
+            totalMinutes > 480
+        ) {
+
+            alert(
+                '1 minute မှ 8 hour အတွင်းပဲ ရပါတယ်'
+            );
+
+            return;
+
+        }
+
+        /* old timer clear */
+
+        clearTimeout(sleepTimer);
+
+        clearInterval(sleepInterval);
+
+        /* end time */
+
+        sleepEndTime =
+            Date.now()
+            +
+            (
+                totalMinutes
+                * 60
+                * 1000
+            );
+
+        /* main timer */
+
+        sleepTimer =
+            setTimeout(() => {
+
+                paperAudio.pause();
+
+                paperAudioBar.style.display =
+                    'none';
+
+                paperShowBarBtn.style.display =
+                    'none';
+
+                if (
+                    currentSpeakerButton
+                ) {
+
+                    currentSpeakerButton.innerHTML =
+                        '🔊';
+
+                }
+
+                paperSleepStatus.innerHTML =
+                    '⏰ Sleep Finished';
+
+            },
+            totalMinutes
+            * 60
+            * 1000
+        );
+
+        /* live countdown */
+
+        sleepInterval =
+            setInterval(() => {
+
+                const remain =
+                    sleepEndTime
+                    - Date.now();
+
+                if (remain <= 0) {
+
+                    clearInterval(
+                        sleepInterval
+                    );
+
+                    return;
+
+                }
+
+                const totalSec =
+                    Math.floor(
+                        remain / 1000
+                    );
+
+                const h =
+                    Math.floor(
+                        totalSec / 3600
+                    );
+
+                const m =
+                    Math.floor(
+                        (
+                            totalSec % 3600
+                        ) / 60
+                    );
+
+                const s =
+                    totalSec % 60;
+
+                paperSleepStatus.innerHTML =
+                    `😴 ${h}h ${m}m ${s}s`;
+
+            }, 1000);
+
+        paperSleepStatus.innerHTML =
+            '😴 Timer Started';
+
+    }
 );
 
+/* ========================= CANCEL ========================= */
+
+paperSleepCancelBtn.addEventListener(
+    'click',
+    () => {
+
+        clearTimeout(sleepTimer);
+
+        clearInterval(sleepInterval);
+
+        sleepTimer = null;
+
+        sleepEndTime = null;
+
+        paperSleepStatus.innerHTML =
+            'No Timer';
+
+    }
+);/*------SLEEP TIMER STARTအဆုံး -------*/
