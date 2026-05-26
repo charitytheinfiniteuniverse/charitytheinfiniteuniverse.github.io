@@ -1320,3 +1320,42 @@ color: #443300;
 font-size: 14px;
 
 }/*VOLUME BOOSTER အသံအတိုးအလျော့ အတွက်သုံးသည်*/
+
+
+/* ==
+VOICE / NIGHT MODE BUTTON
+== */
+
+#paper-voice-btn,
+#paper-night-btn {
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    color: #443300;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow:
+    0 2px 6px rgba(0,0,0,0.08);}
+
+/* Hover Effect */
+#paper-voice-btn:hover,
+#paper-night-btn:hover {
+    background: #eadebc;
+    transform: translateY(-1px);}
+
+/* နှိပ်နေချိန် */
+#paper-voice-btn:active,
+#paper-night-btn:active {
+    transform: scale(0.97);}
+
+/* ACTIVE MODE */
+.paper-mode-active {
+    background: #443300 !important;
+    color: #f4ecd8 !important;
+    border-color: #443300 !important;
+}/* ==
+VOICE / NIGHT MODE BUTTON အဆုံး
+== */
