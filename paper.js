@@ -926,9 +926,11 @@ title
 /* same audio + playing */
 const isSameButton =
 currentSpeakerButton === button;
-const isSameAudio =
-paperAudio.src.includes(src);
 
+/* ပြင်ဆင်ပြီးကုဒ် - မြန်မာစာလုံးဝှက်ထားတာတွေကို ပြန်ဖြေပြီးမှ စစ်ဆေးခြင်း */
+const isSameAudio =
+decodeURI(paperAudio.src).includes(src); 
+    
 /* same button + same audio + playing */
 if (
 isSameButton &&
