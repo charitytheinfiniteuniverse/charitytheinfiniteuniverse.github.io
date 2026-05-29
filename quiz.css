@@ -1,0 +1,383 @@
+/* ==========================================================================
+   QUIZ SYSTEM STYLE SHEET (Perfect Sync with darkmode.css & Eye-Friendly)
+   ========================================================================== */
+
+/* 🎨 CENTRAL COLOR SYSTEM (မုဒ်တစ်ခုချင်းစီအလိုက် ဗဟိုအရောင်များ စနစ်တကျပြင်ဆင်ခြင်း) */
+:root {
+  /* ⚪ 1. White Mode (နောက်ခံအဖြူရောင်စစ်စစ် + စာသားအမည်းရောင်စစ်စစ် + Nav ပြတ်သားမှုမြှင့်တင်ခြင်း) */
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #ffffff;
+  --card-border: #eeeeee;
+  --btn-bg: #f5efe3;       
+  --btn-border: #e3d3be;
+  --btn-text: #000000;
+  --bottom-nav-bg: #ffffff;
+  --nav-text: #222222;        /* Light Mode အောက်ခြေ ပုံမှန်စာသားနှင့် အိုင်ကွန်အရောင် (အမည်းရောင်စစ်စစ်နီးပါး) */
+  --nav-active-text: #222222; /* 🌟 Active ဖြစ်သော်လည်း စာသား/အိုင်ကွန်ကို ဘေးခလုတ်များနည်းတူ အမည်းရောင်အတိုင်း ထားရှိခြင်း */
+}
+
+/* 📒 2. Reading Mode (darkmode.css အရောင်စနစ်အတိုင်း တထပ်တည်း) */
+body.reading-mode {
+  --bg-color: #f4ecd8;     
+  --text-color: #5b4636;   
+  --card-bg: #fdfaf2;      
+  --card-border: #e8dcbf;
+  --btn-bg: #ede4d3;       
+  --btn-border: #dacfa9;
+  --btn-text: #5b4636;
+  --bottom-nav-bg: #ede4d3;
+  --nav-text: #8b4513;        /* Reading Mode အောက်ခြေ ပုံမှန်စာသားနှင့် အိုင်ကွန်အရောင် (အညိုရင့်) */
+  --nav-active-text: #8b4513; /* 🌟 Active ဖြစ်သော်လည်း စာသား/အိုင်ကွန်ကို ဘေးခလုတ်များနည်းတူ အညိုရင့်အတိုင်း ထားရှိခြင်း */
+}
+
+/* 🌙 3. Dark Mode (ကြာကြာဖတ်လျှင် မျက်စိမညောင်းစေရန် အဖြူရောင်စာသားစနစ် သို့ ပြောင်းလဲခြင်း) */
+body.dark-mode {
+  --bg-color: #000000;     
+  --text-color: #ffffff !important;   /* 🌟 darkmode.css မှ အဝါရောင် လာရောက်စီးနင်းခြင်းကို !important ဖြင့် တားဆီးခြင်း */
+  --card-bg: #111111;      
+  --card-border: rgba(255, 215, 0, 0.3);
+  --btn-bg: #222222;       
+  --btn-border: rgba(255, 215, 0, 0.2);
+  --btn-text: #ffffff;
+  --bottom-nav-bg: #111111;
+  --nav-text: #FFD700;        /* Dark Mode အောက်ခြေ ပုံမှန်စာသားနှင့် အိုင်ကွန်အရောင် (အဝါ) */
+  --nav-active-text: #FFD700; /* 🌟 Active ဖြစ်သော်လည်း စာသား/အိုင်ကွန်ကို ဘေးခလုတ်များနည်းတူ အဝါရောင်အတိုင်း ထားရှိခြင်း */
+}
+
+/* 🌐 GLOBAL RESET & FONTS */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 204, 0, 0.4) !important;
+}
+*:focus {
+  outline: 2px solid #ffcc00 !important;
+  outline-offset: 1px;
+}
+button:active, a:active {
+  background-color: rgba(255, 204, 0, 0.2) !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Myanmar Text", 'Pyidaungsu', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 🔝 FIXED TOP-LEFT TITLE */
+#fixedTitle {
+  position: fixed;
+  top: 0rem;
+  left: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: black;
+  color: #FFD700;
+  padding: 3px 7px;
+  border-radius: 6px;
+  z-index: 9999;
+  pointer-events: none;
+}
+/* 🌗 MODE TOGGLE BUTTON */
+#modeToggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+#modeToggle:active {
+  transform: scale(0.9);
+}
+/* 📝 MAIN CONTAINER */
+main {
+  padding: 5rem 0.5rem 5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+/* 🔄 AVATAR LOGO */
+.avatar-container {
+  width: 120px;
+  height: 120px;
+  margin: 1rem auto;
+  border-radius: 50%;
+  border: 1px solid #FFD700;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 📦 QUIZ PAPER CARD (အတွင်းခံ မေးခွန်း Box ကတ်ပြား) */
+.paper-card {
+  background-color: var(--card-bg);
+  border-radius: 24px;
+  padding: 24px 18px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+  text-align: left;
+}
+
+/* 🔤 TITLES & TEXTS INSIDE CARD */
+.main-title {
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: var(--text-color) !important;
+}
+.sub-text {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 28px;
+  color: var(--text-color) !important;
+}
+
+/* 🗂️ CHAPTER SELECTION BUTTONS */
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.chapter-btn {
+  width: 100%;
+  border: 1px solid var(--btn-border);
+  border-radius: 18px;
+  padding: 20px 18px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+.chapter-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.95); 
+}
+
+/* ❓ QUESTION STYLES */
+#question-count {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #a27d35; 
+  margin-bottom: 20px;
+}
+body.dark-mode #question-count {
+  color: #FFD700;
+}
+#question-text {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 2;
+  margin-bottom: 28px;
+  color: var(--text-color) !important;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ❑ ANSWER BUTTONS (အဖြေရွေးချယ်ရန် ခလုတ်များ) */
+#answers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.answer-btn {
+  width: 100%;
+  border: 1px solid var(--btn-border);
+  border-radius: 18px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 20px 18px;
+  text-align: left;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+.answer-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.95);
+}
+
+/* 🟩 CORRECT & 🟥 WRONG STATES */
+.correct {
+  background-color: #2e7d32 !important;
+  color: #ffffff !important;
+  border-color: #2e7d32 !important;
+}
+.wrong {
+  background-color: #c62828 !important;
+  color: #ffffff !important;
+  border-color: #c62828 !important;
+}
+
+/* 🛠️ GAME CONTROL ACTIONS */
+.quiz-actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.action-btn {
+  border: 1px solid var(--btn-border);
+  border-radius: 14px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.action-btn:hover {
+  filter: brightness(0.92);
+}
+#next-btn {
+  display: none;
+}
+
+/* 🔙 BACK TO READING ROOM BUTTON */
+.back-reading-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px dashed var(--btn-text);
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+.back-reading-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* 🏆 FINISH SCREEN */
+.finish-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: var(--text-color) !important;
+}
+.finish-text {
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
+  margin-bottom: 28px;
+  color: var(--text-color) !important;
+}
+
+/* 🙈 HIDDEN UTILITY */
+.hidden {
+  display: none !important;
+}
+
+/* 📚 BOTTOM NAVIGATION BAR */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--bottom-nav-bg) !important;
+  padding: 0.8rem 0;
+  z-index: 5;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+body.dark-mode .bottom-nav {
+  border-top: none;
+}
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--nav-text) !important; 
+  background-color: transparent !important; /* ပုံမှန်ခလုတ်များ၏ နောက်ခံကို အမြဲရှင်းလင်းထားမည် */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+}
+.bottom-nav a .icon {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: inherit !important; /* အိုင်ကွန်အရောင်သည် အမြဲတမ်း a tag ၏ အရောင်အတိုင်း တူညီစွာလိုက်ပြောင်းမည် */
+}
+
+/* 🌟 ACTIVE STATE FOR ALL MODES (ခလုတ်အတွင်းရှိ စာသားနှင့် အိုင်ကွန်ကို ဘေးခလုတ်များနည်းတူ အရောင်တစ်ထပ်တည်း ထိန်းသိမ်းခြင်း) */
+.bottom-nav a.active {
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.2) !important;
+  color: var(--nav-active-text) !important; /* 🌟 စာသားနှင့် အိုင်ကွန်ကို `--nav-active-text` (မုဒ်အလိုက် ပုံမှန်အရောင်အတိုင်း) ချုပ်ကိုင်ခြင်း */
+  text-decoration: none;
+}
+
+/* ⚪ White Mode & 📒 Reading Mode Active Background */
+.bottom-nav a.active {
+  background-color: rgba(212, 175, 55, 0.15) !important; /* Active နောက်ခံအရောင် (ဝါကျင်ကျင်) သီးသန့်ပြောင်းလဲခြင်း */
+}
+
+/* 🌙 Dark Mode Active Background */
+body.dark-mode .bottom-nav a.active {
+  background-color: rgba(255, 215, 0, 0.2) !important; /* Dark Mode အတွက် Active နောက်ခံအရောင် */
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* 📱 MOBILE RESPONSIVE OPTIMIZATION */
+@media(max-width:600px){
+  #question-text {
+    font-size: 21px;
+  }
+  .answer-btn {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .chapter-btn {
+    font-size: 17px;
+  }
+}
+/* 🔗 USER SELECTION HIGHLIGHT COLOR */
+::selection {
+  background-color: #ffcc00 !important;
+  color: #000000 !important;
+}
+::-moz-selection {
+  background-color: #ffcc00 !important;
+  color: #000000 !important;
+}
