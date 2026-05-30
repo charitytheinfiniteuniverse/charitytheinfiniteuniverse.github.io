@@ -282,7 +282,7 @@ textarea {
 }
 
 .book-card-title {
-  color: #443300;
+    color: #443300;
     font-weight: bold;
     margin: 0;
     font-size: 16px;
@@ -702,7 +702,6 @@ body.focus-mode .top-controls {
     border: none !important;
 }
 
-
 /* ၁၀။ စာသားများနှင့် ခေါင်းစဉ်ငယ်များကို မုဒ်အလိုက် အညိုရောင်/အမဲရောင် သီးသန့်ပြောင်းလဲပေးသည့်စနစ် */
 
 /* (က) အလင်းမုဒ် (Light Mode) တွင် အမဲရောင်ပြောင်းရန် */
@@ -731,7 +730,6 @@ body.dark-mode .progress-text-group,
 body.dark-mode .book-card-meta {
     color: #443300 !important;
 }
-
 
 /* ၁၁။ Global Tap Highlight & Selection (မူလ Brand အရောင်အဝါအတိုင်း အပြည့်အဝ ထားရှိပါသည်) */
 * {
