@@ -117,14 +117,14 @@ body.sepia-mode {
     margin-bottom: 20px;
 }
 
-.tab-pane {
-    display: block;
+.paste-area-wrapper {
+    width: 100%;
 }
 
 /* Input Fields */
 textarea {
     width: 100%;
-    height: 150px;
+    height: 180px;
     background: #f4ecd8;
     border: 1px solid #443300;
     border-radius: 8px;
@@ -145,7 +145,7 @@ textarea {
     font-weight: bold;
     font-size: 16px;
     border-radius: 6px;
-    margin-top: 10px;
+    margin-top: 12px;
     cursor: pointer;
 }
 
@@ -221,25 +221,6 @@ textarea {
     gap: 8px;
 }
 
-/* ✏️ Edit Title Button */
-.edit-book-btn {
-    background: #f4ecd8;
-    border: 1px solid #443300;
-    width: 32px;
-    height: 28px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s;
-}
-
-.edit-book-btn:hover {
-    background: #eadebc;
-}
-
 /* 📌 Pin/Save Button */
 .pin-book-btn {
     background: #f4ecd8;
@@ -260,6 +241,25 @@ textarea {
     opacity: 1 !important;
     background: #443300 !important;
     border: 1px solid #443300 !important;
+}
+
+/* 📝 Edit Button */
+.edit-book-btn {
+    background: #f4ecd8;
+    border: 1px solid #443300;
+    width: 32px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.edit-book-btn:hover {
+    background: #eadebc;
 }
 
 .delete-book-btn {
@@ -460,6 +460,13 @@ textarea {
     font-weight: bold;
 }
 
+.toc-list li a.active-chapter {
+    color: #b38b00 !important; 
+    font-weight: bold !important;
+    border-left: 3px solid #443300;
+    padding-left: 10px;
+}
+
 /* ၇။ Content Formatting */
 .content-area { 
     padding: 20px; 
@@ -635,26 +642,127 @@ body.focus-mode .top-controls {
     border: none !important;
 }
 
-/* ၁၀။ မုဒ်အလိုက် အညိုရောင်/အမဲရောင် သီးသန့်ပြောင်းလဲပေးသည့်စနစ် */
+
+/* ၁၀။ စာသားများနှင့် ခေါင်းစဉ်ငယ်များကို မုဒ်အလိုက် အညိုရောင်/အမဲရောင် သီးသန့်ပြောင်းလဲပေးသည့်စနစ် */
+
+/* (က) အလင်းမုဒ် (Light Mode) တွင် အမဲရောင်ပြောင်းရန် */
 body.light-mode .bookshelf-header,
 body.light-mode .storage-indicator,
 body.light-mode .book-card-meta {
     color: #000000 !important;
 }
 
+/* (ခ) စာဖတ်မုဒ် (Sepia Mode) တွင် အညိုရောင်ပြောင်းရန် */
 body.sepia-mode .bookshelf-header,
 body.sepia-mode .storage-indicator,
 body.sepia-mode .book-card-meta {
     color: #443300 !important;
 }
 
+/* (ဂ) ဒါ့ခ်မုဒ် (Dark Mode) တွင်ပါ စာဖတ်ရလွယ်ကူစေရန် အညိုရောင်ပြောင်းရန် */
 body.dark-mode .bookshelf-header,
 body.dark-mode .storage-indicator,
 body.dark-mode .book-card-meta {
     color: #443300 !important;
 }
 
-/* ၁၁။ Global Tap Highlight & Selection */
+
+/* ၁၁။ 📝 Edit Book Modal UI (တည်းဖြတ်ရန် စနစ်အသစ်) */
+.edit-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 1200;
+}
+
+.edit-modal-content {
+    background: #f4ecd8;
+    width: 90%;
+    max-width: 550px;
+    margin: 60px auto;
+    border-radius: 12px;
+    border: 2px solid #443300;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #eadebc;
+    border-bottom: 2px solid #443300;
+}
+
+.edit-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #443300;
+}
+
+.edit-close-btn {
+    font-size: 30px;
+    color: #443300;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.edit-modal-body {
+    padding: 20px;
+}
+
+.edit-input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.edit-input-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #443300;
+    font-size: 15px;
+}
+
+.edit-input-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #443300;
+    background: #f4ecd8;
+    color: #443300;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.edit-modal-body textarea {
+    height: 220px;
+}
+
+.save-edit-btn {
+    width: 100%;
+    background: #443300;
+    color: #f4ecd8;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.save-edit-btn:hover {
+    background: #5c4500;
+}
+
+
+/* ၁၂။ Global Tap Highlight & Selection */
 * {
     -webkit-tap-highlight-color: rgba(255, 204, 0, 0.4) !important;
 }
@@ -669,7 +777,7 @@ body.dark-mode .book-card-meta {
 }
 
 @media print {
-    .top-controls, .floating-left-group, .setting-overlay, .toc-overlay, #modeToggle, .upload-dashboard {
+    .top-controls, .floating-left-group, .setting-overlay, .toc-overlay, #modeToggle, .upload-dashboard, .edit-overlay {
         display: none !important;
     }
     .container { width: 100% !important; margin: 0 !important; padding: 0 !important; }
