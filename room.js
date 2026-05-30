@@ -5,11 +5,10 @@
 let currentLineHeight = 2.0;
 let currentLetterSpacing = 0;
 let fontResizeObserver = null; 
-let currentBookId = null; // လက်ရှိ ဖတ်နေသော စာအုပ်၏ ID
-let tocParagraphMapping = []; // TOC Link များအတွက် Paragraph Mapping စာရင်း
+let currentBookId = null; 
 
 /* == STORAGE LIMIT (FIFO SYSTEM) == */
-const MAX_BOOKS = 5; // local မှာ သိမ်းဆည်းမည့် အများဆုံး စာအုပ်အရေအတွက်
+const MAX_BOOKS = 5; 
 
 /* == SEMANTIC SYSTEM == */
 function buildSemanticParagraphs() {
@@ -17,7 +16,6 @@ function buildSemanticParagraphs() {
     let globalIndex = 1;
     containers.forEach((container) => {
         const rawText = container.textContent.trim();
-        // Line break အလိုက် စာပိုဒ်ခွဲခြင်း
         const paragraphs = rawText.split(/\n\s*\n/).filter(p => p.trim() !== '');
         container.innerHTML = '';
         paragraphs.forEach((text) => {
@@ -96,51 +94,7 @@ function triggerLayoutObserver() {
     fontResizeObserver.observe(articleElement);
 }
 
-/* == TOCK HIGHLIGHT SYNC SYSTEM (မာတိကာအလိုက် လက်ရှိဖတ်ဆဲနေရာပြစနစ်) == */
-function syncTOCHighlight() {
-    if (!currentBookId || tocParagraphMapping.length === 0) return;
-    
-    const scrollY = window.scrollY;
-    const viewportCenter = scrollY + (window.innerHeight / 2);
-    let activeIndex = -1;
-
-    // လက်ရှိ Viewport အလယ်ဗဟိုနဲ့ အနီးစပ်ဆုံး ကျော်ဖြတ်သွားတဲ့ အခန်း/စာမျက်နှာကို ရှာဖွေခြင်း
-    for (let i = 0; i < tocParagraphMapping.length; i++) {
-        const pElement = tocParagraphMapping[i].element;
-        if (pElement) {
-            const topPos = pElement.getBoundingClientRect().top + scrollY;
-            if (viewportCenter >= topPos) {
-                activeIndex = i;
-            } else {
-                break;
-            }
-        }
-    }
-
-    if (activeIndex === -1 && tocParagraphMapping.length > 0) {
-        activeIndex = 0;
-    }
-
-    // မာတိကာ Element များထဲမှ active-chapter class ကို Update လုပ်ခြင်း
-    const tocLinks = document.querySelectorAll('#dynamic-toc-list li a');
-    tocLinks.forEach((link, idx) => {
-        if (idx === activeIndex) {
-            link.classList.add('active-chapter');
-        } else {
-            link.classList.remove('active-chapter');
-        }
-    });
-}
-
-/* == PASTE & PDF PROCESSING SYSTEM == */
-window.switchTab = function(type) {
-    document.getElementById('tab-pdf').classList.toggle('active', type === 'pdf');
-    document.getElementById('tab-paste').classList.toggle('active', type === 'paste');
-    document.getElementById('pane-pdf').classList.toggle('active', type === 'pdf');
-    document.getElementById('pane-paste').classList.toggle('active', type === 'paste');
-};
-
-// ✍️ စာသားများ ကူးထည့်၍ ဖတ်ရှုခြင်းကို စီမံခြင်း
+/* == PASTE PROCESSING SYSTEM == */
 window.processPastedText = function() {
     const textInput = document.getElementById('paste-text-input').value.trim();
     if (!textInput) { alert('ကျေးဇူးပြု၍ စာသားတစ်ခုခု ထည့်သွင်းပါဘုရား။'); return; }
@@ -158,78 +112,15 @@ window.processPastedText = function() {
     };
     
     saveBookToStorage(bookData);
+    document.getElementById('paste-text-input').value = ''; // Input ကွင်းကို ရှင်းလင်းပေးရန်
     openBook(bookData);
 };
 
-// 📄 PDF File ဖတ်ရှုခြင်းနှင့် Loading ရာခိုင်နှုန်းတွက်ချက်မှုစနစ်
-function handlePDFUpload(file) {
-    if (!file || file.type !== "application/pdf") { alert("PDF ဖိုင်များသာ တင်သွင်းနိုင်ပါသည်ဘုရား။"); return; }
-    
-    const reader = new FileReader();
-    const progressContainer = document.getElementById('progress-container');
-    const progressBarFill = document.getElementById('progress-bar-fill');
-    const progressPercent = document.getElementById('progress-percent');
-    const progressStatus = document.getElementById('progress-status');
-    
-    progressContainer.style.display = 'block';
-    progressBarFill.style.width = '0%';
-    progressPercent.textContent = '0%';
-    progressStatus.textContent = 'ဖိုင်အား စတင်ဖတ်ရှုနေပါသည်...';
-
-    reader.onload = function(e) {
-        const typedarray = new Uint8Array(e.target.result);
-        
-        // PDF.js Engine သို့ ဖိုင်ထည့်သွင်းခြင်း
-        pdfjsLib.getDocument(typedarray).promise.then(async function(pdf) {
-            let fullText = "";
-            const totalPages = pdf.numPages;
-            
-            for (let i = 1; i <= totalPages; i++) {
-                const page = await pdf.getPage(i);
-                const textContent = await page.getTextContent();
-                const pageText = textContent.items.map(item => item.str).join(" ");
-                
-                // စာမျက်နှာအလိုက် ခွဲခြားမှတ်သားရန် Tag ထည့်သွင်းခြင်း
-                fullText += `\n\n[=== PAGE_${i} ===]\n\n` + pageText;
-                
-                // ⏳ တွက်ချက်မှု ရာခိုင်နှုန်းအား Bar တွင် ပြသခြင်း
-                let percent = Math.round((i / totalPages) * 100);
-                progressBarFill.style.width = percent + '%';
-                progressPercent.textContent = percent + '%';
-                progressStatus.textContent = `စာမျက်နှာ (${i}/${totalPages}) အား ဖတ်နေပါသည်...`;
-            }
-            
-            progressContainer.style.display = 'none';
-            
-            const bookId = 'pdf_' + Date.now();
-            const bookData = {
-                id: bookId,
-                title: file.name.replace(".pdf", ""),
-                type: 'pdf',
-                content: fullText,
-                totalPages: totalPages,
-                pinned: false,
-                timestamp: Date.now()
-            };
-            
-            saveBookToStorage(bookData);
-            openBook(bookData);
-            
-        }).catch(err => {
-            console.error(err);
-            alert("PDF ဖတ်ရှုခြင်း လွဲချော်သွားပါသည်ဘုရား။");
-            progressContainer.style.display = 'none';
-        });
-    };
-    reader.readAsArrayBuffer(file);
-}
-
-/* == BOOKSHELF ENGINE (FIFO STORAGE SYSTEM WITH PIN/SAVE) == */
+/* == BOOKSHELF ENGINE (FIFO STORAGE SYSTEM WITH PIN & EDIT) == */
 function saveBookToStorage(newBook) {
     let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     currentBooks = currentBooks.filter(b => b.id !== newBook.id);
     
-    // FIFO စနစ် - ၅ အုပ်ပြည့်ပါက Pin မထားသော (pinned: false) အဟောင်းဆုံးစာအုပ်ကို ရှာဖွေဖျက်ထုတ်ခြင်း
     const unpinnedBooks = currentBooks.filter(b => !b.pinned);
     if (currentBooks.length >= MAX_BOOKS && unpinnedBooks.length > 0) {
         const oldestUnpinned = unpinnedBooks[0];
@@ -250,12 +141,34 @@ function togglePinBook(id, event) {
     if (event) event.stopPropagation();
     let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     currentBooks = currentBooks.map(b => {
-        if (b.id === id) {
-            b.pinned = !b.pinned;
-        }
+        if (b.id === id) { b.pinned = !b.pinned; }
         return b;
     });
     localStorage.setItem('room_bookshelf', JSON.stringify(currentBooks));
+    renderBookshelf();
+}
+
+function editBookTitle(id, event) {
+    if (event) event.stopPropagation();
+    let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
+    const targetBook = currentBooks.find(b => b.id === id);
+    if (!targetBook) return;
+
+    const newTitle = prompt("စာမူခေါင်းစဉ်အသစ်ကို ထည့်သွင်းပါဘုရား -", targetBook.title);
+    if (newTitle === null) return; // Cancel နှိပ်ရင် ဘာမှမလုပ်ပါ
+    const trimmedTitle = newTitle.trim();
+    if (!trimmedTitle) { alert("ခေါင်းစဉ်ကို အလွတ်မထားရပါဘုရား။"); return; }
+
+    currentBooks = currentBooks.map(b => {
+        if (b.id === id) { b.title = trimmedTitle; }
+        return b;
+    });
+    localStorage.setItem('room_bookshelf', JSON.stringify(currentBooks));
+    
+    // လက်ရှိဖတ်နေတဲ့ စာအုပ်ခေါင်းစဉ်ဖြစ်ရင် ချက်ချင်းပြောင်းပေးရန်
+    if (currentBookId === id) {
+        document.getElementById('book-main-title').textContent = trimmedTitle;
+    }
     renderBookshelf();
 }
 
@@ -264,7 +177,6 @@ function renderBookshelf() {
     const storageIndicator = document.getElementById('storage-indicator');
     const currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     
-    // သိုလှောင်မှု အချိုးအစား တွက်ချက်ခြင်း
     let usedSpace = JSON.stringify(localStorage).length;
     let spacePercent = Math.min(Math.round((usedSpace / (5 * 1024 * 1024)) * 100), 100);
     storageIndicator.textContent = `သိုလှောင်မှု: ${spacePercent}%`;
@@ -275,7 +187,6 @@ function renderBookshelf() {
     }
 
     shelfList.innerHTML = '';
-    // အသစ်တင်သောစာအုပ်ကို ထိပ်ဆုံးမှ ပြရန် Reverse ပတ်ခြင်း
     currentBooks.slice().reverse().forEach(book => {
         const card = document.createElement('div');
         card.className = 'book-card';
@@ -286,19 +197,25 @@ function renderBookshelf() {
         
         const title = document.createElement('p');
         title.className = 'book-card-title';
-        title.textContent = (book.type === 'pdf' ? '📄 ' : '✍️ ') + book.title;
+        title.textContent = '✍️ ' + book.title;
         
         const meta = document.createElement('p');
         meta.className = 'book-card-meta';
         const date = new Date(book.timestamp).toLocaleDateString();
-        meta.textContent = `တင်သွင်းရက် - ${date} ${book.totalPages ? `(| စာမျက်နှာ - ${book.totalPages} မျက်နှာ)` : ''}`;
+        meta.textContent = `တင်သွင်းရက် - ${date}`;
         
         info.appendChild(title);
         info.appendChild(meta);
         
-        // Actions wrapper 
         const actionsWrapper = document.createElement('div');
         actionsWrapper.className = 'book-card-actions';
+
+        // ✏️ Edit Title Button
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit-book-btn';
+        editBtn.innerHTML = '✏️';
+        editBtn.title = 'စာမူခေါင်းစဉ်ကို ပြန်ပြင်ရန်';
+        editBtn.onclick = (e) => editBookTitle(book.id, e);
 
         // 📌 Save/Pin Button
         const pinBtn = document.createElement('button');
@@ -316,6 +233,7 @@ function renderBookshelf() {
             deleteBook(book.id);
         };
         
+        actionsWrapper.appendChild(editBtn);
         actionsWrapper.appendChild(pinBtn);
         actionsWrapper.appendChild(delBtn);
         
@@ -326,7 +244,7 @@ function renderBookshelf() {
 }
 
 function deleteBook(id) {
-    if (!confirm("ဤစာအုပ်ကို စာအုပ်စင်မှ ဖျက်ရန် သေချာပါသလားဘုလား?")) return;
+    if (!confirm("ဤစာအုပ်ကို စာအုပ်စင်မှ ဖျက်ရန် သေချာပါသလားဘုရား?")) return;
     let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     currentBooks = currentBooks.filter(b => b.id !== id);
     localStorage.setItem('room_bookshelf', JSON.stringify(currentBooks));
@@ -350,21 +268,17 @@ function openBook(book) {
     generateDynamicTOC(book);
     
     triggerLayoutObserver();
-    setTimeout(() => { 
-        restoreReadingPosition(); 
-        syncTOCHighlight(); // စဖွင့်ချင်း TOC နေရာတစ်ခါမှတ်ပေးရန်
-    }, 150);
+    setTimeout(() => { restoreReadingPosition(); }, 150);
 }
 
 window.closeCurrentBook = function() {
     saveReadingPosition();
     currentBookId = null;
-    tocParagraphMapping = []; // Reset Mapping List
     document.getElementById('upload-dashboard').style.display = 'block';
     document.getElementById('reading-content').style.display = 'none';
     document.getElementById('floating-controls').style.display = 'none';
     document.getElementById('close-book-btn').style.display = 'none';
-    toggleSetting(); // setting box ပိတ်ရန်
+    toggleSetting(); 
     renderBookshelf();
     window.scrollTo({ top: 0 });
 };
@@ -373,68 +287,22 @@ window.closeCurrentBook = function() {
 function generateDynamicTOC(book) {
     const tocList = document.getElementById('dynamic-toc-list');
     tocList.innerHTML = '';
-    tocParagraphMapping = []; // Mapping အဟောင်းကို ရှင်းထုတ်ခြင်း
     
-    if (book.type === 'pdf') {
-        // PDF စာမျက်နှာများအလိုက် မာတိကာတည်ဆောက်ခြင်း
-        const paragraphs = document.querySelectorAll('.raw-text p');
-        let pageMarkerParagraphs = {};
-        
-        paragraphs.forEach(p => {
-            const match = p.textContent.match(/\[=== PAGE_(\d+) ===\]/);
-            if (match) {
-                const pageNum = match[1];
-                pageMarkerParagraphs[pageNum] = p;
-                p.innerHTML = `<span style="display:block; border-bottom:1px dashed #443300; margin:20px 0; padding-bottom:5px; color:#b38b00; font-size:14px;">📄 စာမျက်နှာ - ${pageNum}</span>`;
-            }
-        });
-        
-        for (let i = 1; i <= book.totalPages; i++) {
-            const targetP = pageMarkerParagraphs[i];
-            if (targetP) {
-                tocParagraphMapping.push({ index: i, element: targetP });
-            }
-
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#';
-            a.textContent = `စာမျက်နှာ - ${i}`;
-            a.onclick = (e) => {
-                e.preventDefault();
-                const targetPElement = pageMarkerParagraphs[i];
-                if (targetPElement) {
-                    targetPElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    toggleTOC();
-                }
-            };
-            li.appendChild(a);
-            tocList.appendChild(li);
-        }
-    } else {
-        // Paste လုပ်ထားသော စာသားဖြစ်ပါက စာပိုဒ်ရေအလိုက် ဖြတ်ခြင်း
-        const paragraphs = document.querySelectorAll('.raw-text p');
-        let step = Math.max(1, Math.floor(paragraphs.length / 10)); // အများဆုံး အပိုင်း ၁၀ ပိုင်းခွဲခြင်း
-        
-        let sectionCount = 1;
-        for (let i = 0; i < paragraphs.length; i += step) {
-            tocParagraphMapping.push({ index: sectionCount, element: paragraphs[i] });
-
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#';
-            a.textContent = `အပိုင်း (${sectionCount})`;
-            
-            // Loop scope ထဲမှာ Current index 'i' ကို ပုံသေမှတ်မိစေရန် Closure အသုံးပြုခြင်း
-            const targetIdx = i;
-            a.onclick = (e) => {
-                e.preventDefault();
-                paragraphs[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                toggleTOC();
-            };
-            li.appendChild(a);
-            tocList.appendChild(li);
-            sectionCount++;
-        }
+    const paragraphs = document.querySelectorAll('.raw-text p');
+    let step = Math.max(1, Math.floor(paragraphs.length / 10)); 
+    
+    for (let i = 0; i < paragraphs.length; i += step) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = `အပိုင်း (${Math.floor(i/step) + 1})`;
+        a.onclick = (e) => {
+            e.preventDefault();
+            paragraphs[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            toggleTOC();
+        };
+        li.appendChild(a);
+        tocList.appendChild(li);
     }
 }
 
@@ -442,12 +310,7 @@ function generateDynamicTOC(book) {
 function toggleTOC() {
     const tocOverlay = document.getElementById('toc-overlay');
     if (!tocOverlay) return;
-    const isOpening = (tocOverlay.style.display !== 'block');
-    tocOverlay.style.display = isOpening ? 'block' : 'none';
-    
-    if (isOpening) {
-        syncTOCHighlight(); // မာတိကာ Box ကိုဖွင့်လိုက်တိုင်း လက်ရှိစာမျက်နှာဆီ အလိုအလျောက် ရောက်/အရောင်ပြောင်းစေရန်
-    }
+    tocOverlay.style.display = (tocOverlay.style.display !== 'block') ? 'block' : 'none';
 }
 
 function toggleSetting() {
@@ -587,19 +450,8 @@ function init() {
     let readingTimer;
     window.addEventListener('scroll', () => {
         clearTimeout(readingTimer);
-        readingTimer = setTimeout(() => { 
-            saveReadingPosition(); 
-            syncTOCHighlight(); // စာဖတ်သူ Scroll ဆွဲနေစဉ် TOC Highlight အား တစ်ပါတည်း Sync လုပ်ပေးခြင်း
-        }, 200);
+        readingTimer = setTimeout(() => { saveReadingPosition(); }, 200);
     });
-
-    /* == UPLOAD LISTENERS == */
-    const fileInput = document.getElementById('pdf-file-input');
-    if (fileInput) {
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) handlePDFUpload(e.target.files[0]);
-        });
-    }
 
     /* == ATTACH CLICKS TO CONFIG BUTTONS == */
     document.getElementById('font-increase').onclick = () => changeFontSize(1);
