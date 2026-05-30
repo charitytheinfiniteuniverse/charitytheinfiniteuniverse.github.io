@@ -35,8 +35,8 @@
             <div class="dashboard-card">
                 <h2>📖 စာဖတ်ခန်းသို့ စာမူသွင်းရန်</h2>
                 <p class="dashboard-sub">မိမိဖတ်လိုသော စာသားများကို အောက်ပါနေရာတွင် ထည့်သွင်းပါ</p>
-
-                <div id="pane-paste" class="tab-pane active">
+                
+                <div class="paste-area-wrapper">
                     <textarea id="paste-text-input" placeholder="ဤနေရာတွင် မိမိဖတ်ရှုလိုသည့် စာသားများကို ကူးထည့်ပါ (Paragraph အကွာအဝေးများအတွက် Enter နှစ်ချက် ခေါက်နိုင်ပါသည်)..."></textarea>
                     <button class="action-btn" onclick="processPastedText()">📖 စာဖတ်ခန်းသို့ လွှတ်ပါ</button>
                 </div>
@@ -65,16 +65,16 @@
 
     <div class="floating-left-group" id="floating-controls" style="display: none;">
         <a href="#" class="top-btn" title="အပေါ်ဆုံးသို့">⬆</a>
-        <button class="toc-toggle-btn" id="toc-toggle" onclick="toggleTOC()">☰</button>
+        <button class="toc-toggle-btn" id="toc-toggle" onclick="toggleTOC()">☰ မာတိကာ</button>
     </div>
 
     <div id="toc-overlay" class="toc-overlay" onclick="toggleTOC()">
         <div class="toc-content" onclick="event.stopPropagation()">
             <div class="toc-header">
-                <h1>📖 စာမျက်နှာများ</h1>
+                <h1>📖 စာမျက်နှာ အပိုင်းများ</h1>
                 <span class="close-btn" onclick="toggleTOC()">×</span>
             </div>
-            <input type="text" id="toc-search" placeholder="စာမျက်နှာ ရှာရန်...">
+            <input type="text" id="toc-search" placeholder="ရှာဖွေရန်...">
             <ul class="toc-list" id="dynamic-toc-list">
             </ul>
             <div class="toc-jump-buttons">
@@ -152,6 +152,26 @@
                         <button onclick="adjustLetterSpacing(0.5)">+</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-overlay" class="edit-overlay" onclick="closeEditModal()">
+        <div class="edit-modal-content" onclick="event.stopPropagation()">
+            <div class="edit-modal-header">
+                <h2>📝 စာမူအား ပြန်လည်ပြင်ဆင်ရန်</h2>
+                <span class="edit-close-btn" onclick="closeEditModal()">×</span>
+            </div>
+            <div class="edit-modal-body">
+                <div class="edit-input-group">
+                    <label for="edit-book-title"><b>စာမူခေါင်းစဉ်</b></label>
+                    <input type="text" id="edit-book-title" placeholder="စာမူခေါင်းစဉ် ထည့်ပါ">
+                </div>
+                <div class="edit-input-group">
+                    <label for="edit-book-content"><b>အတွင်းစာသားများ</b></label>
+                    <textarea id="edit-book-content" placeholder="စာသားများကို ဤနေရာတွင် ပြင်ဆင်နိုင်ပါသည်..."></textarea>
+                </div>
+                <button class="save-edit-btn" onclick="saveBookEdit()">💾 ပြင်ဆင်ချက်များကို သိမ်းဆည်းမည်</button>
             </div>
         </div>
     </div>
