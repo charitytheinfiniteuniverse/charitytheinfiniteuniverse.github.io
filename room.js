@@ -6,6 +6,7 @@ let currentLineHeight = 2.0;
 let currentLetterSpacing = 0;
 let fontResizeObserver = null; 
 let currentBookId = null; 
+let editingBookId = null; // Edit လုပ်နေဆဲ စာအုပ် ID ကိုမှတ်ရန်
 
 /* == STORAGE LIMIT (FIFO SYSTEM) == */
 const MAX_BOOKS = 5; 
@@ -99,7 +100,10 @@ window.processPastedText = function() {
     const textInput = document.getElementById('paste-text-input').value.trim();
     if (!textInput) { alert('ကျေးဇူးပြု၍ စာသားတစ်ခုခု ထည့်သွင်းပါဘုရား။'); return; }
     
-    const title = textInput.substring(0, 20) + (textInput.length > 20 ? "..." : "");
+    // ပထမစာကြောင်းကို ခေါင်းစဉ်အဖြစ် ယူဆပြီး အလုံး ၅၀ ထက်ကျော်က ဖြတ်တောက်မည်
+    let lines = textInput.split('\n');
+    let firstLine = lines[0].trim();
+    const title = firstLine.substring(0, 35) + (firstLine.length > 35 ? "..." : "");
     const bookId = 'paste_' + Date.now();
     
     const bookData = {
@@ -112,7 +116,7 @@ window.processPastedText = function() {
     };
     
     saveBookToStorage(bookData);
-    document.getElementById('paste-text-input').value = ''; // Input ကွင်းကို ရှင်းလင်းပေးရန်
+    document.getElementById('paste-text-input').value = ''; // ရှင်းလင်းပစ်ရန်
     openBook(bookData);
 };
 
@@ -148,29 +152,48 @@ function togglePinBook(id, event) {
     renderBookshelf();
 }
 
-function editBookTitle(id, event) {
+/* 📝 EDIT MODAL FUNCTIONS */
+window.openEditModal = function(id, event) {
     if (event) event.stopPropagation();
     let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
-    const targetBook = currentBooks.find(b => b.id === id);
+    let targetBook = currentBooks.find(b => b.id === id);
     if (!targetBook) return;
 
-    const newTitle = prompt("စာမူခေါင်းစဉ်အသစ်ကို ထည့်သွင်းပါဘုရား -", targetBook.title);
-    if (newTitle === null) return; // Cancel နှိပ်ရင် ဘာမှမလုပ်ပါ
-    const trimmedTitle = newTitle.trim();
-    if (!trimmedTitle) { alert("ခေါင်းစဉ်ကို အလွတ်မထားရပါဘုရား။"); return; }
+    editingBookId = id;
+    document.getElementById('edit-book-title').value = targetBook.title;
+    document.getElementById('edit-book-content').value = targetBook.content;
+    document.getElementById('edit-overlay').style.display = 'block';
+};
 
+window.closeEditModal = function() {
+    editingBookId = null;
+    document.getElementById('edit-overlay').style.display = 'none';
+};
+
+window.saveBookEdit = function() {
+    if (!editingBookId) return;
+    const editedTitle = document.getElementById('edit-book-title').value.trim();
+    const editedContent = document.getElementById('edit-book-content').value.trim();
+
+    if (!editedTitle || !editedContent) {
+        alert('ခေါင်းစဉ်နှင့် အတွင်းစာသားများကို အလွတ်မထားရပါဘုရား။');
+        return;
+    }
+
+    let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     currentBooks = currentBooks.map(b => {
-        if (b.id === id) { b.title = trimmedTitle; }
+        if (b.id === editingBookId) {
+            b.title = editedTitle;
+            b.content = editedContent;
+            b.timestamp = Date.now(); // ပြင်ဆင်ချိန်ကို update လုပ်ရန်
+        }
         return b;
     });
+
     localStorage.setItem('room_bookshelf', JSON.stringify(currentBooks));
-    
-    // လက်ရှိဖတ်နေတဲ့ စာအုပ်ခေါင်းစဉ်ဖြစ်ရင် ချက်ချင်းပြောင်းပေးရန်
-    if (currentBookId === id) {
-        document.getElementById('book-main-title').textContent = trimmedTitle;
-    }
+    closeEditModal();
     renderBookshelf();
-}
+};
 
 function renderBookshelf() {
     const shelfList = document.getElementById('bookshelf-list');
@@ -202,20 +225,13 @@ function renderBookshelf() {
         const meta = document.createElement('p');
         meta.className = 'book-card-meta';
         const date = new Date(book.timestamp).toLocaleDateString();
-        meta.textContent = `တင်သွင်းရက် - ${date}`;
+        meta.textContent = `သိမ်းဆည်းရက် - ${date}`;
         
         info.appendChild(title);
         info.appendChild(meta);
         
         const actionsWrapper = document.createElement('div');
         actionsWrapper.className = 'book-card-actions';
-
-        // ✏️ Edit Title Button
-        const editBtn = document.createElement('button');
-        editBtn.className = 'edit-book-btn';
-        editBtn.innerHTML = '✏️';
-        editBtn.title = 'စာမူခေါင်းစဉ်ကို ပြန်ပြင်ရန်';
-        editBtn.onclick = (e) => editBookTitle(book.id, e);
 
         // 📌 Save/Pin Button
         const pinBtn = document.createElement('button');
@@ -224,6 +240,13 @@ function renderBookshelf() {
         pinBtn.title = book.pinned ? 'အသေသိမ်းဆည်းမှုကို ပယ်ဖျက်ရန်' : 'စနစ်မှ အလိုအလျောက်မဖျက်စေရန် အသေသိမ်းဆည်းထားမည်';
         pinBtn.onclick = (e) => togglePinBook(book.id, e);
         
+        // 📝 Edit Button (စာသားနှင့်ခေါင်းစဉ်ပြင်ရန်)
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit-book-btn';
+        editBtn.innerHTML = '📝';
+        editBtn.title = 'စာမူအား ပြန်လည်ပြင်ဆင်ရန်';
+        editBtn.onclick = (e) => openEditModal(book.id, e);
+
         // × Delete Button
         const delBtn = document.createElement('button');
         delBtn.className = 'delete-book-btn';
@@ -233,8 +256,8 @@ function renderBookshelf() {
             deleteBook(book.id);
         };
         
-        actionsWrapper.appendChild(editBtn);
         actionsWrapper.appendChild(pinBtn);
+        actionsWrapper.appendChild(editBtn);
         actionsWrapper.appendChild(delBtn);
         
         card.appendChild(info);
@@ -244,7 +267,7 @@ function renderBookshelf() {
 }
 
 function deleteBook(id) {
-    if (!confirm("ဤစာအုပ်ကို စာအုပ်စင်မှ ဖျက်ရန် သေချာပါသလားဘုရား?")) return;
+    if (!confirm("ဤစာအုပ်ကို စာအုပ်စင်မှ ဖျက်ရန် သေချက်ပါသလားဘုရား?")) return;
     let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     currentBooks = currentBooks.filter(b => b.id !== id);
     localStorage.setItem('room_bookshelf', JSON.stringify(currentBooks));
