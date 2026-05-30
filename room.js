@@ -6,6 +6,7 @@ let currentLineHeight = 2.0;
 let currentLetterSpacing = 0;
 let fontResizeObserver = null; 
 let currentBookId = null; // လက်ရှိ ဖတ်နေသော စာအုပ်၏ ID
+let tocParagraphMapping = []; // TOC Link များအတွက် Paragraph Mapping စာရင်း
 
 /* == STORAGE LIMIT (FIFO SYSTEM) == */
 const MAX_BOOKS = 5; // local မှာ သိမ်းဆည်းမည့် အများဆုံး စာအုပ်အရေအတွက်
@@ -93,6 +94,42 @@ function triggerLayoutObserver() {
         }
     });
     fontResizeObserver.observe(articleElement);
+}
+
+/* == TOCK HIGHLIGHT SYNC SYSTEM (မာတိကာအလိုက် လက်ရှိဖတ်ဆဲနေရာပြစနစ်) == */
+function syncTOCHighlight() {
+    if (!currentBookId || tocParagraphMapping.length === 0) return;
+    
+    const scrollY = window.scrollY;
+    const viewportCenter = scrollY + (window.innerHeight / 2);
+    let activeIndex = -1;
+
+    // လက်ရှိ Viewport အလယ်ဗဟိုနဲ့ အနီးစပ်ဆုံး ကျော်ဖြတ်သွားတဲ့ အခန်း/စာမျက်နှာကို ရှာဖွေခြင်း
+    for (let i = 0; i < tocParagraphMapping.length; i++) {
+        const pElement = tocParagraphMapping[i].element;
+        if (pElement) {
+            const topPos = pElement.getBoundingClientRect().top + scrollY;
+            if (viewportCenter >= topPos) {
+                activeIndex = i;
+            } else {
+                break;
+            }
+        }
+    }
+
+    if (activeIndex === -1 && tocParagraphMapping.length > 0) {
+        activeIndex = 0;
+    }
+
+    // မာတိကာ Element များထဲမှ active-chapter class ကို Update လုပ်ခြင်း
+    const tocLinks = document.querySelectorAll('#dynamic-toc-list li a');
+    tocLinks.forEach((link, idx) => {
+        if (idx === activeIndex) {
+            link.classList.add('active-chapter');
+        } else {
+            link.classList.remove('active-chapter');
+        }
+    });
 }
 
 /* == PASTE & PDF PROCESSING SYSTEM == */
@@ -289,7 +326,7 @@ function renderBookshelf() {
 }
 
 function deleteBook(id) {
-    if (!confirm("ဤစာအုပ်ကို စာအုပ်စင်မှ ဖျက်ရန် သေချာပါသလားဘုရား?")) return;
+    if (!confirm("ဤစာအုပ်ကို စာအုပ်စင်မှ ဖျက်ရန် သေချာပါသလားဘုလား?")) return;
     let currentBooks = JSON.parse(localStorage.getItem('room_bookshelf') || '[]');
     currentBooks = currentBooks.filter(b => b.id !== id);
     localStorage.setItem('room_bookshelf', JSON.stringify(currentBooks));
@@ -313,12 +350,16 @@ function openBook(book) {
     generateDynamicTOC(book);
     
     triggerLayoutObserver();
-    setTimeout(() => { restoreReadingPosition(); }, 150);
+    setTimeout(() => { 
+        restoreReadingPosition(); 
+        syncTOCHighlight(); // စဖွင့်ချင်း TOC နေရာတစ်ခါမှတ်ပေးရန်
+    }, 150);
 }
 
 window.closeCurrentBook = function() {
     saveReadingPosition();
     currentBookId = null;
+    tocParagraphMapping = []; // Reset Mapping List
     document.getElementById('upload-dashboard').style.display = 'block';
     document.getElementById('reading-content').style.display = 'none';
     document.getElementById('floating-controls').style.display = 'none';
@@ -332,6 +373,7 @@ window.closeCurrentBook = function() {
 function generateDynamicTOC(book) {
     const tocList = document.getElementById('dynamic-toc-list');
     tocList.innerHTML = '';
+    tocParagraphMapping = []; // Mapping အဟောင်းကို ရှင်းထုတ်ခြင်း
     
     if (book.type === 'pdf') {
         // PDF စာမျက်နှာများအလိုက် မာတိကာတည်ဆောက်ခြင်း
@@ -348,15 +390,20 @@ function generateDynamicTOC(book) {
         });
         
         for (let i = 1; i <= book.totalPages; i++) {
+            const targetP = pageMarkerParagraphs[i];
+            if (targetP) {
+                tocParagraphMapping.push({ index: i, element: targetP });
+            }
+
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = '#';
             a.textContent = `စာမျက်နှာ - ${i}`;
             a.onclick = (e) => {
                 e.preventDefault();
-                const targetP = pageMarkerParagraphs[i];
-                if (targetP) {
-                    targetP.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const targetPElement = pageMarkerParagraphs[i];
+                if (targetPElement) {
+                    targetPElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     toggleTOC();
                 }
             };
@@ -368,18 +415,25 @@ function generateDynamicTOC(book) {
         const paragraphs = document.querySelectorAll('.raw-text p');
         let step = Math.max(1, Math.floor(paragraphs.length / 10)); // အများဆုံး အပိုင်း ၁၀ ပိုင်းခွဲခြင်း
         
+        let sectionCount = 1;
         for (let i = 0; i < paragraphs.length; i += step) {
+            tocParagraphMapping.push({ index: sectionCount, element: paragraphs[i] });
+
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = '#';
-            a.textContent = `အပိုင်း (${Math.floor(i/step) + 1})`;
+            a.textContent = `အပိုင်း (${sectionCount})`;
+            
+            // Loop scope ထဲမှာ Current index 'i' ကို ပုံသေမှတ်မိစေရန် Closure အသုံးပြုခြင်း
+            const targetIdx = i;
             a.onclick = (e) => {
                 e.preventDefault();
-                paragraphs[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                paragraphs[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
                 toggleTOC();
             };
             li.appendChild(a);
             tocList.appendChild(li);
+            sectionCount++;
         }
     }
 }
@@ -388,7 +442,12 @@ function generateDynamicTOC(book) {
 function toggleTOC() {
     const tocOverlay = document.getElementById('toc-overlay');
     if (!tocOverlay) return;
-    tocOverlay.style.display = (tocOverlay.style.display !== 'block') ? 'block' : 'none';
+    const isOpening = (tocOverlay.style.display !== 'block');
+    tocOverlay.style.display = isOpening ? 'block' : 'none';
+    
+    if (isOpening) {
+        syncTOCHighlight(); // မာတိကာ Box ကိုဖွင့်လိုက်တိုင်း လက်ရှိစာမျက်နှာဆီ အလိုအလျောက် ရောက်/အရောင်ပြောင်းစေရန်
+    }
 }
 
 function toggleSetting() {
@@ -528,7 +587,10 @@ function init() {
     let readingTimer;
     window.addEventListener('scroll', () => {
         clearTimeout(readingTimer);
-        readingTimer = setTimeout(() => { saveReadingPosition(); }, 200);
+        readingTimer = setTimeout(() => { 
+            saveReadingPosition(); 
+            syncTOCHighlight(); // စာဖတ်သူ Scroll ဆွဲနေစဉ် TOC Highlight အား တစ်ပါတည်း Sync လုပ်ပေးခြင်း
+        }, 200);
     });
 
     /* == UPLOAD LISTENERS == */
