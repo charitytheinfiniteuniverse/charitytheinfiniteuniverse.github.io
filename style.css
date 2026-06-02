@@ -1,7 +1,7 @@
 body {
   font-family: "Myanmar Text", sans-serif;
   background-color: #ffffff;
-  color: #FFD700; /* စာအဝါ */
+  color: #EAB308; /* စာအဝါ */
   margin: 0;
   padding: 0;
 }
@@ -70,7 +70,7 @@ main {
   display: flex;            /* vertical layout */
   flex-direction: column;   /* emoji အပေါ်၊ စာ အောက် */
   align-items: center;
-  color: #FFD700;
+  color: #EAB308;
   text-decoration: none;
   font-weight: bold;
   padding: 4px 6px;
@@ -91,7 +91,7 @@ main {
   font-size: 1rem;   /* စာအရွယ် */
   font-weight: bold;
   background-color: black;
-  color: #FFD700;
+  color: #EAB308;
   padding: 3px 7px;
   border-radius: 6px;
   z-index: 9999;
@@ -144,12 +144,40 @@ body {
 .section-title {
     font-size: 1.1rem;
     margin: 60px 0 10px 5px;
-    border-left: 5px solid #ffc107; /* အဝါရောင် ဘေးလိုင်းလေး */
+    border-left: 5px solid #EAB308; /* အဝါရောင် ဘေးလိုင်းလေး */
     padding-left: 12px;
     background-color:#121212; 
     border-radius:5px;
-    margin-top: 100px; 
+    margin-top: 100px;
+    color: #EAB308;
 }
+
+/*အောက်ဆုံးကြေညာစာအတွက် အစ*/
+/* 🏢 အချက်အလက်များစုစည်းမှု အပြင်ဘက်ဘောင် (Container) */
+.info-section {
+    margin-top: 100px;
+    padding: 0 15px; /* ဘယ်ညာ အနားသတ် ကွာဝေးမှု */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* အကွက်တစ်ခုနဲ့တစ်ခုကြား အကွာအဝေး */
+    align-items: center; /* အကွက်တွေကို အလယ်ဗဟို ညှိခြင်း */
+}
+
+/* 📦 အချက်အလက်ပြ ကွက်လပ်တစ်ခုချင်းစီ၏ ပုံစံ (Info Box Style) */
+.info-box {
+    background-color: #121212; /* နောက်ခံ အမည်းရောင် */
+    color: #EAB308;            /* တောက်မနေဘဲ ငြိမ်ပြီး ရင့်မှည့်တဲ့ အဝါရောင် */
+    padding: 12px 20px;        /* အကွက်အတွင်း စာသား ဘေးပတ်ပတ်လည် အကွာအဝေး */
+    border-radius: 8px;        /* ထောင့်လေးတွေကို အနည်းငယ် ဝိုင်းစေရန် */
+    font-size: 15px;           /* စာလုံးအရွယ်အစား */
+    font-weight: 500;          /* စာလုံးအထူ အလယ်အလတ် */
+    width: 100%;               /* ဖုန်း screen ပေါ်မှာ အပြည့်ပေါ်စေရန် */
+    max-width: 320px;          /* အကွက်တွေ အရမ်းကြီးမသွားအောင် အကျယ်ဆုံး သတ်မှတ်ချက် */
+    text-align: center;        /* စာသားကို အလယ်ဗဟို ထားခြင်း */
+    margin: 0;                 /* မူရင်း p tag ရဲ့ margin အပိုတွေကို ဖျောက်ခြင်း */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* အကွက်လေးတွေ ကြွနေသယောင် shadow ခပ်ပါးပါး ထည့်ခြင်း */
+    border: 1px solid rgba(234, 179, 8, 0.15); /* အဝါရောင်လိုင်း ခပ်ပါးပါးလေး ဘောင်ခတ်ထားခြင်း */
+}/*အောက်ဆုံးကြေညာစာအတွက် အဆုံး*/
 
 /* ၃။ ပုံများကို ဘေးတိုက် Scroll ဆွဲနိုင်အောင် လုပ်ဆောင်ခြင်း (Container) */
 .gallery-list {
