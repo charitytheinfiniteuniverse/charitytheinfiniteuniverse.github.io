@@ -1,60 +1,60 @@
-(() => {
 'use strict';
+
+// 🌟 text.js ထဲက အခန်းလိုက် စာသား Array ကို Import လုပ်ပါတယ်
+import { novelChapters } from './text.js';
+
 /* == GLOBAL STATE == */
 let currentLineHeight = 2.0;
 let currentLetterSpacing = 0;
-// 🔥 ရုတ်တရက် Scroll ဆွဲတာမျိုး မထပ်စေရန် ဗဟို Timer တစ်ခု သတ်မှတ်ခြင်း
 let restoreTimer = null;
-// 🔥 Layout Engine ၏ ပြောင်းလဲမှု (အမြင့်/အကျယ်) အားလုံးကို ဖမ်းယူမည့် Native Observer
 let fontResizeObserver = null; 
 
 /* == SEMANTIC SYSTEM == */
 function buildSemanticParagraphs() {
-    const containers = document.querySelectorAll('.raw-text');
     let globalIndex = 1;
-    containers.forEach((container) => {
-        // 🔥 IMPORTANT FIX: textContent
-        const rawText = container.textContent.trim();
-        const paragraphs = rawText
-            .split(/\n\s*\n/)
-            .filter(p => p.trim() !== '');
-        container.innerHTML = '';
-        paragraphs.forEach((text) => {
-            const cleanText = text.trim();
+    
+    novelChapters.forEach((chapter) => {
+        const existingSection = document.getElementById(chapter.id);
+        
+        if (existingSection) {
+            const rawText = chapter.content.trim();
+            const paragraphs = rawText
+                .split(/\n\s*\n/)
+                .filter(p => p.trim() !== '');
 
-            // ===== GAP SYSTEM =====
-            if (cleanText === '@@gap') {
-                const gap = document.createElement('div');
-                gap.className = 'big-gap';
-                container.appendChild(gap);
-                return;
-            }
+            paragraphs.forEach((text) => {
+                const cleanText = text.trim();
 
-            // ===== PARAGRAPH =====
-            const p = document.createElement('p');
-            p.setAttribute('data-p', globalIndex);
-            p.textContent = cleanText;
+                // ===== GAP SYSTEM =====
+                if (cleanText === '@@gap') {
+                    const gap = document.createElement('div');
+                    gap.className = 'big-gap';
+                    existingSection.appendChild(gap);
+                    return;
+                }
 
-            container.appendChild(p);
-            globalIndex++;
-        });
+                // ===== PARAGRAPH =====
+                const p = document.createElement('p');
+                p.setAttribute('data-p', globalIndex);
+                p.textContent = cleanText;
+
+                existingSection.appendChild(p);
+                globalIndex++;
+            });
+        }
     });
 }
 
 function saveReadingPosition() {
-    const paragraphs = document.querySelectorAll('.raw-text p');
+    const paragraphs = document.querySelectorAll('.audio-chapters-list p');
     let currentParagraph = null;
     let offsetRatio = 0;
-    
-    // စာဖတ်သူ အဓိက မျက်စိကျနေမယ့် Screen ရဲ့ အလယ်ဗဟို မျဉ်းကြောင်းကို ယူပါတယ်
     const viewportCenter = window.innerHeight / 2;
 
     paragraphs.forEach(p => {
         const rect = p.getBoundingClientRect();
-        // စာပိုဒ်က Screen ရဲ့ အလယ်ဗဟိုကို ဖြတ်သန်းနေသလား စစ်ဆေးခြင်း
         if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
             currentParagraph = p.dataset.p;
-            // ထိုစာပိုဒ်ရဲ့ ထိပ်ပိုင်းကနေ Screen အလယ်အထိ ရောက်နေတဲ့ အချိုးအစားကို တွက်ချက်ခြင်း
             offsetRatio = (viewportCenter - rect.top) / rect.height;
         }
     });
@@ -83,24 +83,19 @@ function restoreReadingPosition() {
     const target = document.querySelector(`[data-p="${data.paragraph}"]`);
     if (!target) return;
     
-    // ResizeObserver ကြောင့် target.offsetHeight က သေჩာပေါက် Layout အသစ်၏ အမြင့်အစစ်အမှန် ဖြစ်နေပါပြီ
     const paragraphHeight = target.offsetHeight;
     const offsetInsideParagraph = paragraphHeight * (data.offsetRatio || 0);
-    
-    // စာပိုဒ်၏ လက်ရှိ absolute top နေရာအစစ်အမှန်
     const absoluteTop = target.getBoundingClientRect().top + window.scrollY;
     
-    // စာဖတ်သူ ဖတ်လက်စနေရာကို Screen ရဲ့ အလယ်ဗဟို (Center) တွင် ကွက်တိ ပြန်ထားပေးခြင်း
     const viewportCenter = window.innerHeight / 2;
     const finalY = absoluteTop + offsetInsideParagraph - viewportCenter;
     
     window.scrollTo({
         top: finalY,
-        behavior: 'auto' // Layout Engine အပြောင်းအလဲတွင် auto သည် ရာနှုန်းပြည့် ငြိမ်သက်မှုပေးနိုင်ပါသည်
+        behavior: 'auto'
     });
 }
 
-// 🔥 ခလုတ်နှိပ်လိုက်သည့်အခါ သို့မဟုတ် Page စပွင့်ချိန် Layout အပြောင်းအလဲ ပြီးမြောက်မှုကို စောင့်ကြည့်ပေးမည့် ဗဟိုတံခါးပေါက်လုပ်ဆောင်ချက်
 function triggerLayoutObserver() {
     if (fontResizeObserver) {
         fontResizeObserver.disconnect();
@@ -111,7 +106,7 @@ function triggerLayoutObserver() {
 
     fontResizeObserver = new ResizeObserver((entries) => {
         for (let entry of entries) {
-            restoreReadingPosition(); // Browser က Layout ကွက်တိချပြီးမှ နေရာပြန်ရွှေ့ပေးခြင်း
+            restoreReadingPosition();
             fontResizeObserver.disconnect();
             fontResizeObserver = null;
         }
@@ -171,7 +166,12 @@ function toggleReadingMode() {
 
 /* == LAST READ SYSTEM == */
 function saveCurrentPage() {
-    localStorage.setItem('lastReadTitle', document.title);
+    const activeChapterLink = document.querySelector('.active-chapter');
+    if (activeChapterLink) {
+        localStorage.setItem('lastReadTitle', activeChapterLink.textContent);
+    } else {
+        localStorage.setItem('lastReadTitle', document.title);
+    }
     localStorage.setItem('lastReadUrl', window.location.href);
 }
 
@@ -218,12 +218,13 @@ function applyLineHeight() {
     localStorage.setItem('userLineHeight', currentLineHeight);
 }
 
+// 🌟 Global Window ကနေ လှမ်းခေါ်နိုင်အောင် ပြောင်းလဲပြင်ဆင်ထားပါသည်
 function adjustLineHeight(amount) {
     saveReadingPosition();
     let next = Math.round((currentLineHeight + amount) * 10) / 10;
     if (next >= 1.0 && next <= 100.0) {
         currentLineHeight = next;
-        triggerLayoutObserver(); // ⚡ ResizeObserver ဖြင့် Engine အပြောင်းအလဲကို စောင့်ကြည့်ခြင်း
+        triggerLayoutObserver();
         applyLineHeight();
     }
 }
@@ -248,12 +249,13 @@ function applyLetterSpacing() {
     localStorage.setItem('userLetterSpacing', currentLetterSpacing);
 }
 
+// 🌟 Global Window ကနေ လှမ်းခေါ်နိုင်အောင် ပြောင်းလဲပြင်ဆင်ထားပါသည်
 function adjustLetterSpacing(amount) {
     saveReadingPosition();
     let next = Math.round((currentLetterSpacing + amount) * 10) / 10;
     if (next >= 0 && next <= 10) {
         currentLetterSpacing = next;
-        triggerLayoutObserver(); // ⚡ ResizeObserver ဖြင့် Engine အပြောင်းအလဲကို စောင့်ကြည့်ခြင်း
+        triggerLayoutObserver();
         applyLetterSpacing();
     }
 }
@@ -298,7 +300,7 @@ function changeFontSize(amount) {
     const next = fontSize + amount;
     if (next >= 10 && next <= 70) {
         fontSize = next;
-        triggerLayoutObserver(); // ⚡ ResizeObserver ဖြင့် Engine အပြောင်းအလဲကို စောင့်ကြည့်ခြင်း
+        triggerLayoutObserver();
         renderFontSize();
     }
 }
@@ -336,7 +338,7 @@ function changeWeight(amount) {
     const next = currentWeight + amount;
     if (next >= 100 && next <= 900) {
         currentWeight = next;
-        triggerLayoutObserver(); // ⚡ ResizeObserver ဖြင့် Engine အပြောင်းအလဲကို စောင့်ကြည့်ခြင်း
+        triggerLayoutObserver();
         renderWeight();
     }
 }
@@ -345,10 +347,12 @@ function changeWeight(amount) {
 function init() {
     const article = document.querySelector('article');
     const tocSearch = document.getElementById('toc-search');
-    const tocItems = document.querySelectorAll('.toc-list li');
     
-    /* ===== 🌟 (၁) LOAD & APPLY ALL SAVED SETTINGS FIRST 🌟 ===== */
-    // စာမျက်နှာ စပွင့်ချင်း နေရာမချမီ Layout Settings အဟောင်းအားလုံးကို Engine ထဲ ကြိုတင်ထည့်သွင်းခြင်း
+    buildSemanticParagraphs();
+    
+    const tocItems = document.querySelectorAll('.toc-list li');
+
+    /* ===== LOAD & APPLY ALL SAVED SETTINGS ===== */
     const savedLH = localStorage.getItem('userLineHeight');
     if (savedLH !== null) {
         currentLineHeight = parseFloat(savedLH);
@@ -376,12 +380,8 @@ function init() {
     /* ===== LAST READ ===== */
     saveCurrentPage();
     showLastReadLink();
-    
-    /* ===== SEMANTIC ===== */
-    buildSemanticParagraphs();
 
-    /* ===== 🌟 (၂) INITIAL RESTORE WITH OBSERVER 🌟 ===== */
-    // စာမျက်နှာစဖွင့်ချိန်တွင် Browser က User ရဲ့ Setting အတိုင်း အမြင့်အစစ်အမှန်ကို တွက်ချက်ပြီးစီးမှ တိကျစွာ Scroll ပြန်ဆွဲပေးရန် ချိတ်ဆက်ခြင်း
+    /* ===== INITIAL RESTORE WITH OBSERVER ===== */
     triggerLayoutObserver(); 
     
     let readingTimer;
@@ -389,11 +389,12 @@ function init() {
         clearTimeout(readingTimer);
         readingTimer = setTimeout(() => {
             saveReadingPosition();
+            saveCurrentPage(); 
         }, 200);
     });
     
     /* ===== TOC ACTIVE ===== */
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('.audio-chapters-list section');
     const tocLinks = document.querySelectorAll('.toc-list li a');
     const observerOptions = {
         root: null,
@@ -549,18 +550,18 @@ function init() {
             }
         });
     }
-    
-    /* ===== EXPORT FUNCTIONS ===== */
-    window.toggleTOC = toggleTOC;
-    window.toggleSetting = toggleSetting;
-    window.downloadPDF = downloadPDF;
-    window.toggleReadingMode = toggleReadingMode;
-    window.adjustLineHeight = adjustLineHeight;
-    window.adjustLetterSpacing = adjustLetterSpacing;
-    window.changeFontSize = changeFontSize;
-    window.changeWeight = changeWeight;
 }
+
+/* ===== 🌟 EXPORT FUNCTIONS TO GLOBAL WINDOW 🌟 ===== */
+// IIFE closure block ကို ဖျက်လိုက်ပြီး ၎င်းနေရာတွင် တိုက်ရိုက်ထုတ်ပေးထားပါသည်
+window.toggleTOC = toggleTOC;
+window.toggleSetting = toggleSetting;
+window.downloadPDF = downloadPDF;
+window.toggleReadingMode = toggleReadingMode;
+window.adjustLineHeight = adjustLineHeight;
+window.adjustLetterSpacing = adjustLetterSpacing;
+window.changeFontSize = changeFontSize;
+window.changeWeight = changeWeight;
 
 /* == SINGLE DOMCONTENTLOADED == */
 document.addEventListener('DOMContentLoaded', init);
-})();
