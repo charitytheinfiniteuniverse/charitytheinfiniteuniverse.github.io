@@ -154,16 +154,18 @@ body {
 .section-title {
     font-size: 1.1rem;
     margin: 60px 0 10px 5px;
-    border-left: 5px solid #EAB308; /* အဝါရောင် ဘေးလိုင်းလေး */
+   /* border-left: 5px solid #EAB308; /* 5px အဝါရောင် ဘေးလိုင်းလေး */
     padding-left: 12px;
     background-color:#121212; 
-    border-radius:5px;
+  border-radius:20px;
+ /* border-radius:5px;*/
+  border: 1px solid rgba(255, 215, 0, 0.3); 
+  
     margin-top: 100px;
     color: #EAB308;
   text-align: center;
 }
 
-/*အောက်ဆုံးကြေညာစာအတွက် အစ*/
 /*အောက်ဆုံးကြေညာစာအတွက် အစ*/
 /* 🏢 အချက်အလက်များစုစည်းမှု အပြင်ဘက်ဘောင် */
 .info-section {
@@ -181,7 +183,7 @@ body {
     background-color: #121212; 
     color: #EAB308;            
     padding: 12px 20px;        
-    border-radius: 5px; /* ထောင့်ကို အနည်းငယ်ပဲ ဝိုင်းရန် */
+    border-radius: 20px; /* ထောင့်ကို အနည်းငယ်ပဲ ဝိုင်းရန် */
     font-size: 15px;           
     font-weight: 500;          
     width: 100%; /* ဖုန်းမှာရော Desktop မှာပါ ဘေးအပြည့် ဆန့်ထွက်ရန် */
