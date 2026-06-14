@@ -95,7 +95,9 @@ body {
     max-width: 100%;
     overflow-wrap: anywhere;
     word-break: break-word;
+    transition: 0.2s;
 }
+.bio-content a:hover { color: var(--primary-gold); }
 
 /* Dharma List */
 .dharma-list {
@@ -122,7 +124,7 @@ body {
     align-items: center;
     background: var(--card-bg);
     padding: 18px 25px;
-    border-radius: 12px;
+    border-radius: 20px;
     text-decoration: none;
     color: white;
     margin-bottom: 15px;
@@ -176,6 +178,11 @@ body:not(.dark-mode) .label {
     transition: 0.3s ease;
 }
 
+.nav-button:hover {
+    background: #d4a017 !important;
+    transform: translateY(-2px);
+}
+
 .nav-button .icon {
     color: #000000 !important;
 }
@@ -219,9 +226,10 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
   font-weight: bold;
   padding: 4px 6px;
   border-radius: 6px;
-  transition: background-color 0.3s ease; 
+  transition: all 0.3s ease; 
   font-size: 16px;
 }
+.bottom-nav a:hover { background-color: rgba(255, 215, 0, 0.1); }
 
 .bottom-nav a .icon {
   font-size: 18px;
@@ -260,6 +268,7 @@ body:not(.dark-mode):not(.reading-mode) .focus-card {
     border: 1px solid rgba(212, 175, 55, 0.1);
     transition: 0.3s ease;
 }
+.gallery-item:hover { transform: translateY(-5px); border-color: var(--primary-gold); }
 
 .gallery-item img {
     width: 100%;
@@ -290,14 +299,15 @@ body:not(.dark-mode) .gallery-item .text {
   left: 0.5rem;        /* ဘယ်ဘက် margin */
   font-size: 1rem;   /* စာအရွယ် */
   font-weight: bold;
-    font-family: "Myanmar Text", sans-serif !important; /*  (စာလုံးစနစ် တူညီသွားစေရန်) */
+  font-family: "Myanmar Text", sans-serif !important; /* 🌟 ဤလိုင်းလေး ဖြည့်ပေးပါ (စာလုံးစနစ် တူညီသွားစေရန်) */ 
   background-color: black;
   color: #EAB308;
   padding: 3px 7px;
-  border-radius: 20px;    
+border-radius: 20px;    
   
   /* အနားသတ် အဝါရောင် ပါးပါးလေး */
   border: 1px solid rgba(255, 215, 0, 0.3); 
+    
   z-index: 9999;
   pointer-events: none;
 }
@@ -314,7 +324,9 @@ body:not(.dark-mode) .gallery-item .text {
   height: 80px;
   border-radius: 50%; /* လိုဂိုကို အဝိုင်းပုံစံ ဖြစ်စေချင်လျှင် သုံးပါ */
   object-fit: cover;
+  transition: 0.3s;
 }
+.fixed-logo img:hover { transform: scale(1.05); }
 
 /*စာပို့ခလုပ် အစ*/
 /* 📜 Fixed Manuscript Button Style */
@@ -332,6 +344,7 @@ body:not(.dark-mode) .gallery-item .text {
     display: block;
     transition: transform 0.2s ease; /* နှိပ်လိုက်ရင် တုံ့ပြန်မှု ရှိစေရန် */
 }
+.fixed-manuscript-btn a:hover { transform: translateY(-5px); }
 
 .fixed-manuscript-btn a:active {
     transform: scale(0.9);  /* နှိပ်လိုက်ရင် နည်းနည်းကျုံ့သွားစေရန် */
@@ -377,13 +390,13 @@ button:active, a:active {
 .section-title {
     font-size: 1.1rem;
     margin: 60px 0 10px 5px;
-   /* border-left: 5px solid #EAB308; /* အဝါရောင် ဘေးလိုင်းလေး */
+    /*border-left: 5px solid #EAB308; /* အဝါရောင် ဘေးလိုင်းလေး */
     padding-left: 12px;
   background-color:#121212; 
   border-radius:20px;
     border: 1px solid rgba(255, 215, 0, 0.3); 
-  margin-top: 100px; 
-    color: #EAB308;
+    margin-top: 100px; 
+color: #EAB308;
 text-align: center;
 }
 /* ၂။ ခေါင်းစဉ် အလှပြင်ဆင်ခြင်း အဆုံး*/
